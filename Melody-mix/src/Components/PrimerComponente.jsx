@@ -2,7 +2,7 @@ import React from 'react'
 
 const PrimerComponente = () => {
   return (
-    <div>Hola</div>
+    <h2>Hola</h2>
   )
 }
 
