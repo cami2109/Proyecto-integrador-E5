@@ -2,13 +2,15 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import PrimerComponente from './Components/PrimerComponente'
+import Header from './Components/Header'
+import Home from './Routes/Home'
 
 function App() {
 
   return (
     <>
-      <PrimerComponente />
+      {/*rutas*/}
+      <Home />
     </>
   )
 }
