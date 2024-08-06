@@ -1,4 +1,6 @@
 import '../App.css'
+import Card from '../Components/Card'
+import { instrumentos } from '../Utils/listaInstrumentos'
 
 const Home = () => {
   return (
@@ -57,7 +59,15 @@ const Home = () => {
             <h2>Recomendaciones</h2>
           </div>
           <div className="section-bottom">
-            <div key={1} className="card">
+            {
+              instrumentos.map((item) => {
+                return(
+                  <Card key={item.id} info={item}/>
+                )
+              })
+              
+            }
+            {/* <div key={1} className="card">
               <h3>Card {1}</h3>
               <p> card {1}</p>
             </div>
@@ -88,7 +98,7 @@ const Home = () => {
             <div key={8} className="card">
               <h3>Card {8}</h3>
               <p> card {8}</p>
-            </div>
+            </div> */}
           </div>
         </section>
       </main>
