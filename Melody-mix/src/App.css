@@ -117,6 +117,9 @@
 
 .card {
   padding: 2em;
+  border: 3px solid black;
+  display: flex;
+  align-items: center;
 }
 
 .read-the-docs {
