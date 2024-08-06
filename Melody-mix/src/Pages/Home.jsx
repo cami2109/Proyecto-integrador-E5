@@ -1,9 +1,22 @@
-import Footer from "../Components/Footer";
-import Header from "../Components/Header";
-
 const Home = () => {
   return (
     <div className="grid-container">
+      <header className="header">
+        <div className="header-left">
+          <div className="logo">
+            <img src="" alt="LOGO" />
+          </div>
+          <div>Tu viaje musical a un click</div>
+        </div>
+        <div className="header-right">
+          <nav className="nav">
+            <a href="#home">Home</a>
+            <a href="#login">Login</a>
+            <a href="#register">Register</a>
+          </nav>
+        </div>
+      </header>
+
       <main className="main-content">
         <section className="section-top">
           <div className="section-top-left">
@@ -70,11 +83,24 @@ const Home = () => {
               <h3>Card {7}</h3>
               <p> card {7}</p>
             </div>
+            <div key={8} className="card">
+              <h3>Card {8}</h3>
+              <p> card {8}</p>
+            </div>
           </div>
         </section>
       </main>
-    </div>
-  );
-};
 
-export default Home;
+      <footer className="footer">
+        <p>nuestras redes:</p>
+        <div className="socials">
+          <a href="#facebook">Facebook</a>
+          <a href="#twitter">Twitter</a>
+          <a href="#instagram">Instagram</a>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+export default Home
