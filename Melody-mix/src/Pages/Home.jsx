@@ -1,7 +1,10 @@
+import React from "react"
+import "../App.css"
+
 const Home = () => {
   return (
-    <div className="grid-container">
-      <header className="header">
+    <div>
+      {/* <header className="header">
         <div className="header-left">
           <div className="logo">
             <img src="" alt="LOGO" />
@@ -15,7 +18,7 @@ const Home = () => {
             <a href="#register">Register</a>
           </nav>
         </div>
-      </header>
+      </header> */}
 
       <main className="main-content">
         <section className="section-top">
@@ -91,14 +94,14 @@ const Home = () => {
         </section>
       </main>
 
-      <footer className="footer">
+      {/* <footer className="footer">
         <p>nuestras redes:</p>
         <div className="socials">
           <a href="#facebook">Facebook</a>
           <a href="#twitter">Twitter</a>
           <a href="#instagram">Instagram</a>
         </div>
-      </footer>
+      </footer> */}
     </div>
   )
 }
