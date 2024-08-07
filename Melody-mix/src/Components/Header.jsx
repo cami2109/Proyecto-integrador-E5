@@ -7,7 +7,7 @@ const Header = () => {
     <div className="header">
       <div className="header-left">
         <div className="logo">
-          <img src="" alt="LOGO" />
+          <img src="../Utils/Img/logo.jpeg" alt="LOGO"/>
         </div>
         <div>Tu viaje musical a un click</div>
       </div>
