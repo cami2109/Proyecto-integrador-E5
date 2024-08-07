@@ -118,6 +118,17 @@ body, html {
   border-radius: 8px;
   width: 100%;
 }
+/* 
+@media (max-width: 1024px) {
+  .section-bottom {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-bottom {
+    grid-template-columns: repeat(1, 1fr);
+  }  */
 
 .section-bottom {
   display: grid;
