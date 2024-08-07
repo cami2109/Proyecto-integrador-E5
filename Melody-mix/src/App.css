@@ -32,7 +32,8 @@ body, html {
 
 .header {
   grid-area: header;
-  background-color: #BBBB2C;
+  background-color: #ffffff;
+  color: #005BA9;
   padding: 2rem;
   display: flex;
   justify-content: space-between;
@@ -63,7 +64,7 @@ body, html {
 .nav a {
   margin: 0 10px;
   text-decoration: none;
-  color: #333;
+  color: #005BA9;
 }
 
 .nav a:hover {
@@ -82,7 +83,8 @@ body, html {
 
 .section-top {
   grid-area: section-top;
-  background-color: #BBBB2C;
+  background-color: #005BA9;
+  color: #ffffff;
   padding: 1rem;
   border-radius: 8px;
   width: 100%;
@@ -106,14 +108,15 @@ body, html {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(1, auto);
   gap: 1rem;
-  background-color: #BBBB2C;
+  background-color: #005BA9;
   padding: 1rem;
   border-radius: 8px;
   width: 100%;
 }
 
 .section {
-  background-color: #BBBB2C;
+  background-color: #005BA9;
+  color: #ffffff;
   padding: 1rem;
   border-radius: 8px;
   width: 100%;
@@ -124,7 +127,7 @@ body, html {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, auto);
   gap: 1rem;
-  background-color: #BBBB2C;
+  background-color: #005BA9;
   padding: 1rem;
   border-radius: 8px;
   width: 100%;
@@ -151,7 +154,8 @@ body, html {
 
 .footer {
   grid-area: footer;
-  background-color: #BBBB2C;
+  background-color: #005BA9;
+  color: #ffffff;
   padding: 1rem;
   display: flex;
   justify-content: center;
@@ -162,7 +166,7 @@ body, html {
 .footer .socials a {
   margin: 0 10px;
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
 }
 
 .footer .socials a:hover {
@@ -188,7 +192,7 @@ body, html {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, auto);
     gap: 1rem;
-    background-color: #bbbb2c;
+    background-color: #005BA9;
     padding: 1rem;
     border-radius: 8px;
     width: 100%;
@@ -198,7 +202,7 @@ body, html {
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(5, auto);
     gap: 1rem;
-    background-color: #bbbb2c;
+    background-color: #005BA9;
     padding: 1rem;
     border-radius: 8px;
     width: 100%;
