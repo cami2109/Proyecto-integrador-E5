@@ -118,17 +118,6 @@ body, html {
   border-radius: 8px;
   width: 100%;
 }
-/* 
-@media (max-width: 1024px) {
-  .section-bottom {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .section-bottom {
-    grid-template-columns: repeat(1, 1fr);
-  }  */
 
 .section-bottom {
   display: grid;
@@ -178,4 +167,40 @@ body, html {
 
 .footer .socials a:hover {
   text-decoration: underline;
+}
+
+.hamb {
+  display: none;
+}
+
+@media (max-width: 570px) {
+  .nav {
+    display: none;
+  }
+  .hamb {
+    display: block;
+  }
+  .section-top-left{
+    display: none;
+  }
+  .section-mid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, auto);
+    gap: 1rem;
+    background-color: #bbbb2c;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+  }
+  .section-bottom {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(5, auto);
+    gap: 1rem;
+    background-color: #bbbb2c;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 100%;
+  }
 }
