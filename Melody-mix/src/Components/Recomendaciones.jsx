@@ -11,7 +11,7 @@ const Recomendaciones = () => {
         </div>
         <div className="section-bottom">          
           { instrumentos.map((item) => {
-            return (
+            return (                
                 <Card key={item.id} info={item}/>
             )
           })}
