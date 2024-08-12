@@ -1,19 +1,17 @@
-import '../App.css'
-import Buscador from '../Components/Buscador'
-import Recomendaciones from '../Components/Recomendaciones'
-import TipoInstrumentos from '../Components/TipoInstrumentos'
-
+import React from "react";
+import "../App.css";
+import Search from "../Components/Search";
+import Instrumentos from "../Components/Instrumentos";
+import Recomendaciones from "../Components/Recomendaciones";
 
 const Home = () => {
   return (
-    <div className="grid-container">
-      <main className="main-content">
-        <Buscador />
-        <TipoInstrumentos />
-        <Recomendaciones />
-      </main>
-    </div>
-  )
-}
+    <main className="main-content">      
+      <Search/>      
+      <Instrumentos/>      
+      <Recomendaciones/>
+    </main>
+  );
+};
 
-export default Home
+export default Home;
