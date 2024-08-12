@@ -12,6 +12,7 @@ const Rutas = () => {
         <Route path="/detalle/:id" element={<Detalle />}/>
         <Route path="*" element={<h1>Página no encontrada.</h1>} />
       </Routes>
+      {/* no se porque no funciona el pull */}
     </>
   )
 }
