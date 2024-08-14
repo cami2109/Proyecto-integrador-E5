@@ -1,8 +1,7 @@
-package com.controlador;
+package com.melodymix.controlador;
 
-import com.entidad.Usuario;
-import com.servicio.IUsuarioService;
-import com.servicio.implementacion.UsuarioServiceImpl;
+import com.melodymix.entidad.Usuario;
+import com.melodymix.servicio.UsuarioServicioImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class UsuarioControlador {
     // inyectamos la implementacion UsuarioServiceImpl
-    private UsuarioServiceImpl usuarioServiceImpl;
+    private UsuarioServicioImpl usuarioServiceImpl;
 
     @Autowired
-    public UsuarioControlador(UsuarioServiceImpl usuarioServiceImpl) {
+    public UsuarioControlador(UsuarioServicioImpl usuarioServiceImpl) {
         this.usuarioServiceImpl = usuarioServiceImpl;
     }
 
@@ -29,4 +28,7 @@ public class UsuarioControlador {
         Usuario nuevoUsuario = usuarioServiceImpl.registrar(usuario);
         return ResponseEntity.ok(nuevoUsuario);
     }
+
+
+
 }

@@ -1,8 +1,7 @@
-package com.servicio.implementacion;
+package com.melodymix.servicio;
 
-import com.entidad.Usuario;
-import com.repositorio.IUsuarioRepositorio;
-import com.servicio.IUsuarioService;
+import com.melodymix.entidad.Usuario;
+import com.melodymix.repo.IUsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +9,7 @@ import java.util.*;
 
 // anotacion @Service Spring
 @Service
-public class UsuarioServiceImpl implements IUsuarioService {
+public class UsuarioServicioImpl implements IUsuarioServicio {
 
     private final IUsuarioRepositorio usuarioRepositorio;
 
@@ -19,7 +18,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
     // adecuada de IUsuarioRepositorio
     // esto permite que UsuarioServiceImpl use el repositorio para acceder a la base de datos
     @Autowired
-    public UsuarioServiceImpl(IUsuarioRepositorio usuarioRepositorio) {
+    public UsuarioServicioImpl(IUsuarioRepositorio usuarioRepositorio) {
         this.usuarioRepositorio = usuarioRepositorio;
     }
     @Override

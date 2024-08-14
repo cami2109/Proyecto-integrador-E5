@@ -1,4 +1,4 @@
-package com.entidad;
+package com.melodymix.entidad;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +30,8 @@ public class Usuario {
         this.apellido = apellido;
         this.email = email;
     }
+    public Usuario() {
 
+    }
 
 }

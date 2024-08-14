@@ -1,7 +1,7 @@
-package com.repositorio;
+package com.melodymix.repo;
 
 
-import com.entidad.Usuario;
+import com.melodymix.entidad.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
