@@ -5,6 +5,8 @@ import com.entidad.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 // JpaRepository es una interfaz que proporciona metodos CRUD
 public interface IUsuarioRepositorio extends JpaRepository<Usuario, Long> {
@@ -16,7 +18,9 @@ public interface IUsuarioRepositorio extends JpaRepository<Usuario, Long> {
     // estos son los metodos que trae JpaRepository, y le voy a agregar otro que capaz usemos
     // que es findByEmail
 
-    Usuario findByEmail(String email);
+    // le ponemos optional, para despues en el override de la funcion en la implementacion,
+    // le pueda poner un .orElse(null) para si no lo encuentra devuelva null
+    Optional<Usuario> findByEmail(String email);
 
 
 

@@ -4,8 +4,12 @@ import com.entidad.Usuario;
 import com.repositorio.IUsuarioRepositorio;
 import com.servicio.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.*;
 
+// anotacion @Service Spring
+@Service
 public class UsuarioServiceImpl implements IUsuarioService {
 
     private final IUsuarioRepositorio usuarioRepositorio;
@@ -36,7 +40,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public void eliminar(Long id) {
-
+        usuarioRepositorio.deleteById(id);
     }
 
     @Override
@@ -46,6 +50,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public Usuario buscarPorEmail(String email) {
-        return null;
+        return usuarioRepositorio.findByEmail(email).orElse(null);
     }
 }
