@@ -184,6 +184,13 @@ html {
   display: none;
 }
 
+.perfil{
+  display: flex;
+  justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 @media (max-width: 700px) {
   .nav {
     display: none;
