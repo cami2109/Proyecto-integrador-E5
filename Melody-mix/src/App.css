@@ -177,7 +177,7 @@ body, html {
   align-items: center;
   font-family: roboto;
   width: 350px;
-  height: 500px;  
+  height: 550px;  
 }
 
 .crearCuenta p {
@@ -191,18 +191,31 @@ body, html {
   margin-bottom: 20px;
 }
 
-label {
+.crearCuenta label {
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
 }
 
-input {
+.crearCuenta input {
   width: 100%;
   padding: 10px 35px 10px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+}
+
+.crearCuenta button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #005BA9;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .icon {

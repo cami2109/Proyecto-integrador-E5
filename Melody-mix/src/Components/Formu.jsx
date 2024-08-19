@@ -5,7 +5,7 @@ const Formu = () => {
     nombre: "",
     apellido: "",
     email: "",
-    contraseña: ""
+    contraseña: "",
   });
   const [showCard, setShowCard] = useState(false);
   const [error, setError] = useState(false);
@@ -28,11 +28,12 @@ const Formu = () => {
   };
 
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit}>
-        <h3 style={{textAlign:"center"}}>Crear Cuenta</h3>
+        <h3 style={{ textAlign: "center" }}>Crear Cuenta</h3>
         <hr />
-        <br /><br />
+        <br />
+        <br />
         <div className="form-group">
           <label htmlFor="Nombre"></label>
           <input
@@ -78,8 +79,8 @@ const Formu = () => {
         <button>Registrarse</button>
       </form>
       {showCard && <p>aguarda por favor</p>}
-      {error && <p>chequea que la información</p>}
-    </div>
+      {error && <p style={{ color: "red" }}> chequea la información</p>}
+    </>
   );
 };
 
