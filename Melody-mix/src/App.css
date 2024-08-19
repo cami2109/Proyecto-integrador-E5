@@ -148,7 +148,6 @@ html {
   padding: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
@@ -183,6 +182,13 @@ html {
 
 .hamb {
   display: none;
+}
+
+.perfil{
+  display: flex;
+  justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 @media (max-width: 700px) {
