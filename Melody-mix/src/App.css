@@ -180,6 +180,10 @@ body, html {
   height: 550px;  
 }
 
+.infoperfil{
+  color: #000;
+}
+
 .crearCuenta p {
   color: white;
   font-weight: bold;
