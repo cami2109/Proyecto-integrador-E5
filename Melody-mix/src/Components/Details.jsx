@@ -1,17 +1,19 @@
 import React from "react";
-import { instrumentos } from "../Utils/listaInstrumentos";
 import { useParams } from "react-router-dom";
+import { instrumentos } from "../Utils/listaInstrumentos.js";
 
 const Details = () => {
   const { id } = useParams();
+  console.log(id);
 
-  const instrumentoActual = instrumentos[id - 1];
+  const instrumentoActual = instrumentos[id -1];
+  console.log(instrumentos);
 
   return (
     <section className="main-content">
       <div>
         <h2>{instrumentoActual.nombre}</h2>
-        <div className="card" >
+        <div className="detail">
           <img src={instrumentoActual.imagen} width={400} />
           <h4>{instrumentoActual.precio}</h4>
           <p>
