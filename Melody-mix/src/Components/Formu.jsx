@@ -33,7 +33,7 @@ const Formu = () => {
   };
 
   return (
-    <div>
+    <>
       <form>
         <h3 style={{textAlign:"center"}}>Crear Cuenta</h3>
         <hr />
@@ -83,8 +83,8 @@ const Formu = () => {
         <button onClick={() => (handleSubmit)}>Registrarse</button>
       </form>
       {showCard && <p>aguarda por favor</p>}
-      {error && <p>chequea que la información</p>}
-    </div>
+      {error && <p style={{ color: "red" }}>chequea la información</p>}
+    </>
   );
 };
 
