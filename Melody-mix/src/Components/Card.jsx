@@ -12,7 +12,7 @@ const Card = ({ info }) => {
         <div>
           <h2>{nombre}</h2>
           <h4>{precio}</h4>
-          <h4>id: {id} ver mas...</h4>
+          <h4>ver mas...</h4>
         </div>
       </Link>
     </div>

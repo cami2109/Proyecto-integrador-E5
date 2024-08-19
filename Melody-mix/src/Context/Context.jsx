@@ -42,6 +42,8 @@ const reducer = (state, action) => {
       return { ...state, user: action.payload };
     case "GET_PRODUCTS":
       return null;
+    case "LOG_IN":
+      return null
     case "LOG_OUT":
       return { ...state, user: {} };
   }

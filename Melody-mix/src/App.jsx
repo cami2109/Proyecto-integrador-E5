@@ -17,6 +17,7 @@ function App() {
           <Route path="/details/:id" element= {<Details/>}/>
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/crearcuenta" element={<CrearCuenta/>} />
+          {/* <Route path="/login" element={<LogIn />}*/}
           <Route path="/perfil/editar" element={<h3 style={{margin:"auto"}}>Editar perfil</h3>} />
           <Route path="/*" element={<h2 style={{margin:"auto"}}>Page not found</h2>} />
         </Route>
