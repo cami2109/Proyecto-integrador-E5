@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/Context";
 
 const Perfil = () => {
   const { state, dispatch } = useUserContext();
 
+  const navigate = useNavigate()
+
   const iniciales = (nombre) => {
     let nombreSeparado = nombre.split(" ");
     return nombreSeparado[0].charAt(0) + nombreSeparado[1].charAt(0);
   };
-
-  console.log(state.user.name);
 
   return (
     <div className="perfil">
@@ -24,7 +24,7 @@ const Perfil = () => {
         <Link to={"/perfil/editar"}>
           <button>Editar perfil</button>
         </Link>
-        <button onClick={() => dispatch({ type: "LOG_OUT" })}>
+        <button onClick={() => (dispatch({ type: "LOG_OUT" }, navigate("/")))}>
           Cerrar sesión
         </button>
       </div>

@@ -6,6 +6,7 @@ import Layout from "./Layout/Layout";
 import Details from "./Components/Details"
 import Perfil from "./Pages/Perfil";
 import CrearCuenta from "./Pages/CrearCuenta";
+import LogIn from "./Components/LogIn";
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
           <Route path="/details/:id" element= {<Details/>}/>
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/crearcuenta" element={<CrearCuenta/>} />
-          {/* <Route path="/login" element={<LogIn />}*/}
+          <Route path="/login" element={<LogIn />} />
           <Route path="/perfil/editar" element={<h3 style={{margin:"auto"}}>Editar perfil</h3>} />
           <Route path="/*" element={<h2 style={{margin:"auto"}}>Page not found</h2>} />
         </Route>

@@ -1,8 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom";
+import { useUserContext } from "../Context/Context";
 
 
 const Header = () => {
+  const {state} = useUserContext()
+
   return (
     <div className="header" >
       <div className="header-left">
@@ -14,9 +17,7 @@ const Header = () => {
       </div>
       <div className="header-right">
         <nav className="nav">
-          {/* <Link to="/"><h4>Home</h4></Link> */}
-          <Link to="/login"><h4>Login</h4></Link>
-          <Link to="/crearcuenta"><h4>Crear Cuenta</h4></Link>
+          {state.user.name ? <Link to={"/perfil"}><h4>{state.user.name}</h4></Link>: <><Link to="/login"><h4>Login</h4></Link><Link to="/crearcuenta"><h4>Crear Cuenta</h4></Link></>}
         </nav>
         <div class="hamb">
             <img src="Img/hamb.png" alt="hamburguesa" width={30}/>
