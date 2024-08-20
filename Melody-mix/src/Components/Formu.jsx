@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Formu = () => {
   const [info, setInfo] = useState({
@@ -9,6 +10,7 @@ const Formu = () => {
   });
   const [showCard, setShowCard] = useState(false);
   const [error, setError] = useState(false);
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +23,9 @@ const Formu = () => {
     if (validarEmail(info.email.trim()) && info.nombre.trim().length >= 6) {
       setShowCard(true);
       setError(false);
+      setTimeout(() => {
+        navigate("/")
+      }, 3000)
     } else {
       setError(true);
       setShowCard(false);
@@ -28,9 +33,9 @@ const Formu = () => {
   };
 
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
-        <h3 style={{ textAlign: "center" }}>Crear Cuenta</h3>
+        <h3 style={{textAlign:"center"}}>Crear Cuenta</h3>
         <hr />
         <br />
         <br />
@@ -76,11 +81,11 @@ const Formu = () => {
           />
           <span className="icon">🔒</span>
         </div>
-        <button>Registrarse</button>
+        <button onClick={() => (handleSubmit)}>Registrarse</button>
       </form>
       {showCard && <p>aguarda por favor</p>}
-      {error && <p style={{ color: "red" }}> chequea la información</p>}
-    </>
+      {error && <p>chequea que la información</p>}
+    </div>
   );
 };
 

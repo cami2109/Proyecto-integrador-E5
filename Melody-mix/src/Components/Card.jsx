@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 
 const Card = ({ info }) => {
   const { nombre, imagen, precio, id } = info;
-  // console.log(info);
 
   return (
     <div className="card">
-      <Link to={"/details/" + info.id}>
+      <Link to={"/details/" + id}>
         <img src={imagen} width={200} />
         <div>
           <h2>{nombre}</h2>
