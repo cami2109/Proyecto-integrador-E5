@@ -20,7 +20,7 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String email;
-    @Getter(AccessLevel.NONE) // esto excluye el get contrasena asi esta "encriptada"
+     // @Getter(AccessLevel.NONE) // esto excluye el get contrasena asi esta "encriptada"
     private String contrasena;
 
     public Usuario(String nombre, String apellido, String email) {
