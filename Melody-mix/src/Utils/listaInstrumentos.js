@@ -1,62 +1,72 @@
 export const instrumentos = [
     {
-        nombre: "Piano 1",
+        nombre: "Piano Digital Casio PX-S1100 88 Teclas Sensitivo Con Fuente y Funda Acolchada Rojo",
         precio: "1000",
-        imagen: "https://imgs.search.brave.com/iXhvNpIGqjdWSeAi8caZTegDsDxsGe5uKVbYQTNkvkw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hdWRp/b211c2ljYWNsLnZ0/ZXhhc3NldHMuY29t/L2Fzc2V0cy92dGV4/LmZpbGUtbWFuYWdl/ci1ncmFwaHFsL2lt/YWdlcy9kZjc0MTZm/ZS0yNTBmLTQzNGQt/YWM1Yi04NjBjOTBl/YTQ1YzZfX182NTY4/NDE5MTM1MjQ3NDZh/M2U0NzZiOTI0ZDhl/NzJiOC5qcGc",
+        imagen: "/Melody-mix/public/Img/Casio digital.PNG",
+        descripcion:"Una característica clave del Privia PX-S1100 es su estructura delgada. Es el piano digital de 88 teclas con acción de martillo más delgado del mundo. Con una profundidad de solo 232 mm, cabe en la sala de estar, en una habitación o en cualquier otro lugar para disfrutar de un espacio lleno de música.",
         id: 1
     },     
     {
-        nombre: "Guitarra Acústica 2",
+        nombre: "Guitarra Electrica PRS J2RJ SE Silver Sky Dragon Fruit",
         precio: "950",
-        imagen: "https://imgs.search.brave.com/7xGsHaGyR1ahIw_8tyBSd1Isg_pM9K-olq0mNG4zyCA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tbGEt/czEtcC5tbHN0YXRp/Yy5jb20vOTYzNzUy/LU1MQTc1NDM1NTgw/ODM5XzAzMjAyNC1B/Qi5qcGc",
+        imagen: "/Melody-mix/public/Img/Dragon fruit.PNG",
+        descripcion:"El PRS SE Silver Sky comienza con un cuerpo de álamo, un mástil de arce atornillado y un diapasón de palisandro con incrustaciones de pájaros de la marca PRS. El mástil de 22 trastes y escala de 25,5. presenta el tallado original 635JM y un radio de diapasón de 8 5 por lo que la PRS SE Silver Sky se sentirá como en casa. Conéctelo y las tres pastillas 635JM de bobina simple ladrarán y cantarán. Esta guitarra está anclada por un trémolo de acero de dos puntos, cejilla de hueso sintético y afinadores de estilo vintage. Otras características de diseño incluyen la forma del clavijero invertido PRS Silver Sky y el alma de doble efecto PRS (accesible desde la parte delantera del clavijero para facilitar su uso)" ,
         id: 2
     },
     {
-        nombre: "Flauta 3",
+        nombre: "Flauta Traversa Estudio Intermedio Yamaha Yfl222 + Estuche",
         precio: "200",
-        imagen: "https://imgs.search.brave.com/gxe9pNSo72sUhHxqeOrCaMD2tt87ZSKch0dtaXg9IDw/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9ncnVw/b3R1Y2FuLmNvbS9t/ZWRpYS9jYXRhbG9n/L3Byb2R1Y3QvY2Fj/aGUvMS9pbWFnZS85/ZGY3OGVhYjMzNTI1/ZDA4ZDZlNWZiOGQy/NzEzNmU5NS9mL2wv/ZmxhdXRhLWpvY2Fy/Li4uanBn",
+        imagen: "/Melody-mix/public/Img/Flauta traversa yamaha.PNG",
+        descripcion:"Es una Yamaha con platos cerrados y llaves desalineadas sin mecanismo de Mi. Dentro de la Serie 200 de Yamaha, encontramos varios modelos de flautas de estudio o flautas standards. Estos modelos se diferencian en el tipo de platos, la alineación de la flauta o los mecanísmos incorporados.",
         id: 3
     },
     {
-        nombre: "Bateria 4",
+        nombre: "Bateria Electronica V-drums Roland Td1k",
         precio: "1000",
-        imagen: "https://imgs.search.brave.com/X1uc3duTDprni-ICwozYMYFKLQG6rqtlCVDCjhaKyzg/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tbGEt/czEtcC5tbHN0YXRp/Yy5jb20vODI1NDI4/LU1MQTc1MDgwNjM1/MzQxXzAzMjAyNC1B/Qi5qcGc",
+        imagen: "/Melody-mix/public/Img/Bateria electrica.PNG",
+        descripcion:"Batería electrónica Modelo de entrada de la serie Roland V-Drums Set de diseño compacto que contiene: 1 módulo de batería TD-1 con 15 kits de batería y 15 canciones 10 funciones de entrenamiento Metrónomo Pantalla LED USB Entrada de mezcla (minijack estéreo) Entrada de auriculares (minijack estéreo) 1 entrada 'trigger' Configuración del kit: 1 pad de malla para Caja PDX-8 Mesh 3 pads para Toms 1 pad para Crash 1 pad para Ride 1 pad para Hi-Hat 1 pedal para bombo y 1 pedal para Hi-Hat para una interpretación silenciosa Incluye soporte ajustable en altura, manual y llave de afinación",
         id: 4
     },
     {
-        nombre: "Violin 5",
+        nombre: "Violín Cervini By Cremona HV-50 Estudio 3/4 Marrón con Estuche",
         precio: "900",
-        imagen: "https://imgs.search.brave.com/89lRHc9U5EtU8EFm4tB7JWO2YbQQAkWByg4w4GZj8Gc/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTM0/MDkzMjIzL3Bob3Rv/L3Zpb2xpbi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9QXoz/VkUxQlJYcUYxMHNo/QWxoeTcxQkdsd01x/SHlsRmZFZU1UMU5P/YmZpVT0",
+        imagen: "/Melody-mix/public/Img/Cervini.PNG",
+        descripcion:"Con el nuevo Cremona SV-50 Student Violin Outfit, el instrumento ya no será el mayor elemento disuasorio para saber si el aspirante a músico puede o no tener éxito en aprender a tocar el violín. Esto se debe a que, durante más de 40 años, Cremona ha seguido elevando el nivel de calidad y valor al comprender las necesidades de los músicos en todos los niveles; ¡y proporcionar instrumentos con características que mejoran el proceso de aprendizaje, atraen a los padres, maestros y especialmente al individuo que lo juega!",
         id: 5
     },
     {
-        nombre: "Piano 6",
+        nombre: "Piano Digital Yamaha P-515b 88 Teclas Pesadas De Escenario Negro",
         precio: "1000",
-        imagen: "https://imgs.search.brave.com/iXhvNpIGqjdWSeAi8caZTegDsDxsGe5uKVbYQTNkvkw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hdWRp/b211c2ljYWNsLnZ0/ZXhhc3NldHMuY29t/L2Fzc2V0cy92dGV4/LmZpbGUtbWFuYWdl/ci1ncmFwaHFsL2lt/YWdlcy9kZjc0MTZm/ZS0yNTBmLTQzNGQt/YWM1Yi04NjBjOTBl/YTQ1YzZfX182NTY4/NDE5MTM1MjQ3NDZh/M2U0NzZiOTI0ZDhl/NzJiOC5qcGc",
-        id: 6
+        imagen: "/Melody-mix/public/Img/Yamaha electrico.PNG",
+        descripcion:"El P-515 es el primer piano compacto que brinda acceso al fabuloso universo de los dos pianos de concierto de renombre mundial Yamaha CFX y Bösendorfer Imperial. Se reproducen con gran detalle con todas sus resonancias gracias a la tecnología VRM. Cuenta con un teclado de madera natural Natural Wood X (NWX), creado utilizando la experiencia incomparable de Yamaha en más de un siglo de fabricación de pianos acústicos. El P-515 ofrece una amplia selección de más de 500 sonidos, lo que lo convierte en la herramienta perfecta para crear y reproducir cualquier tipo de música. Por la calidad de su diseño y acabado, su tamaño compacto y el alto nivel de su rendimiento, el P-515 515 se puede utilizar en el escenario o en casa.",
+        id:6
     },
     {
-        nombre: "Guitarra Acústica 7",
+        nombre: "Guitarra Electro Acustica Fender Cd60 Sce Dreadnought Natural",
         precio: "950",
-        imagen: "https://imgs.search.brave.com/7xGsHaGyR1ahIw_8tyBSd1Isg_pM9K-olq0mNG4zyCA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tbGEt/czEtcC5tbHN0YXRp/Yy5jb20vOTYzNzUy/LU1MQTc1NDM1NTgw/ODM5XzAzMjAyNC1B/Qi5qcGc",
+        imagen: "/Melody-mix/public/Img/Dnought natural.PNG",
+        descripcion:"Guitarra Electroacustica CD-60SCE Dreadnought Diseño clasico c/Cutway Pastilla / preamplificador de diseño clásico Fishman Combinando potentes componentes electrónicos integrados, incluido un sintonizador incorporado, con un excelente tono y facilidad de reproducción, el CD-60SCE es ideal para jugadores de nivel principiante a intermedio que están listos para enchufar. Cuenta con un cuerpo de corte veneciano para facilitar el acceso al traste superior. , una tapa de abeto sólida para aumentar el volumen y un sonido nítido, el mástil y la parte posterior y los lados de caoba fáciles de tocar, el CD-60SCE es perfecto para el sofá, la fogata o la cafetería, en cualquier lugar donde desee la jugabilidad y el sonido clásico de Fender.",
         id: 7
     },
     {
-        nombre: "Bateria 8",
+        nombre: "Bateria Yamaha RDPOF5BLG Rydeen 5 cuerpos",
         precio: "1000",
-        imagen: "https://imgs.search.brave.com/X1uc3duTDprni-ICwozYMYFKLQG6rqtlCVDCjhaKyzg/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tbGEt/czEtcC5tbHN0YXRp/Yy5jb20vODI1NDI4/LU1MQTc1MDgwNjM1/MzQxXzAzMjAyNC1B/Qi5qcGc",
+        imagen: "/Melody-mix/public/Img/Bata yamaha.PNG",
+        descripcion:"Marca Yamaha Bateria para intermedios 22 x 16 Kick Drum 14 x 5.5 Snare Drum 12 x 8 Low Tom 10 x 7 High Tom 14 x 13 Floor Tom 22.2mm Diameter Ball Mounted Tom Clamps Snazzy Finish No incluye fierros ni platillos",
         id: 8
     },
     {
-        nombre: "Violin 9",
+        nombre: "Violín De Estudio Valencia V160 1/2 Con Estuche Y Arco",
         precio: "900",
-        imagen: "https://imgs.search.brave.com/89lRHc9U5EtU8EFm4tB7JWO2YbQQAkWByg4w4GZj8Gc/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTM0/MDkzMjIzL3Bob3Rv/L3Zpb2xpbi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9QXoz/VkUxQlJYcUYxMHNo/QWxoeTcxQkdsd01x/SHlsRmZFZU1UMU5P/YmZpVT0",
+        imagen: "/Melody-mix/public/Img/Valencia.PNG",
+        descripcion:"Características: -Tapa de abeto. -Dos piezas -Clavijas de arce con 4 afinadores individuales -Mentonera Arce -Diapasón de arce teñido -Cada violín tiene el puente instalado y se ha probado y tocado antes de enviar. -Estuche ligero y acolchado con bolsillo para sostener accesorios y partituras -Incluye arco y resina",
         id: 9
     },
     {
-        nombre: "Guitarra Acústica 10",
+        nombre: "Guitarra Eléctrica Esp Modelo Ec256 Mastil Encolado",
         precio: "950",
-        imagen: "https://imgs.search.brave.com/7xGsHaGyR1ahIw_8tyBSd1Isg_pM9K-olq0mNG4zyCA/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tbGEt/czEtcC5tbHN0YXRp/Yy5jb20vOTYzNzUy/LU1MQTc1NDM1NTgw/ODM5XzAzMjAyNC1B/Qi5qcGc",
+        imagen: "/Melody-mix/public/Img/mastil encolado.PNG",
+        descripcion:"Guitarra Electrica ESP LTD EC-256 Construcción Cuerpo sólido Forma del cuerpo Les Paul Número de cuerdas 6 cuerdas Construcción mástil Mástil encolado Número de trastes 22 Longitud escala 24,75 62 87 cm Cuerpo Caoba Mástil Maple Diapasón Palisandro Inlays en el diapasón Inlays Flag Configuración de pastillas H-H 2x Humbucker Pastilla posición mástil ESP LH - 150N Pastilla posición puente ESP LH - 150 Seleccionador de pastillas Interruptor palo de 3 vías Reguladores 2 x volumen 1 x tono Puente Trémolo Tune-O-Matic Herrajes Negro",
         id: 10
     }
 ]
