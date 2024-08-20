@@ -23,6 +23,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
     }
     @Override
     public Usuario registrar(Usuario usuario) {
+        System.out.println("Registrando usuario: " + usuario);
         return usuarioRepositorio.save(usuario);
     }
 
