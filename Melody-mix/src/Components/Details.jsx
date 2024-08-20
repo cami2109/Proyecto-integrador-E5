@@ -4,10 +4,8 @@ import { instrumentos } from "../Utils/listaInstrumentos.js";
 
 const Details = () => {
   const { id } = useParams();
-  console.log(id);
 
   const instrumentoActual = instrumentos[id -1];
-  console.log(instrumentos);
 
   return (
     <section className="main-content">

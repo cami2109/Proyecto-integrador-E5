@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -6,11 +7,18 @@ const Formu = () => {
     nombre: "",
     apellido: "",
     email: "",
-    contraseña: ""
+    contrasena: ""
   });
   const [showCard, setShowCard] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate()
+  const configs = {
+    method: "POST",
+    body: JSON.stringify(info),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+}
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,6 +31,7 @@ const Formu = () => {
     if (validarEmail(info.email.trim()) && info.nombre.trim().length >= 6) {
       setShowCard(true);
       setError(false);
+      fetch("http://localhost:8080/usuario/registro", configs)
       setTimeout(() => {
         navigate("/")
       }, 3000)
@@ -74,8 +83,8 @@ const Formu = () => {
           <input
             type="password"
             placeholder="contraseña"
-            value={info.contraseña}
-            onChange={(e) => setInfo({ ...info, contraseña: e.target.value })}
+            value={info.contrasena}
+            onChange={(e) => setInfo({ ...info, contrasena: e.target.value })}
             onFocus={() => (setShowCard(false), setError(false))}
           />
           <span className="icon">🔒</span>

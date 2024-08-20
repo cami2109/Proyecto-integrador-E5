@@ -6,9 +6,9 @@ import Recomendaciones from "../Components/Recomendaciones";
 
 const Home = () => {
   return (
-    <main className="main-content">      
-      <Search/>      
-      <Instrumentos/>      
+    <main className="main-content">  
+      <Instrumentos/>     
+      <Search/>           
       <Recomendaciones/>
     </main>
   );

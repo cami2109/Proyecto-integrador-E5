@@ -1,21 +1,13 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useReducer,
-} from "react";
+import {createContext, useContext, useEffect,useReducer,} from "react";
 import axios from "axios";
 
 const initialState = {
   user: {
-    // cargo el valor inicial para evitar el error de inicio:
-    //<h2>{iniciales(state.user.name)}</h2>. aca seria leer localStorage??
-    id: 2,
-    name: "Ervin Howell",
-    username: "Antonette",
-    email: "Shanna@melissa.tv",
-    phone: "010-692-6593 x09125",
+    id: "",
+    name: "",
+    username: "", 
+    email: "",
+    phone: "",
   },
   products: {},
 };
