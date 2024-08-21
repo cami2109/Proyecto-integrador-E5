@@ -26,13 +26,13 @@ const Formu = () => {
     }
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleSubmit = (e) => {
+      e.preventDefault();
 
-    const validarEmail = (emailTest) => {
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      return emailRegex.test(emailTest);
-    };
+      const validarEmail = (emailTest) => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(emailTest);
+      };
 
     if (validarEmail(info.email.trim()) && info.nombre.trim().length >= 6) {
       setShowCard(true);
@@ -52,60 +52,60 @@ const Formu = () => {
     }
   };
 
-  return (
-    <>
-      <form>
-        <h3 style={{textAlign:"center"}}>Crear Cuenta</h3>
-        <hr />
-        <br /><br />
-        <div className="form-group">
-          <label htmlFor="Nombre"></label>
-          <input
-            type="text"
-            placeholder="Nombre"
-            value={info.nombre}
-            onChange={(e) => setInfo({ ...info, nombre: e.target.value })}
-            onFocus={() => (setShowCard(false), setError(false))}
-          />
-          <span className="icon">👤</span>
-        </div>
-        <div className="form-group">
-          <label htmlFor="Apellido"></label>
-          <input
-            type="text"
-            placeholder="Apellido"
-            value={info.apellido}
-            onChange={(e) => setInfo({ ...info, apellido: e.target.value })}
-            onFocus={() => (setShowCard(false), setError(false))}
-          />
-          <span className="icon">👤</span>
-        </div>
-        <div className="form-group">
-          <input
-            type="email"
-            placeholder="email"
-            value={info.email}
-            onChange={(e) => setInfo({ ...info, email: e.target.value })}
-            onFocus={() => (setShowCard(false), setError(false))}
-          />
-          <span className="icon">📧</span>
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="contraseña"
-            value={info.contrasena}
-            onChange={(e) => setInfo({ ...info, contrasena: e.target.value })}
-            onFocus={() => (setShowCard(false), setError(false))}
-          />
-          <span className="icon">🔒</span>
-        </div>
-        <button onClick={() => (handleSubmit)}>Registrarse</button>
-      </form>
-      {showCard && <p>aguarda por favor</p>}
-      {error && <p style={{ color: "red" }}>chequea la información</p>}
-    </>
-  );
-};
+    return (
+      <>
+        <form>
+          <h3 style={{textAlign:"center"}}>Crear Cuenta</h3>
+          <hr />
+          <br /><br />
+          <div className="form-group">
+            <label htmlFor="Nombre"></label>
+            <input
+              type="text"
+              placeholder="Nombre"
+              value={info.nombre}
+              onChange={(e) => setInfo({ ...info, nombre: e.target.value })}
+              onFocus={() => (setShowCard(false), setError(false))}
+            />
+            <span className="icon">👤</span>
+          </div>
+          <div className="form-group">
+            <label htmlFor="Apellido"></label>
+            <input
+              type="text"
+              placeholder="Apellido"
+              value={info.apellido}
+              onChange={(e) => setInfo({ ...info, apellido: e.target.value })}
+              onFocus={() => (setShowCard(false), setError(false))}
+            />
+            <span className="icon">👤</span>
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              placeholder="email"
+              value={info.email}
+              onChange={(e) => setInfo({ ...info, email: e.target.value })}
+              onFocus={() => (setShowCard(false), setError(false))}
+            />
+            <span className="icon">📧</span>
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              placeholder="contraseña"
+              value={info.contrasena}
+              onChange={(e) => setInfo({ ...info, contrasena: e.target.value })}
+              onFocus={() => (setShowCard(false), setError(false))}
+            />
+            <span className="icon">🔒</span>
+          </div>
+          <button onClick={handleSubmit}>Registrarse</button>
+        </form>
+        {showCard && <p>aguarda por favor</p>}
+        {error && <p style={{ color: "red" }}>chequea la información</p>}
+      </>
+    );
+  };
 
-export default Formu;
+  export default Formu;

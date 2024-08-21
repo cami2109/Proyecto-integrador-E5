@@ -1,33 +1,52 @@
 package com.melodymix.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
+
+    private final UserDetailsService userDetailsService;
+
+    @Value("${jwt.secret.key}")
+    private String secretKey;
+
+    public SecurityConfig(@Qualifier("authServicio") UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        JwtAutenticadorFiltro jwtFilter = new JwtAutenticadorFiltro(userDetailsService, secretKey);
+
+        logger.info("Configuring security filter chain");
+
         http
+                .cors(cors -> cors.disable()) // Desactiva la configuración de CORS si no se necesita
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/usuario/registro", "/usuario/login").permitAll() // Permitir acceso sin autenticación
                                 .anyRequest().authenticated() // Requiere autenticación para cualquier otra ruta
                 )
-                .formLogin(form -> form
-                        .loginProcessingUrl("/usuario/login") // Configura el endpoint para el login
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .permitAll()
-                )
-                .csrf(csrf -> csrf.disable()); // Desactiva CSRF para pruebas con Postman
+                .httpBasic(withDefaults()) // Configuración de HttpBasic
+                .csrf(csrf -> csrf.disable()) // Desactiva CSRF para pruebas con Postman
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); // Añade el filtro
 
         return http.build();
     }

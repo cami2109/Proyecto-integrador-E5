@@ -11,8 +11,9 @@ const LogIn = () => {
 
     const [info, setInfo] = useState({
         email: "",
-        contraseña: ""
+          contrasena: ""
     });
+    
 
     const [isChecked, setIsChecked] = useState(false)
 
@@ -76,8 +77,8 @@ const LogIn = () => {
           <input
             type="password"
             placeholder="contraseña"
-            value={info.contraseña}
-            onChange={(e) => setInfo({ ...info, contraseña: e.target.value })}
+            value={info.contrasena}
+            onChange={(e) => setInfo({ ...info, contrasena: e.target.value })}
             onFocus={() => (setShowCard(false), setError(false))}
           />
           <span className="icon">🔒</span>
