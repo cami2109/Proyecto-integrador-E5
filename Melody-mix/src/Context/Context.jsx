@@ -1,23 +1,24 @@
 import axios from "axios";
 import {createContext, useContext, useReducer,} from "react";
 
-const token = JSON.parse(localStorage.getItem("token"))
+// const token = JSON.parse(localStorage.getItem("token"))
 
-const settings = {
-  method: "GET",
-  headers: {
-    authorization: token
-  }
-}
+// const settings = {
+//   method: "GET",
+//   headers: {
+//     authorization: token
+//   }
+// }
 
-axios.post("http://localhost:8080/usuario/getuser", settings)
-.then(res => {
-  if(res.status === 200) initialState.user = res
-})
+// axios.post("http://localhost:8080/usuario/getuser", settings)
+// .then(res => {
+//   if(res.status === 200) initialState.user = res
+// })
 
 
 const initialState = {
   user: {},
+  admin: false,
   products: {},
 };
 
@@ -29,10 +30,12 @@ const reducer = (state, action) => {
       return null;
     case "LOG_IN":
       localStorage.setItem('token', JSON.stringify(payload.token))
-      return {...state, user: payload}
+      return {...state, user: action.payload}
     case "LOG_OUT":
       localStorage.clear()
       return { ...state, user: {} };
+    case "ADMIN":
+      return {...state, admin: action.payload}
   }
 };
 

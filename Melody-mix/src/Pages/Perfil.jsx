@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/Context";
 
 const Perfil = () => {
-  const { dispatch } = useUserContext();
+  const { state, dispatch } = useUserContext();
+
 
   const navigate = useNavigate()
 
@@ -15,8 +16,10 @@ const Perfil = () => {
     <div className="perfil">
       <h2 className="perfilStyle">{iniciales(state.user.name)}</h2>
       <div className="infoperfil">
-        <h3>{state.user.name}</h3>
+        <h3>{state.user.nombre}</h3>
+        <h3>{state.user.apellido}</h3>
         <h3>{state.user.email}</h3>
+        {state.admin && <h3>Modo admin</h3>}
       </div>
       <div>
         <Link to={"/perfil/editar"}>

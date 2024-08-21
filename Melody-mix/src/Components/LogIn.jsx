@@ -1,16 +1,20 @@
 import React from 'react'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, Route, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../Context/Context';
 
 const LogIn = () => {
 
   const {state, dispatch} = useUserContext()
 
+  console.log(state.admin)
+
     const [info, setInfo] = useState({
         email: "",
         contraseña: ""
     });
+
+    const [isChecked, setIsChecked] = useState(false)
 
     const [showCard, setShowCard] = useState(false);
     const [error, setError] = useState(false);
@@ -41,7 +45,7 @@ const LogIn = () => {
               console.log(res.status)
               return res.json() 
             })
-            .then(data => (dispatch({type: "LOG_IN", payload: data}, setTimeout(() => {navigate("/")}, 3000))))
+            .then(data => (dispatch({type: "LOG_IN", payload: data}, dispatch({type: "ADMIN", payload: isChecked}), setTimeout(() => {navigate("/")}, 3000))))
             .catch(error => {
               setError(true);
             })
@@ -80,6 +84,7 @@ const LogIn = () => {
           />
           <span className="icon">🔒</span>
         </div>
+        <input type='checkbox' onChange={() => setIsChecked(!isChecked)}/>
         <button onClick={handleSubmit}>Ingresar</button>
         </form>
         {showCard && <p>aguarda por favor</p>}
