@@ -9,22 +9,22 @@ const Instrumentos = () => {
           <div key={1} className="card">
             {/* <h3>Card {1}</h3>
             <p> card {1}</p> */}
-            <img src='/Melody-mix/public/Img/instrumento varios.PNG' alt="LOGO" height={150}/>
+            <img src='/Img/instrumento varios.PNG' alt="LOGO" height={150}/>
           </div>
           <div key={2} className="card">
             {/* <h3>Card {2}</h3>
             <p> card {2}</p> */}
-            <img src='/Melody-mix/public/Img/instrumento percucion.PNG' alt="LOGO" width={140}/>
+            <img src='/Img/instrumento percucion.PNG' alt="LOGO" width={140}/>
           </div>
           <div key={3} className="card">
             {/* <h3>Card {3}</h3>
             <p> card {3}</p> */}
-            <img src='/Melody-mix/public/Img/instrumento de viento.PNG' alt="LOGO" height={150}/>
+            <img src='/Img/instrumento de viento.PNG' alt="LOGO" height={150}/>
           </div>
           <div key={4} className="card">
             {/* <h3>Card {4}</h3>
             <p> card {4}</p> */}
-            <img src='/Melody-mix/public/Img/Instrumento de cuerda.PNG' alt="LOGO" width={140}/>
+            <img src='/Img/Instrumento de cuerda.PNG' alt="LOGO" width={140}/>
           </div>
         </div>
       </section>

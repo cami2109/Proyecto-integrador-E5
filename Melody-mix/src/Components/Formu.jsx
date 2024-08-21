@@ -18,7 +18,7 @@ const Formu = () => {
     headers: {
         'Content-Type': 'application/json'
     }
-}
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,6 +32,8 @@ const Formu = () => {
       setShowCard(true);
       setError(false);
       fetch("http://localhost:8080/usuario/registro", configs)
+      .then(res => res.json())
+      .then(data => console.log(data))
       setTimeout(() => {
         navigate("/")
       }, 3000)

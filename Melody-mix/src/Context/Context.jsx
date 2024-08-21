@@ -4,10 +4,9 @@ import axios from "axios";
 const initialState = {
   user: {
     id: "",
-    name: "",
-    username: "", 
+    nombre: "", 
+    apellido: "",
     email: "",
-    phone: "",
   },
   products: {},
 };
@@ -28,13 +27,12 @@ const reducer = (state, action) => {
 const userContext = createContext();
 
 const Context = ({ children }) => {
-  const url = "https://jsonplaceholder.typicode.com/users/1";
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
-    axios(url).then((res) => dispatch({ type: "GET_USER", payload: res.data }));
-  }, []);
+  // useEffect(() => {
+  //   axios().then((res) => dispatch({ type: "GET_USER", payload: res.data }));
+  // }, []);
 
   return (
     <userContext.Provider value={{ state, dispatch }}>
