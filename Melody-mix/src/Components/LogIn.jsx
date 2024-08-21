@@ -53,8 +53,6 @@ const LogIn = () => {
             setError(true);
             setShowCard(false);
           }
-
-
     }
 
 
