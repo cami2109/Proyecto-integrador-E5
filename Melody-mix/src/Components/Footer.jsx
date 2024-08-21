@@ -5,11 +5,19 @@ import "../App.css"
 const Footer = () => {
   return (
     <div className="footer">
-      <p>nuestras redes:</p>
       <div className="socials">
-        <a href="#facebook">Facebook</a>
-        <a href="#twitter">Twitter</a>
-        <a href="#instagram">Instagram</a>
+        <a href="#facebook">
+          <img src="/Img/logo fbook.PNG"
+          alt="Facebook"/>
+        </a>
+        <a href="#twitter">
+        <img src="/Img/logo twitter.PNG"
+          alt="Twitter"/>
+        </a>
+        <a href="#instagram">
+        <img src="/Img/logo ig.PNG"
+          alt="Instagram"/>
+        </a>
       </div>
     </div>
   );
