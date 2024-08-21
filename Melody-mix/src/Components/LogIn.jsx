@@ -6,13 +6,22 @@ const LogIn = () => {
 
     const [info, setInfo] = useState({
         email: "",
-        contraseña: ""
+          contrasena: ""
     });
+    
 
     const [showCard, setShowCard] = useState(false);
     const [error, setError] = useState(false);
 
     const navigate = useNavigate()
+
+    const configs = {
+      method: "POST",
+      body: JSON.stringify(info),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -25,6 +34,12 @@ const LogIn = () => {
           if (validarEmail(info.email.trim())){
             setShowCard(true);
             setError(false);
+            fetch("http://localhost:8080/usuario/login", configs)
+            .then(res => {
+              console.log(res.status)
+              return res.json() 
+            })
+            .then(data => console.log(data))
             setTimeout(() => {
                 navigate("/")
             }, 3000)
@@ -32,6 +47,7 @@ const LogIn = () => {
             setError(true);
             setShowCard(false);
         }
+        
 
 
     }
@@ -57,13 +73,13 @@ const LogIn = () => {
           <input
             type="password"
             placeholder="contraseña"
-            value={info.contraseña}
-            onChange={(e) => setInfo({ ...info, contraseña: e.target.value })}
+            value={info.contrasena}
+            onChange={(e) => setInfo({ ...info, contrasena: e.target.value })}
             onFocus={() => (setShowCard(false), setError(false))}
           />
           <span className="icon">🔒</span>
         </div>
-        <button onClick={() => (handleSubmit)}>Ingresar</button>
+        <button onClick={handleSubmit}>Ingresar</button>
         </form>
         {showCard && <p>aguarda por favor</p>}
         {error && <p>chequea que la información</p>}

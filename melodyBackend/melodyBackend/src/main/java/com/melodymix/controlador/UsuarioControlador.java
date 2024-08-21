@@ -1,48 +1,59 @@
 package com.melodymix.controlador;
 
 import com.melodymix.entidad.Usuario;
-import com.melodymix.servicio.UsuarioServicioImpl;
+import com.melodymix.servicio.IUsuarioServicio;
+import com.melodymix.servicio.IAuthServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-// mapeo la url para que todos los postmapping que se hagan en este controlador,
-// tengan que tener "/usuario" antes, osea /usuario/registro o /usuario/login , etc
-@RequestMapping("/usuario")
+import java.util.HashMap;
+import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+@RestController
+@RequestMapping("/usuario")
 public class UsuarioControlador {
-    // inyectamos la implementacion UsuarioServiceImpl
-    private UsuarioServicioImpl usuarioServiceImpl;
+
+    private static final Logger logger = LoggerFactory.getLogger(UsuarioControlador.class);
+
+    private final IUsuarioServicio usuarioServicio;
+    private final PasswordEncoder passwordEncoder;
+    private final IAuthServicio authServicio;
 
     @Autowired
-    public UsuarioControlador(UsuarioServicioImpl usuarioServiceImpl) {
-        this.usuarioServiceImpl = usuarioServiceImpl;
+    public UsuarioControlador(IUsuarioServicio usuarioServicio, PasswordEncoder passwordEncoder, IAuthServicio authServicio) {
+        this.usuarioServicio = usuarioServicio;
+        this.passwordEncoder = passwordEncoder;
+        this.authServicio = authServicio;
     }
 
     @PostMapping("/registro")
     public ResponseEntity<Usuario> registrar(@RequestBody Usuario usuario) {
-        Usuario nuevoUsuario = usuarioServiceImpl.registrar(usuario);
+        logger.info("Registrando usuario: {}", usuario.getEmail());
+        Usuario nuevoUsuario = usuarioServicio.registrar(usuario);
         return ResponseEntity.ok(nuevoUsuario);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Usuario usuario) {
-        // Login debería ser manejado por Spring Security automáticamente
-        // Acá solo se puede devolver un mensaje de success para confirmar que el login fue procesado
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.isAuthenticated()) {
-            return ResponseEntity.ok("Login exitoso");
+    public ResponseEntity<Map<String, String>> login(@RequestBody Usuario usuario) {
+        logger.info("Intentando login para usuario: {}", usuario.getEmail());
+        Map<String, String> response = new HashMap<>();
+        String token = authServicio.authenticate(usuario.getEmail(), usuario.getContrasena());
+        if (token != null) {
+            logger.info("Login exitoso para usuario: {}", usuario.getEmail());
+            response.put("token", token);
+            response.put("message", "Login exitoso");
+            return ResponseEntity.ok(response);
+        } else {
+            logger.warn("Login fallido para usuario: {}", usuario.getEmail());
+            response.put("message", "Login fallido");
+            return ResponseEntity.status(401).body(response);
         }
-        return ResponseEntity.status(401).body("Login fallido");
     }
-
-
-
-
 }

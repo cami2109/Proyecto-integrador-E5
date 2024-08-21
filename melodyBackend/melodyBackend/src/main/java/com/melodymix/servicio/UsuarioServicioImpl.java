@@ -9,22 +9,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 import java.util.*;
 
-// anotacion @Service Spring
 @Service
 public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService {
 
     private final IUsuarioRepositorio usuarioRepositorio;
     private final PasswordEncoder passwordEncoder;
 
-
-
-    // Autowired sirve para inyectar una instancia de IUsuarioRepositorio en esta clase
-    // osea, cuando se crea un UsuarioServiceImpl, spring se encarga de darle una instancia
-    // adecuada de IUsuarioRepositorio
-    // esto permite que UsuarioServiceImpl use el repositorio para acceder a la base de datos
     @Autowired
     public UsuarioServicioImpl(IUsuarioRepositorio usuarioRepositorio, PasswordEncoder passwordEncoder) {
         this.usuarioRepositorio = usuarioRepositorio;
@@ -44,7 +36,6 @@ public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService
                 .build();
     }
 
-
     @Override
     public Usuario registrar(Usuario usuario) {
         System.out.println("Registrando usuario: " + usuario);
@@ -59,7 +50,6 @@ public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService
 
     @Override
     public Usuario buscarPorId(Long id) {
-        // el orEslse, es para que si no encuentra al usuario por el id, returnee null
         return usuarioRepositorio.findById(id).orElse(null);
     }
 
@@ -70,7 +60,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService
 
     @Override
     public void actualizar(Usuario usuario) {
-
+        // Implementar la lógica de actualización si es necesario
     }
 
     @Override
