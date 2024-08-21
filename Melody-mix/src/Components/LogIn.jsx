@@ -13,6 +13,14 @@ const LogIn = () => {
     const [showCard, setShowCard] = useState(false);
     const [error, setError] = useState(false);
 
+    const configs = {
+      method: "POST",
+      body: JSON.stringify(info),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    }
+
     const navigate = useNavigate()
 
     const configs = {
@@ -43,11 +51,10 @@ const LogIn = () => {
             setTimeout(() => {
                 navigate("/")
             }, 3000)
-        } else {
-            setError(true);
-            setShowCard(false);
-        }
-        
+          } else {
+              setError(true);
+              setShowCard(false);
+          }
 
 
     }

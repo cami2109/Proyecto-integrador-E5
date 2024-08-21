@@ -2,22 +2,22 @@
   import React, { useState } from "react";
   import { useNavigate } from "react-router-dom";
 
-  const Formu = () => {
-    const [info, setInfo] = useState({
-      nombre: "",
-      apellido: "",
-      email: "",
-      contrasena: ""
-    });
-    const [showCard, setShowCard] = useState(false);
-    const [error, setError] = useState(false);
-    const navigate = useNavigate()
-    const configs = {
-      method: "POST",
-      body: JSON.stringify(info),
-      headers: {
-          'Content-Type': 'application/json'
-      }
+const Formu = () => {
+  const [info, setInfo] = useState({
+    nombre: "",
+    apellido: "",
+    email: "",
+    contrasena: ""
+  });
+  const [showCard, setShowCard] = useState(false);
+  const [error, setError] = useState(false);
+  const navigate = useNavigate()
+  const configs = {
+    method: "POST",
+    body: JSON.stringify(info),
+    headers: {
+        'Content-Type': 'application/json'
+    }
   }
 
     const handleSubmit = (e) => {
@@ -28,20 +28,20 @@
         return emailRegex.test(emailTest);
       };
 
-      if (validarEmail(info.email.trim()) && info.nombre.trim().length >= 6) {
-        setShowCard(true);
-        setError(false);
-        fetch("http://localhost:8080/usuario/registro", configs)
-        .then(res => res.json())
-        .then(data => console.log(data))
-        setTimeout(() => {
-          navigate("/")
-        }, 3000)
-      } else {
-        setError(true);
-        setShowCard(false);
-      }
-    };
+    if (validarEmail(info.email.trim()) && info.nombre.trim().length >= 6) {
+      setShowCard(true);
+      setError(false);
+      fetch("http://localhost:8080/usuario/registro", configs)
+      .then(res => res.json())
+      .then(data => console.log(data))
+      setTimeout(() => {
+        navigate("/")
+      }, 3000)
+    } else {
+      setError(true);
+      setShowCard(false);
+    }
+  };
 
     return (
       <>
