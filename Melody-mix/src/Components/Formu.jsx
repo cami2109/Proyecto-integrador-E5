@@ -1,8 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../Context/Context";
 
 const Formu = () => {
+
+  const {dispatch} = useUserContext()
+
   const [info, setInfo] = useState({
     nombre: "",
     apellido: "",
@@ -11,7 +15,9 @@ const Formu = () => {
   });
   const [showCard, setShowCard] = useState(false);
   const [error, setError] = useState(false);
+
   const navigate = useNavigate()
+
   const configs = {
     method: "POST",
     body: JSON.stringify(info),
@@ -33,7 +39,10 @@ const Formu = () => {
       setError(false);
       fetch("http://localhost:8080/usuario/registro", configs)
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => dispatch({type: "LOG_IN", payload: data}))
+      .catch(error => {
+        setError(true);
+      })
       setTimeout(() => {
         navigate("/")
       }, 3000)

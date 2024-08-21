@@ -1,13 +1,23 @@
-import {createContext, useContext, useEffect,useReducer,} from "react";
 import axios from "axios";
+import {createContext, useContext, useReducer,} from "react";
+
+const token = JSON.parse(localStorage.getItem("token"))
+
+const settings = {
+  method: "GET",
+  headers: {
+    authorization: token
+  }
+}
+
+axios.post("http://localhost:8080/usuario/getuser", settings)
+.then(res => {
+  if(res.status === 200) initialState.user = res
+})
+
 
 const initialState = {
-  user: {
-    id: "",
-    nombre: "", 
-    apellido: "",
-    email: "",
-  },
+  user: {},
   products: {},
 };
 
@@ -18,8 +28,10 @@ const reducer = (state, action) => {
     case "GET_PRODUCTS":
       return null;
     case "LOG_IN":
-      return null
+      localStorage.setItem('token', JSON.stringify(payload.token))
+      return {...state, user: payload}
     case "LOG_OUT":
+      localStorage.clear()
       return { ...state, user: {} };
   }
 };
@@ -30,9 +42,6 @@ const Context = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  // useEffect(() => {
-  //   axios().then((res) => dispatch({ type: "GET_USER", payload: res.data }));
-  // }, []);
 
   return (
     <userContext.Provider value={{ state, dispatch }}>

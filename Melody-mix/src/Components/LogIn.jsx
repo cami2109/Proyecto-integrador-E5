@@ -1,8 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../Context/Context';
 
 const LogIn = () => {
+
+  const {state, dispatch} = useUserContext()
 
     const [info, setInfo] = useState({
         email: "",
@@ -38,13 +41,13 @@ const LogIn = () => {
               console.log(res.status)
               return res.json() 
             })
-            .then(data => console.log(data))
-            setTimeout(() => {
-                navigate("/")
-            }, 3000)
-          } else {
+            .then(data => (dispatch({type: "LOG_IN", payload: data}, setTimeout(() => {navigate("/")}, 3000))))
+            .catch(error => {
               setError(true);
-              setShowCard(false);
+            })
+          } else {
+            setError(true);
+            setShowCard(false);
           }
 
 
