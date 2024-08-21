@@ -23,14 +23,6 @@ const LogIn = () => {
 
     const navigate = useNavigate()
 
-    const configs = {
-      method: "POST",
-      body: JSON.stringify(info),
-      headers: {
-          'Content-Type': 'application/json'
-      }
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault()
 

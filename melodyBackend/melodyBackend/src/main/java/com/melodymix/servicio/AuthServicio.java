@@ -114,4 +114,16 @@ public class AuthServicio implements IAuthServicio, UserDetailsService {
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
+
+    public String getUsernameFromToken(String token) {
+        return extractUsername(token);
+    }
+    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepositorio.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + email));
+        return new org.springframework.security.core.userdetails.User(usuario.getEmail(), usuario.getContrasena(), new ArrayList<>());
+    }
+
+
 }
+
