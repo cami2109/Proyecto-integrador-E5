@@ -1,25 +1,35 @@
 import axios from "axios";
 import {createContext, useContext, useReducer,} from "react";
 
+// if(localStorage.getItem("token")){
+
+//   const token = JSON.parse(localStorage.getItem("token"))
+
+//   const settings = {
+//     method: "GET",
+//     headers: {
+//       authorization: token
+//     }
+//   }
+
+//   axios("http://localhost:8080/usuario/getuser", settings)
+//   .then(res => {
+//     initialState.user = res
+//   })
+//   .catch(error => {
+//     console.log(error)
+//   })
+// }
+
 if(localStorage.getItem("token")){
-
-  const token = JSON.parse(localStorage.getItem("token"))
-
-  const settings = {
-    method: "GET",
-    headers: {
-      authorization: token
-    }
+  const user = {
+    nombre: JSON.parse(localStorage.getItem("Nombre")),
+    apellido: JSON.parse(localStorage.getItem("Apellido")),
+    email: JSON.parse(localStorage.getItem("Email"))
   }
-
-  axios("http://localhost:8080/usuario/getuser", settings)
-  .then(res => {
-    initialState.user = res
-  })
-  .catch(error => {
-    console.log(error)
-  })
+  initialState.user = user
 }
+
 
 const initialState = {
   user: {},
@@ -35,6 +45,9 @@ const reducer = (state, action) => {
       return null;
     case "LOG_IN":
       localStorage.setItem('token', JSON.stringify(action.payload.token))
+      localStorage.setItem('Nombre', JSON.stringify(action.payload.nombre))
+      localStorage.setItem('Apellido', JSON.stringify(action.payload.apellido))
+      localStorage.setItem('Email', JSON.stringify(action.payload.email))
       return {...state, user: action.payload}
     case "LOG_OUT":
       localStorage.clear()
