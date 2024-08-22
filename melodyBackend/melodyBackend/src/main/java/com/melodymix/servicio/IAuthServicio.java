@@ -7,8 +7,5 @@ public interface IAuthServicio {
     String authenticate(String email, String password);
     String generateToken(UserDetails userDetails);
     boolean validateToken(String token, UserDetails userDetails);
-
-    String getUsernameFromToken(String token);
-
     UserDetails loadUserByEmail(String email);
 }

@@ -14,7 +14,7 @@ const Perfil = () => {
 
   return (
     <div className="perfil">
-      <h2 className="perfilStyle">{iniciales(state.user.name)}</h2>
+      {/* <h2 className="perfilStyle">{iniciales(state.user.name)}</h2> */}
       <div className="infoperfil">
         <h3>{state.user.nombre}</h3>
         <h3>{state.user.apellido}</h3>
