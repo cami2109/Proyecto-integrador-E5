@@ -21,6 +21,12 @@ import {createContext, useContext, useReducer,} from "react";
 //   })
 // }
 
+const initialState = {
+  user: {},
+  admin: false,
+  products: {},
+};
+
 if(localStorage.getItem("token")){
   const user = {
     nombre: JSON.parse(localStorage.getItem("Nombre")),
@@ -30,12 +36,6 @@ if(localStorage.getItem("token")){
   initialState.user = user
 }
 
-
-const initialState = {
-  user: {},
-  admin: false,
-  products: {},
-};
 
 const reducer = (state, action) => {
   switch (action.type) {
