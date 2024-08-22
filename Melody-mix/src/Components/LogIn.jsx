@@ -81,7 +81,11 @@ const LogIn = () => {
           />
           <span className="icon">🔒</span>
         </div>
-        <input type='checkbox' onChange={() => setIsChecked(!isChecked)}/>
+        <div className='checkbox'>
+          <p>Admin</p>
+          <input type='checkbox' onChange={() => setIsChecked(!isChecked)}/>
+        </div>
+        {/* <input type='checkbox' onChange={() => setIsChecked(!isChecked)}/> */}
         <button onClick={handleSubmit}>Ingresar</button>
         </form>
         {showCard && <p>aguarda por favor</p>}

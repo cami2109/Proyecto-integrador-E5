@@ -85,10 +85,18 @@ public class UsuarioControlador {
 
 
 
-    @GetMapping("/username")
-    public String getUsername(@RequestHeader("Authorization") String authHeader) {
-        // El token suele venir en el formato "Bearer <token>"
-        String token = authHeader.replace("Bearer ", "");
-        return authServicio.getUsernameFromToken(token);
-    }
+//    @GetMapping("/getuser")
+//    public ResponseEntity<Map<String, String>> getUsername(@RequestHeader("Authorization") String authHeader) {
+//        // El token suele venir en el formato "Bearer <token>"
+//        String token = authHeader.replace("Bearer ", "");
+//        String username = authServicio.getUsernameFromToken(token);
+//
+//        Map<String, String> response = new HashMap<>();
+//        response.put("nombre", username);
+//
+//
+//        return ResponseEntity.ok(response);
+//    }
+
+
 }

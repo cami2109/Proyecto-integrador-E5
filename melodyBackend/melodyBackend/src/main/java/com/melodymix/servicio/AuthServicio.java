@@ -4,7 +4,6 @@ import com.melodymix.entidad.Usuario;
 import com.melodymix.repo.IUsuarioRepositorio;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,6 +29,7 @@ public class AuthServicio implements IAuthServicio, UserDetailsService {
     private final IUsuarioRepositorio usuarioRepositorio;
     private final PasswordEncoder passwordEncoder;
     private SecretKey secretKey;
+
 
     @Value("${jwt.secret.key}")
     private String secretKeyString;
@@ -115,9 +115,7 @@ public class AuthServicio implements IAuthServicio, UserDetailsService {
         return extractExpiration(token).before(new Date());
     }
 
-    public String getUsernameFromToken(String token) {
-        return extractUsername(token);
-    }
+
     public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
         Usuario usuario = usuarioRepositorio.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado: " + email));
