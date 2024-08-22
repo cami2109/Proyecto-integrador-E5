@@ -1,20 +1,25 @@
 import axios from "axios";
 import {createContext, useContext, useReducer,} from "react";
 
-// const token = JSON.parse(localStorage.getItem("token"))
+if(localStorage.getItem("token")){
 
-// const settings = {
-//   method: "GET",
-//   headers: {
-//     authorization: token
-//   }
-// }
+  const token = JSON.parse(localStorage.getItem("token"))
 
-// axios.post("http://localhost:8080/usuario/getuser", settings)
-// .then(res => {
-//   if(res.status === 200) initialState.user = res
-// })
+  const settings = {
+    method: "GET",
+    headers: {
+      authorization: token
+    }
+  }
 
+  axios("http://localhost:8080/usuario/getuser", settings)
+  .then(res => {
+    initialState.user = res
+  })
+  .catch(error => {
+    console.log(error)
+  })
+}
 
 const initialState = {
   user: {},
