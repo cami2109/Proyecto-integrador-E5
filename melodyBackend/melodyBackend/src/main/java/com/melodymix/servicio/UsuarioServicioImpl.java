@@ -3,26 +3,43 @@ package com.melodymix.servicio;
 import com.melodymix.entidad.Usuario;
 import com.melodymix.repo.IUsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.*;
 
-// anotacion @Service Spring
 @Service
-public class UsuarioServicioImpl implements IUsuarioServicio {
+public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService {
 
     private final IUsuarioRepositorio usuarioRepositorio;
+    private final PasswordEncoder passwordEncoder;
 
-    // Autowired sirve para inyectar una instancia de IUsuarioRepositorio en esta clase
-    // osea, cuando se crea un UsuarioServiceImpl, spring se encarga de darle una instancia
-    // adecuada de IUsuarioRepositorio
-    // esto permite que UsuarioServiceImpl use el repositorio para acceder a la base de datos
     @Autowired
-    public UsuarioServicioImpl(IUsuarioRepositorio usuarioRepositorio) {
+    public UsuarioServicioImpl(IUsuarioRepositorio usuarioRepositorio, PasswordEncoder passwordEncoder) {
         this.usuarioRepositorio = usuarioRepositorio;
+        this.passwordEncoder = passwordEncoder;
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Usuario usuario = buscarPorEmail(email);
+        if (usuario == null) {
+            throw new UsernameNotFoundException("Usuario no encontrado con el email: " + email);
+        }
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(usuario.getEmail())
+                .password(usuario.getContrasena())
+                .roles("USER")
+                .build();
+    }
+
     @Override
     public Usuario registrar(Usuario usuario) {
+        System.out.println("Registrando usuario: " + usuario);
+        usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));
         return usuarioRepositorio.save(usuario);
     }
 
@@ -33,7 +50,6 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 
     @Override
     public Usuario buscarPorId(Long id) {
-        // el orEslse, es para que si no encuentra al usuario por el id, returnee null
         return usuarioRepositorio.findById(id).orElse(null);
     }
 
@@ -44,7 +60,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio {
 
     @Override
     public void actualizar(Usuario usuario) {
-
+        // Implementar la lógica de actualización si es necesario
     }
 
     @Override

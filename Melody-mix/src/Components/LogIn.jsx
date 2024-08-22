@@ -1,16 +1,32 @@
 import React from 'react'
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, Route, useNavigate } from 'react-router-dom';
+import { useUserContext } from '../Context/Context';
 
 const LogIn = () => {
 
+  const {state, dispatch} = useUserContext()
+
+  console.log(state.admin)
+
     const [info, setInfo] = useState({
         email: "",
-        contraseña: ""
+          contrasena: ""
     });
+    
+
+    const [isChecked, setIsChecked] = useState(false)
 
     const [showCard, setShowCard] = useState(false);
     const [error, setError] = useState(false);
+
+    const configs = {
+      method: "POST",
+      body: JSON.stringify(info),
+      headers: {
+          'Content-Type': 'application/json'
+      }
+    }
 
     const navigate = useNavigate()
 
@@ -25,15 +41,19 @@ const LogIn = () => {
           if (validarEmail(info.email.trim())){
             setShowCard(true);
             setError(false);
-            setTimeout(() => {
-                navigate("/")
-            }, 3000)
-        } else {
+            fetch("http://localhost:8080/usuario/login", configs)
+            .then(res => {
+              console.log(res.status)
+              return res.json() 
+            })
+            .then(data => (dispatch({type: "LOG_IN", payload: data}, dispatch({type: "ADMIN", payload: isChecked}), setTimeout(() => {navigate("/")}, 3000))))
+            .catch(error => {
+              setError(true);
+            })
+          } else {
             setError(true);
             setShowCard(false);
-        }
-
-
+          }
     }
 
 
@@ -57,13 +77,18 @@ const LogIn = () => {
           <input
             type="password"
             placeholder="contraseña"
-            value={info.contraseña}
-            onChange={(e) => setInfo({ ...info, contraseña: e.target.value })}
+            value={info.contrasena}
+            onChange={(e) => setInfo({ ...info, contrasena: e.target.value })}
             onFocus={() => (setShowCard(false), setError(false))}
           />
           <span className="icon">🔒</span>
         </div>
-        <button onClick={() => (handleSubmit)}>Ingresar</button>
+        <div className='checkbox'>
+          <p>Admin</p>
+          <input type='checkbox' onChange={() => setIsChecked(!isChecked)}/>
+        </div>
+        {/* <input type='checkbox' onChange={() => setIsChecked(!isChecked)}/> */}
+        <button onClick={handleSubmit}>Ingresar</button>
         </form>
         {showCard && <p>aguarda por favor</p>}
         {error && <p>chequea que la información</p>}

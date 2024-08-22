@@ -1,22 +1,24 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useReducer,
-} from "react";
 import axios from "axios";
+import {createContext, useContext, useReducer,} from "react";
+
+// const token = JSON.parse(localStorage.getItem("token"))
+
+// const settings = {
+//   method: "GET",
+//   headers: {
+//     authorization: token
+//   }
+// }
+
+// axios.post("http://localhost:8080/usuario/getuser", settings)
+// .then(res => {
+//   if(res.status === 200) initialState.user = res
+// })
+
 
 const initialState = {
-  user: {
-    // cargo el valor inicial para evitar el error de inicio:
-    //<h2>{iniciales(state.user.name)}</h2>. aca seria leer localStorage??
-    id: 2,
-    name: "Ervin Howell",
-    username: "Antonette",
-    email: "Shanna@melissa.tv",
-    phone: "010-692-6593 x09125",
-  },
+  user: {},
+  admin: false,
   products: {},
 };
 
@@ -27,22 +29,22 @@ const reducer = (state, action) => {
     case "GET_PRODUCTS":
       return null;
     case "LOG_IN":
-      return null
+      localStorage.setItem('token', JSON.stringify(action.payload.token))
+      return {...state, user: action.payload}
     case "LOG_OUT":
-      return { ...state, user: {} };
+      localStorage.clear()
+      return { ...state, user: {}, admin: false };
+    case "ADMIN":
+      return {...state, admin: action.payload}
   }
 };
 
 const userContext = createContext();
 
 const Context = ({ children }) => {
-  const url = "https://jsonplaceholder.typicode.com/users/1";
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
-    axios(url).then((res) => dispatch({ type: "GET_USER", payload: res.data }));
-  }, []);
 
   return (
     <userContext.Provider value={{ state, dispatch }}>
