@@ -14,10 +14,9 @@ const Perfil = () => {
 
   return (
     <div className="perfil">
-      <h2 className="perfilStyle">{iniciales(state.user.name)}</h2>
+      <h2 className="perfilStyle">{iniciales(state.user.nombre + ' ' + state.user.apellido)}</h2>
       <div className="infoperfil">
-        <h3>{state.user.nombre}</h3>
-        <h3>{state.user.apellido}</h3>
+        <h3>{state.user.nombre + ' ' + state.user.apellido}</h3>
         <h3>{state.user.email}</h3>
         {state.admin && <h3>Modo admin</h3>}
       </div>
