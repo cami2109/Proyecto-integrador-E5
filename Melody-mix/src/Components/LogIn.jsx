@@ -7,11 +7,9 @@ const LogIn = () => {
 
   const {state, dispatch} = useUserContext()
 
-  console.log(state.admin)
-
     const [info, setInfo] = useState({
         email: "",
-          contrasena: ""
+        contrasena: ""
     });
     
 
