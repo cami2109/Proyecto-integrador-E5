@@ -16,6 +16,12 @@ const Details = () => {
           <h4>{instrumentoActual.precio}</h4>
           <p>{instrumentoActual.descripcion}</p>
         </div>
+        <h2>Caracteristicas del instrumento</h2>
+        <ul style={{paddingLeft: "20px"}}>
+          {instrumentoActual.caracteristicas.map(i => {
+            return(<li>{i}</li>)
+          })}
+        </ul>
       </div>
     </section>
   );
