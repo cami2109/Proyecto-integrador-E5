@@ -14,9 +14,12 @@ const LogIn = () => {
     
 
     const [isChecked, setIsChecked] = useState(false)
+    const [passAdmin, setPassAdmin] = useState("")
 
     const [showCard, setShowCard] = useState(false);
     const [error, setError] = useState(false);
+    const [erroresEspecificos, setErroresEspecificos] = useState([])
+
 
     const configs = {
       method: "POST",
@@ -29,28 +32,44 @@ const LogIn = () => {
     const navigate = useNavigate()
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault() 
+        // setErroresEspecificos([])
+
+        const esAdmin = () => {
+          if (passAdmin === "Admin" && isChecked) return true
+
+          return false
+        }
 
         const validarEmail = (emailTest) => {
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            return emailRegex.test(emailTest);
-        };
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            return emailRegex.test(emailTest)
+        }
 
-          if (validarEmail(info.email.trim())){
+        const validarContraseña = (pass) => {
+          const passRegex = /^.{7,}$/ // por el momento solo chequea que tenga mas de 6 caracteres, mas adelante le ponemos mas validaciones 
+
+          return passRegex.test(pass)
+        }
+
+          if (validarEmail(info.email.trim()) && validarContraseña(info.contrasena.trim())){
             setShowCard(true);
             setError(false);
             fetch("http://localhost:8080/usuario/login", configs)
-            .then(res => {
-              console.log(res.status)
-              return res.json() 
-            })
-            .then(data => (dispatch({type: "LOG_IN", payload: data}, dispatch({type: "ADMIN", payload: isChecked}), setTimeout(() => {navigate("/")}, 3000))))
+            .then(res => res.json())
+            .then(data => (dispatch({type: "LOG_IN", payload: data}, esAdmin && dispatch({type: "ADMIN", payload: esAdmin}), setTimeout(() => {navigate("/")}, 3000))))
             .catch(error => {
-              setError(true);
+              setError(true)
+              setErroresEspecificos(["Informacion incorrecta"])
             })
           } else {
-            setError(true);
-            setShowCard(false);
+            setError(true)
+            setShowCard(false)
+            const erroresNuevos = []
+            if(!validarEmail(info.email.trim())) erroresNuevos.push("Email incorrecto")
+            if(!validarContraseña(info.contrasena.trim())) erroresNuevos.push("Contraseña incorrecta")
+            setErroresEspecificos([erroresNuevos])
+            console.log(erroresEspecificos)
           }
     }
 
@@ -58,38 +77,48 @@ const LogIn = () => {
   return (
     <div className='crearCuenta'>
         <form>
-        <h3 style={{textAlign:"center"}}>Log In</h3>
-        <hr />
-        <br /><br />
-        <div className="form-group">
-          <input
-            type="email"
-            placeholder="email"
-            value={info.email}
-            onChange={(e) => setInfo({ ...info, email: e.target.value })}
-            onFocus={() => (setShowCard(false), setError(false))}
-          />
-          <span className="icon">📧</span>
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="contraseña"
-            value={info.contrasena}
-            onChange={(e) => setInfo({ ...info, contrasena: e.target.value })}
-            onFocus={() => (setShowCard(false), setError(false))}
-          />
-          <span className="icon">🔒</span>
-        </div>
-        <div className='checkbox'>
-          <p>Admin</p>
-          <input type='checkbox' onChange={() => setIsChecked(!isChecked)}/>
-        </div>
-        {/* <input type='checkbox' onChange={() => setIsChecked(!isChecked)}/> */}
-        <button onClick={handleSubmit}>Ingresar</button>
+          <h3 style={{textAlign:"center"}}>Log In</h3>
+          <hr />
+          <br /><br />
+          <div className="form-group">
+            <input
+              type="email"
+              placeholder="Email"
+              value={info.email}
+              onChange={(e) => setInfo({ ...info, email: e.target.value })}
+              onFocus={() => (setShowCard(false), setError(false))}
+            />
+            <span className="icon">📧</span>
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={info.contrasena}
+              onChange={(e) => setInfo({ ...info, contrasena: e.target.value })}
+              onFocus={() => (setShowCard(false), setError(false))}
+            />
+            <span className="icon">🔒</span>
+          </div>
+          <div className='checkbox'>
+            <p>Admin</p>
+            <input type='checkbox' onChange={() => setIsChecked(!isChecked)}/>
+          </div>
+          {isChecked &&         
+            <div className="form-group">
+              <input
+                type="password"
+                placeholder="Contraseña Admin"
+                // value={}
+                onChange={(e) => setPassAdmin(e.target.value)}
+              />
+              <span className="icon">🔒</span>
+            </div>
+          }
+          <button onClick={handleSubmit}>Ingresar</button>
         </form>
         {showCard && <p>aguarda por favor</p>}
-        {error && <p>chequea que la información</p>}
+        {error && erroresEspecificos.map((i, index) => (<p key={index}>{i}</p>))}
     </div>
   )
 }

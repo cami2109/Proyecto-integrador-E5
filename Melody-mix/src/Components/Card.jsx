@@ -8,7 +8,7 @@ const Card = ({ info }) => {
   return (
     <div className="card">
       <Link to={"/details/" + id}>
-        <img src={imagen} width={200} />
+        <img src={imagen}  />
         <div>
           <h2>{nombre}</h2>
           <h4>{precio}</h4>
