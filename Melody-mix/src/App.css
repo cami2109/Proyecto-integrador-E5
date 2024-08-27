@@ -12,6 +12,9 @@ body, html {
   height: 100%;
   width: 100%;
   font-family: Helvetica, sans-serif;
+  /* pruebas para la card modificar productos */
+  overflow: hidden;
+  /*  */
 }
 
 #root {
@@ -350,6 +353,77 @@ body, html {
 .hamb {
   display: none;
 }
+
+/* pruebas card modificar */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo difuminado */
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+  z-index: 1000; /* Asegura que esté por encima de todo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-modificar {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  max-height: 80vh; /* Limita la altura de la tarjeta */
+  overflow-y: auto; /* Permite el desplazamiento dentro de la tarjeta */
+  text-align: center;
+  z-index: 1001; /* Asegura que el contenido esté por encima del fondo */
+}
+
+.card-modificar img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.card-modificar h2, .card-modificar h3, .card-modificar p {
+  margin: 10px 0;
+}
+
+.card-modificar form {
+  margin-top: 20px;
+}
+
+.card-modificar form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card-modificar div button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card-modificar div button:nth-child(1) {
+  background-color: #28a745; /* Botón de guardar cambios */
+  color: white;
+}
+
+.card-modificar div button:nth-child(2) {
+  background-color: #dc3545; /* Botón de borrar producto */
+  color: white;
+}
+
+/* fin pruebas card modificar */
 
 @media (max-width: 700px) {
   .nav {
