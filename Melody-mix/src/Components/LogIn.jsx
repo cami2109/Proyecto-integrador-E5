@@ -66,8 +66,8 @@ const LogIn = () => {
             setError(true)
             setShowCard(false)
             const erroresNuevos = []
-            if(!validarEmail(info.email.trim())) erroresNuevos.push("Email incorrecto")
-            if(!validarContraseña(info.contrasena.trim())) erroresNuevos.push("Contraseña incorrecta")
+            if(!validarEmail(info.email.trim()))  erroresNuevos.push("Email incorrecto")
+            if(!validarContraseña(info.contrasena.trim()))  erroresNuevos.push("Contraseña incorrecta")
             setErroresEspecificos([erroresNuevos])
           }
     }
@@ -117,7 +117,11 @@ const LogIn = () => {
           <button onClick={handleSubmit}>Ingresar</button>
         </form>
         {showCard && <p>aguarda por favor</p>}
-        {error && erroresEspecificos.map((i, index) => (<p key={index}>{i}</p>))}
+        {error && erroresEspecificos.map((i, index) => {
+          console.log(erroresEspecificos)
+          return(
+              <p key={index}>{i}</p>
+          )})}
     </div>
   )
 }
