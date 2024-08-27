@@ -69,7 +69,6 @@ const LogIn = () => {
             if(!validarEmail(info.email.trim())) erroresNuevos.push("Email incorrecto")
             if(!validarContraseña(info.contrasena.trim())) erroresNuevos.push("Contraseña incorrecta")
             setErroresEspecificos([erroresNuevos])
-            console.log(erroresEspecificos)
           }
     }
 
