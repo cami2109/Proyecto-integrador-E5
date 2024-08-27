@@ -4,11 +4,14 @@ import com.melodymix.entidad.Usuario;
 import com.melodymix.servicio.IUsuarioServicio;
 import com.melodymix.servicio.IAuthServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.slf4j.Logger;
@@ -85,18 +88,32 @@ public class UsuarioControlador {
 
 
 
-//    @GetMapping("/getuser")
-//    public ResponseEntity<Map<String, String>> getUsername(@RequestHeader("Authorization") String authHeader) {
-//        // El token suele venir en el formato "Bearer <token>"
-//        String token = authHeader.replace("Bearer ", "");
-//        String username = authServicio.getUsernameFromToken(token);
-//
-//        Map<String, String> response = new HashMap<>();
-//        response.put("nombre", username);
-//
-//
-//        return ResponseEntity.ok(response);
-//    }
+    @GetMapping("/getuser")
+    public ResponseEntity<Map<String, String>> getUserInfo(@RequestHeader("Authorization") String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Token no válido o no proporcionado"));
+        }
+
+        String token = authHeader.substring(7); // Eliminar "Bearer " del encabezado
+        String email = authServicio.getEmailFromToken(token);
+        if (email == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "Token inválido o expirado"));
+        }
+
+        Usuario usuario = usuarioServicio.buscarPorEmail(email);
+        if (usuario == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Usuario no encontrado"));
+        }
+
+        Map<String, String> response = new HashMap<>();
+        response.put("nombre", usuario.getNombre());
+        response.put("apellido", usuario.getApellido());
+        response.put("email", usuario.getEmail());
+        response.put("token", token); // Incluye el token actual en la respuesta si es necesario
+
+        return ResponseEntity.ok(response);
+    }
+
 
 
 }

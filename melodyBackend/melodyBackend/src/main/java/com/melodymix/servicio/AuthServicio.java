@@ -122,6 +122,34 @@ public class AuthServicio implements IAuthServicio, UserDetailsService {
         return new org.springframework.security.core.userdetails.User(usuario.getEmail(), usuario.getContrasena(), new ArrayList<>());
     }
 
+    @Override
+    public String getUsernameFromToken(String token) {
+        try {
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(secretKey)
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            // Extrae el nombre de usuario del JWT
+            return claims.getSubject();
+        } catch (Exception e) {
+            // Maneja cualquier excepción que pueda ocurrir durante el análisis del JWT
+            return null;
+        }
+
+    }
+
+    @Override
+    public String getEmailFromToken(String token) {
+        return extractClaim(token, claims -> claims.get("email", String.class));
+    }
+
+    @Override
+    public String getApellidoFromToken(String token) {
+        return extractClaim(token, claims -> claims.get("apellido", String.class));
+    }
+
 
 }
 
