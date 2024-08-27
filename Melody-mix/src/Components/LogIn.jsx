@@ -68,7 +68,7 @@ const LogIn = () => {
         .catch((error) => {
           setError(true);
           setShowCard(false);
-          setErroresEspecificos(["no login. Error: ..."]);
+          setErroresEspecificos(["no login. Error: " + error]);
         });
     } else {
       setError(true);
@@ -130,7 +130,6 @@ const LogIn = () => {
         {showCard && <p>aguarda por favor</p>}
         {error &&
           erroresEspecificos.map((i, index) => {
-            console.log(erroresEspecificos);
             return <p key={index}>{i}</p>;
           })}
       </div>
