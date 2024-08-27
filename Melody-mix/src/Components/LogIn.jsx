@@ -68,7 +68,7 @@ const LogIn = () => {
         .catch((error) => {
           setError(true);
           setShowCard(false);
-          setErroresEspecificos(["Informacion incorrecta"]);
+          setErroresEspecificos(["no login. Error: ..."]);
         });
     } else {
       setError(true);
