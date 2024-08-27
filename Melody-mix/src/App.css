@@ -14,7 +14,6 @@ body, html {
   font-family: Helvetica, sans-serif;
 }
 
-
 #root {
   height: 100%;
   width: 100%;
@@ -85,6 +84,25 @@ body, html {
   opacity: 0.5;
 }
 
+.dropdown-menu {
+  position: absolute;
+  top: 50px; /* Ajusta según la ubicación de la hamburguesa */
+  right: 0;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  list-style: none;
+  margin: 0;
+}
+.dropdown-menu li {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+  background-color: #00ACD3;
+}
+
 .main-content {
   /* grid-area: 'main'; */
   background-color: #ffffff;
@@ -153,16 +171,17 @@ body, html {
   margin: 5%;
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.card img {
-  width: 300px;
-  height: 300px;  
-}
+
+/*.card img {
+   width: 300px;
+  height: 300px;   
+}*/
 
 .crearCuenta { 
   gap: 1rem;
@@ -181,7 +200,7 @@ body, html {
   align-items: center;
   font-family: roboto;
   width: 350px;
-  height: 500px;  
+  height: 550px;  
 }
 
 .infoperfil{
@@ -337,6 +356,7 @@ body, html {
   }
   .hamb {
     display: block;
+    cursor: pointer;
   }
   .section-top-left{
     display: none;
