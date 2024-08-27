@@ -1,5 +1,6 @@
 import axios from "axios";
 import {createContext, useContext, useReducer,} from "react";
+import { instrumentos } from "../Utils/listaInstrumentos";
 
 // if(localStorage.getItem("token")){
 
@@ -23,8 +24,8 @@ import {createContext, useContext, useReducer,} from "react";
 
 const initialState = {
   user: {},
-  admin: false,
-  products: {},
+  admin: true,
+  products: {instrumentos},
 };
 
 if(localStorage.getItem("token")){
