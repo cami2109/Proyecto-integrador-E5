@@ -13,7 +13,7 @@ body, html {
   width: 100%;
   font-family: Helvetica, sans-serif;
   /* pruebas para la card modificar productos */
-  overflow: hidden;
+  overflow: auto;
   /*  */
 }
 
