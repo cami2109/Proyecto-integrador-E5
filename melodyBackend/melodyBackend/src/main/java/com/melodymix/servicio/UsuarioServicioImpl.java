@@ -3,6 +3,7 @@ package com.melodymix.servicio;
 import com.melodymix.entidad.Usuario;
 import com.melodymix.repo.IUsuarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +20,9 @@ public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService
     private final IUsuarioRepositorio usuarioRepositorio;
     private final PasswordEncoder passwordEncoder;
 
+    @Value("${admin.contrasena}")
+    private String adminContrasena;
+
 
 
     // Autowired sirve para inyectar una instancia de IUsuarioRepositorio en esta clase
@@ -31,6 +35,10 @@ public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService
         this.passwordEncoder = passwordEncoder;
     }
 
+    public PasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
+    }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Usuario usuario = buscarPorEmail(email);
@@ -40,14 +48,14 @@ public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService
         return org.springframework.security.core.userdetails.User.builder()
                 .username(usuario.getEmail())
                 .password(usuario.getContrasena())
-                .roles("USER")
+                .roles(usuario.isAdmin() ? "ADMIN" :"USER")
                 .build();
     }
 
 
     @Override
     public Usuario registrar(Usuario usuario) {
-        System.out.println("Registrando usuario: " + usuario);
+//        if (usuario.getContrsenaAdmin() != null && usuario.getContrsenaAdmin().equals(admin)) esto quedo viejo del admin en registro, ahora es para login
         usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));
         return usuarioRepositorio.save(usuario);
     }
@@ -70,6 +78,7 @@ public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService
 
     @Override
     public void actualizar(Usuario usuario) {
+        usuarioRepositorio.save(usuario);
 
     }
 

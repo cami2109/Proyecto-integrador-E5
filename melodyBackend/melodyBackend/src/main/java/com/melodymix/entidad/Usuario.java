@@ -23,6 +23,13 @@ public class Usuario {
      // @Getter(AccessLevel.NONE) // esto excluye el get contrasena asi esta "encriptada"
     private String contrasena;
 
+    private boolean isAdmin = false;
+
+
+    @Transient // esto hace que no se almacene en la base de datos
+    private String contrsenaAdmin;
+
+
     public Usuario(String nombre, String apellido, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
