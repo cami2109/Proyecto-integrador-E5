@@ -13,7 +13,6 @@ const LogIn = () => {
   });
 
   const [isChecked, setIsChecked] = useState(false);
-  const [passAdmin, setPassAdmin] = useState("");
 
   const [showCard, setShowCard] = useState(false);
   const [error, setError] = useState(false);
@@ -32,14 +31,11 @@ const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const esAdmin = () => {
-      if (passAdmin === "ADMIN" && isChecked){
-        setInfo({...info, contrasenaAdmin: passAdmin})
-        return true
-      }
-
-      return false;
-    };
+    // const esAdmin = () => {
+    //   if (passAdmin == "ADMIN" && isChecked){
+    //     setInfo({...info, contrasenaAdmin: passAdmin})
+    //   }
+    // };
 
     const validarEmail = (emailTest) => {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -52,13 +48,14 @@ const LogIn = () => {
       return passRegex.test(pass);
     };
 
+
     if (
       validarEmail(info.email.trim()) &&
       validarContraseña(info.contrasena.trim())
     ) {
-      esAdmin();
-      setShowCard(true);
-      setError(false);
+      setShowCard(true)
+      setError(false)
+      console.log(configs.body)
       fetch("http://localhost:8080/usuario/login", configs)
         .then((res) => res.json())
         .then((data) =>
@@ -123,7 +120,7 @@ const LogIn = () => {
               type="password"
               placeholder="Contraseña Admin"
               // value={}
-              onChange={(e) => setPassAdmin(e.target.value)}
+              onChange={(e) => setInfo({...info, contrasenaAdmin: e.target.value})}
             />
             <span className="icon">🔒</span>
           </div>

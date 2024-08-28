@@ -53,7 +53,7 @@ const Header = () => {
           <ul className="dropdown-menu">            
             {state.user.nombre ? (
             <Link to={"/perfil"}>
-              <h4>{state.user.nombre}</h4>
+              <h4>{state.user.nombre + " " + state.user.apellido}</h4>
             </Link>
           ) : (
             <>
