@@ -24,8 +24,8 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
 
-     @Value("${jwt.secret.key}")
-     private String secretKey;
+    //  @Value("${jwt.secret.key}")
+    //  private String secretKey;
 
     public SecurityConfig(@Qualifier("authServicio") UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
