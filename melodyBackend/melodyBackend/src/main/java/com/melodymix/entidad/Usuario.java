@@ -6,37 +6,40 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Entity
-// aca iria @Table(name = "usuarios", o como llamemos a la tabla)
 @Table(name = "usuarios")
 @Getter
 @Setter
 @AllArgsConstructor
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Para que JPA use AUTO_INCREMENT de la base de datos
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     private String nombre;
     private String apellido;
     private String email;
-     // @Getter(AccessLevel.NONE) // esto excluye el get contrasena asi esta "encriptada"
+    
+    // Si deseas proteger la contrasena de acceso directo
+ //    @Getter(AccessLevel.NONE)
     private String contrasena;
-
+    
     private boolean isAdmin = false;
-
-
-    @Transient // esto hace que no se almacene en la base de datos
+    
+    @Transient
     private String contrsenaAdmin;
-
 
     public Usuario(String nombre, String apellido, String email) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
     }
-    public Usuario() {
 
+    public Usuario() {
+        // Constructor vacío para JPA
     }
 
+    public Object getContrasenaAdmin() {
+        return contrsenaAdmin;
+    }
 }

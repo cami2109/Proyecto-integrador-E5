@@ -1,0 +1,276 @@
+[33mcommit d1dee9210a29a5aec9b58c8addd3d08b41767f34[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mignacio[m[33m)[m
+Author: Ignacio <ignaciosigal04@gmail.com>
+Date:   Tue Aug 27 20:45:20 2024 -0300
+
+    aa
+
+[33mcommit fbc794392ebf4046f74d46f51d7a5a6f29e222e8[m
+Merge: c57370b 37a818f
+Author: Ignacio <ignaciosigal04@gmail.com>
+Date:   Tue Aug 27 20:41:43 2024 -0300
+
+    arreglando admin
+
+[33mcommit 37a818fb19842b0b7004f84cf31a2c77c4944fc5[m
+Author: Ignacio <ignaciosigal04@gmail.com>
+Date:   Tue Aug 27 20:27:17 2024 -0300
+
+    arreglando admin backend
+
+[33mcommit c57370b5e1e3be820d8fce769a17e499ac3edf31[m
+Author: Ignacio <ignaciosigal04@gmail.com>
+Date:   Tue Aug 27 16:17:55 2024 -0300
+
+    commit
+
+[33mcommit 3ddfa723ec45460f047b25816e36cfdf48acb294[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Tue Aug 27 11:52:15 2024 -0300
+
+    mostrar en pantalla el error que devuelve la api
+
+[33mcommit 0b51bac71c28a33c995cefc6de0c80bd649e43d6[m
+Author: jadls <jorge.delosantos@gmail.com>
+Date:   Tue Aug 27 09:38:35 2024 -0300
+
+    leyenda error login. detalle apenas
+
+[33mcommit ef4a43efdf59bab0f4f702f63967c32657983353[m
+Author: jadls <jorge.delosantos@gmail.com>
+Date:   Tue Aug 27 09:32:23 2024 -0300
+
+    responsive y leyendas del login
+
+[33mcommit 2c807445d989e85bfb43632cbd6c65e95d2f94aa[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Mon Aug 26 23:12:06 2024 -0300
+
+    pagina andando
+
+[33mcommit 64def6a7bef195c5e7340e628d4da3dbbd8c9f79[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Mon Aug 26 22:37:29 2024 -0300
+
+    arreglos header
+
+[33mcommit d2069d2bf4f6133a2d741d5d797bb91d8a9c34b1[m
+Merge: 71a8095 c91edb8
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Mon Aug 26 22:27:20 2024 -0300
+
+    merge
+
+[33mcommit c91edb8b70a7b573d5d3032f07f65e81c14a30a8[m
+Author: jadls <jorge.delosantos@gmail.com>
+Date:   Mon Aug 26 22:23:41 2024 -0300
+
+    detalles css
+
+[33mcommit 71a80953dc8a9f5ce91024932a1e4902947ae9c0[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Mon Aug 26 22:23:01 2024 -0300
+
+    commit para hacer merge
+
+[33mcommit 2a69ddd7b3473666441adf765baa85f0841ec324[m
+Author: jadls <jorge.delosantos@gmail.com>
+Date:   Mon Aug 26 18:40:46 2024 -0300
+
+    llaves vacías en css
+
+[33mcommit bb1004247c68ffb30f3cbda57bee463ef1b4382f[m
+Author: jadls <jorge.delosantos@gmail.com>
+Date:   Mon Aug 26 18:37:31 2024 -0300
+
+    tamaño imágenes y responsive
+
+[33mcommit dc0cd96a0a839dcc07f7654d601a5cf36c52c8a0[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Mon Aug 26 15:57:51 2024 -0300
+
+    validaciones input, input contraseña admin
+
+[33mcommit e50a3a9dc92833f75eace3c30c6ea6442e9dbba1[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Thu Aug 22 21:35:43 2024 -0300
+
+    caracteristicas detalle
+
+[33mcommit 1a6fa300e42be81e970a09e0454004bbb3351f15[m
+Merge: 23b414c 9893bb0
+Author: jadls <jorge.delosantos@gmail.com>
+Date:   Thu Aug 22 21:01:11 2024 -0300
+
+    Merge branch 'main' into jorge
+
+[33mcommit 9893bb043244264bcb2efdbb4a609d2724a045a5[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Thu Aug 22 16:51:12 2024 -0300
+
+    arreglo para que no explote
+
+[33mcommit add18f2bff1f5b0d2e4cdd906490e5a27d208740[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Thu Aug 22 16:48:00 2024 -0300
+
+    logueo permanente provisorio
+
+[33mcommit 339c1dffa1f2cff0fef6c17f1b5bfa4aa344fed6[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Thu Aug 22 13:56:47 2024 -0300
+
+    correccion metodo get jwt
+
+[33mcommit 23b414c34c865750da8bb53a54316ae72c1e1d5f[m
+Merge: d6cd738 30dfdc6
+Author: jadls <jorge.delosantos@gmail.com>
+Date:   Thu Aug 22 08:15:06 2024 -0300
+
+    Merge branch 'main' into jorge
+
+[33mcommit 3039e1804dfa44eaad2db0ed4659080cedc8fa20[m
+Merge: 71251d8 30dfdc6
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 23:48:01 2024 -0300
+
+    correcciones perfil
+
+[33mcommit 71251d866a5407249d63125c41f55fc906a168ce[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 23:45:42 2024 -0300
+
+    correcciones perfil
+
+[33mcommit 30dfdc6e91994bc2dad1893717f1937eda505088[m
+Author: jadls <jorge.delosantos@gmail.com>
+Date:   Wed Aug 21 22:35:12 2024 -0300
+
+    ubicar el checkbox junto a label admin
+
+[33mcommit f76845b9f724bbd39c4c239463d3bf5445950e49[m
+Author: Ignacio <ignaciosigal04@gmail.com>
+Date:   Wed Aug 21 21:42:10 2024 -0300
+
+    arreglado el error
+
+[33mcommit e37a18cd31d2b933d8bcad0ac9adc68db76f5944[m
+Merge: 5e1ccf5 57adaca
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 21:20:22 2024 -0300
+
+    Merge branch 'cami'
+
+[33mcommit 57adacab6f49aaa8e53a6d480cb8260d647d9204[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 21:20:05 2024 -0300
+
+    correcion para merge
+
+[33mcommit 53877e13db4d19f81f518a9c234c7e82e93abdaf[m
+Author: cami2109 <cami.2109@hotmail.com>
+Date:   Wed Aug 21 20:51:27 2024 -0300
+
+    cambio de imagenes
+
+[33mcommit 070022a78f2f1ffcd2dcc803f5058d36e13bc567[m
+Author: cami2109 <cami.2109@hotmail.com>
+Date:   Wed Aug 21 20:46:21 2024 -0300
+
+    cambio de letra y logos footer
+
+[33mcommit 5e1ccf5431230034d9822a48ffce8357b4f74b90[m
+Merge: c03085e b58e44e
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 20:30:34 2024 -0300
+
+    Merge branch 'Santi'
+
+[33mcommit b58e44e28c5d2c020a02ef56fc949bf9843737f7[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 20:30:20 2024 -0300
+
+    correcion cerrar sesion como admin
+
+[33mcommit c03085edf885750fc72e78e3d9fc9575cb422190[m
+Merge: 0de5580 90a4594
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 16:30:57 2024 -0300
+
+    Merge ultimo push Santi
+
+[33mcommit 0de5580136ae0353de864a9b1eaa937777dfd805[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 16:28:59 2024 -0300
+
+    .
+
+[33mcommit f4bb899274d35779f0b5c9dbfe8c81fe912c11a3[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 16:25:24 2024 -0300
+
+    Modo admin
+
+[33mcommit bbec86a10470e1e1e1e8f112546f59cf653b8990[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Wed Aug 21 15:37:53 2024 -0300
+
+    login terminado, mantener sesion con jwt
+
+[33mcommit 90a4594b2fab667508a41f0ba92c4df193a2c448[m
+Author: Ignacio <ignaciosigal04@gmail.com>
+Date:   Wed Aug 21 15:15:21 2024 -0300
+
+    configurado el token jwt, devolviendo tambien nombre,apellido,email,contrasena
+
+[33mcommit 4450f3d2d250ec07282bf1e601e16ba980ffc707[m
+Merge: b7eacd4 4f9099c
+Author: Ignacio <ignaciosigal04@gmail.com>
+Date:   Wed Aug 21 14:40:29 2024 -0300
+
+    merge
+
+[33mcommit b7eacd49043b1085bf1a481cbe25919ea88b98e0[m
+Author: Ignacio <ignaciosigal04@gmail.com>
+Date:   Wed Aug 21 14:38:01 2024 -0300
+
+    login backend con jwt
+
+[33mcommit 4f9099cc834c2ba90fde1ffda3d2461993d9b650[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Tue Aug 20 21:27:12 2024 -0300
+
+    correcciones imagenes
+
+[33mcommit 1be2882d702efaecf7b14b90c2df271e3dc7fceb[m
+Merge: 70784da 8b22098
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Tue Aug 20 21:18:43 2024 -0300
+
+    Merge branch 'Cami' of https://github.com/cami2109/Proyecto-integrador-E5 into Cami
+
+[33mcommit 70784da3e13aa66099e31f3e896f6b521db7a98e[m
+Author: cami2109 <cami.2109@hotmail.com>
+Date:   Tue Aug 20 21:10:53 2024 -0300
+
+    fotos de los tipos
+
+[33mcommit 408ba709b1f6b251b67f2301934839fa4c7b4b23[m
+Author: cami2109 <cami.2109@hotmail.com>
+Date:   Tue Aug 20 20:53:10 2024 -0300
+
+    descripcion de los intrumentos
+
+[33mcommit dd1431e3cec29a9a2c745e211ae032660ac8b453[m
+Merge: 2cb576d 6164e46
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Tue Aug 20 16:21:46 2024 -0300
+
+    Merge branch 'main' of https://github.com/cami2109/Proyecto-integrador-E5
+
+[33mcommit 2cb576d20c3682f00ab48ef857e92e1d753c7885[m
+Author: Santiago Navarro <santinavarro2003@gmail.com>
+Date:   Tue Aug 20 16:20:51 2024 -0300
+
+    fetch post
+
+[33mcommit 6164e465c95391e
