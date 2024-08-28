@@ -51,7 +51,7 @@ const reducer = (state, action) => {
       return {...state, user: action.payload}
     case "LOG_OUT":
       localStorage.clear()
-      return { ...state, user: {}, admin: false };
+      return { ...state, user: {} };
   }
 };
 
