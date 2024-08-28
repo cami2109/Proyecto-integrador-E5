@@ -27,7 +27,7 @@ public class Usuario {
     private boolean isAdmin = false;
     
     @Transient
-    private String contrsenaAdmin;
+    private String contrasenaAdmin;
 
     public Usuario(String nombre, String apellido, String email) {
         this.nombre = nombre;
@@ -40,6 +40,6 @@ public class Usuario {
     }
 
     public Object getContrasenaAdmin() {
-        return contrsenaAdmin;
+        return contrasenaAdmin;
     }
 }

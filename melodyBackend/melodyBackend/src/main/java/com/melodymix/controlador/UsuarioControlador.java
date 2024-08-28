@@ -43,33 +43,37 @@ public class UsuarioControlador {
         return ResponseEntity.ok(nuevoUsuario);
     }
 
-@PostMapping("/login")
-public ResponseEntity<Map<String, Object>> login(@RequestBody Usuario usuario) {
-    Usuario usuarioRegistrado = usuarioServiceImpl.buscarPorEmail(usuario.getEmail());
-    if (usuarioRegistrado != null && usuarioServiceImpl.getPasswordEncoder().matches(usuario.getContrasena(), usuarioRegistrado.getContrasena())) {
-        boolean isAdmin = false;
+    @PostMapping("/login")
+    public ResponseEntity<Map<String, Object>> login(@RequestBody Usuario usuario) {
+        Usuario usuarioRegistrado = usuarioServiceImpl.buscarPorEmail(usuario.getEmail());
+        if (usuarioRegistrado != null && usuarioServiceImpl.getPasswordEncoder().matches(usuario.getContrasena(), usuarioRegistrado.getContrasena())) {
+            boolean isAdmin = false;
 
-        // Verifica la contraseña admin si se ha proporcionado
-        if (usuario.getContrasenaAdmin() != null && usuario.getContrasenaAdmin().equals(adminContrasena)) {
-            isAdmin = true;
+            // Depuración: Imprime los valores
+            System.out.println("adminContrasena: " + adminContrasena);
+            System.out.println("contrasenaAdmin del usuario: " + usuario.getContrasenaAdmin());
+
+            // Verifica la contraseña admin si se ha proporcionado
+            if (usuario.getContrasenaAdmin() != null && usuario.getContrasenaAdmin().equals(adminContrasena)) {
+                isAdmin = true;
+            }
+
+            Authentication authentication = new UsernamePasswordAuthenticationToken(
+                    usuario.getEmail(),
+                    usuario.getContrasena(),
+                    Collections.singletonList(new SimpleGrantedAuthority(isAdmin ? "ROLE_ADMIN" : "ROLE_USER"))
+            );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", isAdmin ? "Login exitoso como ADMIN" : "Login exitoso como USUARIO");
+            response.put("isAdmin", isAdmin);
+
+            return ResponseEntity.ok(response);
         }
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(
-                usuario.getEmail(),
-                usuario.getContrasena(),
-                Collections.singletonList(new SimpleGrantedAuthority(isAdmin ? "ROLE_ADMIN" : "ROLE_USER"))
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", isAdmin ? "Login exitoso como ADMIN" : "Login exitoso como USUARIO");
-        response.put("isAdmin", isAdmin);
-
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(401).body(Collections.singletonMap("message", "Login fallido"));
     }
-
-    return ResponseEntity.status(401).body(Collections.singletonMap("message", "Login fallido"));
-}
 
 
 
