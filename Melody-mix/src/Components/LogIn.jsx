@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Link, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/Context";
 
 const LogIn = () => {
@@ -56,6 +56,7 @@ const LogIn = () => {
       validarEmail(info.email.trim()) &&
       validarContraseña(info.contrasena.trim())
     ) {
+      esAdmin()
       setShowCard(true);
       setError(false);
       fetch("http://localhost:8080/usuario/login", configs)
