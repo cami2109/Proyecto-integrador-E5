@@ -18,7 +18,7 @@ const Perfil = () => {
       <div className="infoperfil">
         <h3>{state.user.nombre + ' ' + state.user.apellido}</h3>
         <h3>{state.user.email}</h3>
-        {state.admin && <h3>Modo admin</h3>}
+        {state.user.admin && <h3>Modo admin</h3>}
       </div>
       <div>
         <Link to={"/perfil/editar"}>
