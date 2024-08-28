@@ -56,6 +56,7 @@ const LogIn = () => {
       validarEmail(info.email.trim()) &&
       validarContraseña(info.contrasena.trim())
     ) {
+      esAdmin();
       setShowCard(true);
       setError(false);
       fetch("http://localhost:8080/usuario/login", configs)

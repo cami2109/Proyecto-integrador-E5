@@ -7,7 +7,7 @@ import Details from "./Components/Details"
 import Perfil from "./Pages/Perfil";
 import CrearCuenta from "./Pages/CrearCuenta";
 import LogIn from "./Components/LogIn";
-import AgregarYModificarProductos from "./Pages/agregarYModificarProductos";
+import AgregarYModificarProductos from "../src/Pages/AgregarYModificarProductos";
 
 
 
