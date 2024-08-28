@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ info }) => {
+const Card = ({ info, children }) => {
   const { nombre, imagen, precio, id } = info;
-
 
   return (
     <div className="card">
@@ -15,6 +14,7 @@ const Card = ({ info }) => {
           <h4>ver mas...</h4>
         </div>
       </Link>
+      {children}
     </div>
   );
 };

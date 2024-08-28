@@ -1,5 +1,6 @@
 import axios from "axios";
 import {createContext, useContext, useReducer,} from "react";
+import { instrumentos } from "../Utils/listaInstrumentos";
 
 // if(localStorage.getItem("token")){
 
@@ -23,8 +24,7 @@ import {createContext, useContext, useReducer,} from "react";
 
 const initialState = {
   user: {},
-  admin: false,
-  products: {},
+  products: {instrumentos},
 };
 
 if(localStorage.getItem("token")){
@@ -52,8 +52,6 @@ const reducer = (state, action) => {
     case "LOG_OUT":
       localStorage.clear()
       return { ...state, user: {}, admin: false };
-    case "ADMIN":
-      return {...state, admin: action.payload}
   }
 };
 
