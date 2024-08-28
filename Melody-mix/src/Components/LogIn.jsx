@@ -9,6 +9,7 @@ const LogIn = () => {
   const [info, setInfo] = useState({
     email: "",
     contrasena: "",
+    contrasenaAdmin: ""
   });
 
   const [isChecked, setIsChecked] = useState(false);
@@ -32,7 +33,10 @@ const LogIn = () => {
     e.preventDefault();
 
     const esAdmin = () => {
-      if (passAdmin === "Admin" && isChecked) return true;
+      if (passAdmin === "ADMIN" && isChecked){
+        setInfo({...info, contrasenaAdmin: passAdmin})
+        return true
+      }
 
       return false;
     };
@@ -59,7 +63,6 @@ const LogIn = () => {
         .then((data) =>
           dispatch(
             { type: "LOG_IN", payload: data },
-            esAdmin && dispatch({ type: "ADMIN", payload: esAdmin }),
             setTimeout(() => {
               navigate("/");
             }, 3000)

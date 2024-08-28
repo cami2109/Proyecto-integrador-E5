@@ -24,7 +24,6 @@ import { instrumentos } from "../Utils/listaInstrumentos";
 
 const initialState = {
   user: {},
-  admin: true,
   products: {instrumentos},
 };
 
@@ -53,8 +52,6 @@ const reducer = (state, action) => {
     case "LOG_OUT":
       localStorage.clear()
       return { ...state, user: {}, admin: false };
-    case "ADMIN":
-      return {...state, admin: action.payload}
   }
 };
 
