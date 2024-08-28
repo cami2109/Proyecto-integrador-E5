@@ -68,6 +68,10 @@ public class UsuarioControlador {
             Map<String, Object> response = new HashMap<>();
             response.put("message", isAdmin ? "Login exitoso como ADMIN" : "Login exitoso como USUARIO");
             response.put("isAdmin", isAdmin);
+            response.put("nombre", usuarioRegistrado.getNombre());
+            response.put("apellido", usuarioRegistrado.getApellido());
+            response.put("email", usuarioRegistrado.getEmail());
+
 
             return ResponseEntity.ok(response);
         }
