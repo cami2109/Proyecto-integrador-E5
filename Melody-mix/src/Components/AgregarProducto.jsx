@@ -10,6 +10,8 @@ const AgregarProducto = ({}) => {
     imagen: ""
   })
 
+
+
   return (
     <div className='overlay'>
       <div className='card-modificar'>

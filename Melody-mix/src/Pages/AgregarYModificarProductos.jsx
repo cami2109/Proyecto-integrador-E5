@@ -16,7 +16,7 @@ const AgregarYModificarProductos = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if(!state.isAdmin) navigate("/")
+        // if(!state.user.isAdmin) navigate("/")
     }, [])
 
     const toggleModificarEliminar = (index) => {
@@ -40,7 +40,7 @@ const AgregarYModificarProductos = () => {
                                 <button onClick={() => toggleModificarEliminar(index)}>Modificar/eliminar</button>
                             </div>
                         </Card> 
-                        {showModificarEliminar[index] && <ModificarEliminar key={index} info={i} setShow={toggleModificarEliminar}/>}
+                        {showModificarEliminar[index] && <ModificarEliminar key={index} info={i} setShow={toggleModificarEliminar} />}
                     </>
                 )
             })}

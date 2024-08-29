@@ -11,6 +11,22 @@ const ModificarEliminar = ({ info, setShow }) => {
         caracteristicas: caracteristicas
     })
 
+    const [showBotones, setShowBotones] = useState([new Array(caracteristicas.length).fill(false)])
+    const [showInput, setShowInput] = useState(false)
+
+    const toggleShowBotones = (index) => {
+        const nuevoVisible = [...showBotones];
+        nuevoVisible[index] = !nuevoVisible[index];
+        setShowBotones(nuevoVisible);
+    };
+
+    const handleDelete = (i) => {
+        const carac = caracteristicas
+        carac.splice(i, 1)
+        setProducto({...producto, caracteristicas: carac})
+        // setShowBotones([...showBotones, showBotones[i] = false])
+    }
+
   return (
     <div className='overlay'>
         <div className='card-modificar'>
@@ -35,7 +51,21 @@ const ModificarEliminar = ({ info, setShow }) => {
                     <input type="text" placeholder={precio} onChange={(e) => setProducto({...producto, precio: e.target.value})}/>
                 <label htmlFor="descripcion">Descripción</label>
                     <input type="text" placeholder={descripcion} onChange={(e) => setProducto({...producto, descripcion: e.target.value})}/>
-                
+                <h4>Caracteristicas</h4>
+                <ul>
+                    {producto.caracteristicas.map((i, index) => (
+                        <li key={index}>
+                            <a onClick={() => toggleShowBotones(index)}>{i}</a>
+                            {showBotones[index] && (
+                                <div>
+                                    <button onClick={(e) => {e.preventDefault(), handleDelete(index)}}>-</button>
+                                    <button onClick={(e) => {e.preventDefault(), setShowInput(true)}}>+</button>
+                                    {showInput && <input type='text' onChange={(e) => {}}/>}
+                                </div>
+                            )}
+                        </li>
+                    ))}
+                </ul>
             </form>
             <div>
                 <button onClick={() => setShow(id - 1)}>✅</button> {/*Guardar cambios*/}
