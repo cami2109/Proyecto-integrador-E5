@@ -1,27 +1,39 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { instrumentos } from "../Utils/listaInstrumentos.js";
+import Reservas from "./Reservas.jsx";
+import Reservas2 from "./Reservas2.jsx";
 
 const Details = () => {
   const { id } = useParams();
 
-  const instrumentoActual = instrumentos[id -1];
+  const instrumentoActual = instrumentos[id - 1];
 
   return (
-    <section className="main-content">
+    <section className="main-detail">
       <div>
         <h2>{instrumentoActual.nombre}</h2>
         <div className="detail">
           <img src={instrumentoActual.imagen} width={400} />
           <h4>{instrumentoActual.precio}</h4>
           <p>{instrumentoActual.descripcion}</p>
+
+          <div className="section-caract-reserva">
+            <div>
+              <h3>Caracteristicas del instrumento</h3>
+              <ul style={{ paddingLeft: "20px" }}>
+                {instrumentoActual.caracteristicas.map((i) => {
+                  return <li>{i}</li>;
+                })}
+              </ul>
+            </div>
+            <div>
+              {/* <Reservas/> */}
+              <Reservas id={id} />
+            </div>
+          </div>
+                
         </div>
-        <h2>Caracteristicas del instrumento</h2>
-        <ul style={{paddingLeft: "20px"}}>
-          {instrumentoActual.caracteristicas.map(i => {
-            return(<li>{i}</li>)
-          })}
-        </ul>
       </div>
     </section>
   );
