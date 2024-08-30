@@ -30,14 +30,14 @@ const AgregarYModificarProductos = () => {
     <div className='section'>
         {/* primer card para agregar productos */}
         <button onClick={() => setShowAgregar(!showAgregar)}>Agregar Producto</button>
-        {showAgregar && <AgregarProducto />}
+        {showAgregar && <AgregarProducto setShow={setShowAgregar}/>}
         <div className='section-bottom'>
             {state.products.instrumentos.map((i, index) => {
                 return(
                     <>
                         <Card key={i.id} info={i}>
                             <div>
-                                <button onClick={() => toggleModificarEliminar(index)}>Modificar/eliminar</button>
+                                <button onClick={(e) => toggleModificarEliminar(index)}>Modificar/eliminar</button>
                             </div>
                         </Card> 
                         {showModificarEliminar[index] && <ModificarEliminar key={index} info={i} setShow={toggleModificarEliminar} />}

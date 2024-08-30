@@ -356,6 +356,8 @@ body, html {
 
 /* pruebas card modificar */
 
+
+/* Estilos para el fondo difuminado y el centrado del modal */
 .overlay {
   position: fixed;
   top: 0;
@@ -370,6 +372,7 @@ body, html {
   justify-content: center;
 }
 
+/* Estilos para la tarjeta dentro del modal */
 .card-modificar {
   background: white;
   color: black;
@@ -393,18 +396,116 @@ body, html {
   margin: 10px 0;
 }
 
+/* Estilos para los formularios */
 .card-modificar form {
   margin-top: 20px;
 }
 
-.card-modificar form input {
-  width: 100%;
+/* Etiquetas de formulario alineadas a la izquierda */
+.card-modificar form label {
+  display: block;
+  text-align: left;
+  margin: 5px 0;
+}
+
+/* Contenedor para inputs y botones */
+.card-modificar form .input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Estilo de los inputs */
+.card-modificar form .input-container input {
+  flex: 1;
   padding: 10px;
-  margin: 10px 0;
+  margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
+/* Estilo de los botones de agregar modificación */
+.card-modificar form .input-container button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Color del botón de agregar */
+  color: white;
+  cursor: pointer;
+}
+
+/* Botones adicionales en formularios */
+.card-modificar form .button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-modificar form .button-container button {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Botón de agregar */
+.card-modificar form .button-container button:nth-child(1) {
+  background-color: #007bff; /* Botón de agregar */
+  color: white;
+}
+
+/* Botón de modificar */
+.card-modificar form .button-container button:nth-child(2) {
+  background-color: #ffc107; /* Botón de modificar */
+  color: black;
+}
+
+/* Estilos para las listas */
+.card-modificar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Margen inferior en elementos de la lista */
+.card-modificar ul li {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between; /* Alinea el contenido y el botón de eliminar */
+  align-items: center; /* Centra el botón verticalmente */
+}
+
+/* Contenedor de botones de eliminar alineado a la derecha */
+.card-modificar ul li div {
+  margin-left: auto; /* Empuja el botón hacia la derecha */
+}
+
+/* Estilos para el botón de eliminar características */
+.card-modificar ul li div button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+/* Estilos para los enlaces en la lista */
+.card-modificar ul li a {
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Contenedores adicionales para botones */
+.card-modificar div {
+  display: flex;
+  justify-content: center; /* Centra los botones de guardar y eliminar */
+  gap: 20px; /* Espacio entre los botones */
+  margin-top: 20px; /* Añade margen superior para separarlos del contenido anterior */
+}
+
+/* Estilos de los botones de la parte inferior */
 .card-modificar div button {
   padding: 10px 20px;
   margin: 10px;
@@ -413,15 +514,62 @@ body, html {
   cursor: pointer;
 }
 
+/* Botón de guardar cambios */
 .card-modificar div button:nth-child(1) {
-  background-color: #28a745; /* Botón de guardar cambios */
+  background-color: #dc3545;
   color: white;
 }
 
+/* Botón de borrar producto */
 .card-modificar div button:nth-child(2) {
-  background-color: #dc3545; /* Botón de borrar producto */
+  background-color: #28a745;
   color: white;
 }
+
+/* Estilo del input y botón para agregar nuevas características */
+.card-modificar .nueva-caracteristica {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilos para el input de nuevas características */
+.card-modificar .nueva-caracteristica input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilos para el botón de agregar nuevas características */
+.card-modificar .nueva-caracteristica button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos para los enlaces en la lista */
+.card-modificar ul li a {
+  text-decoration: none;
+  color: #007bff; /* Color del texto */
+  cursor: pointer;
+  font-size: 16px; /* Aumenta el tamaño de la fuente */
+  font-weight: bold; /* Hace el texto más grueso */
+  padding: 5px 0; /* Añade algo de espaciado vertical */
+  display: block; /* Hace que el enlace ocupe todo el ancho del elemento */
+}
+
+.card-modificar ul li a:hover {
+  color: #0056b3; /* Color al pasar el ratón por encima */
+}
+
+
+
 
 /* fin pruebas card modificar */
 

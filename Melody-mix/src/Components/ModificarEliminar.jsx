@@ -9,7 +9,15 @@ const ModificarEliminar = ({ info, setShow }) => {
         nombre: nombre,
         precio: precio,
         descripcion: descripcion,
-        caracteristicas: caracteristicas
+        caracteristicas: caracteristicas,
+        categorias: ""
+    })
+
+    const [modificaciones, setModificaciones] = useState({
+        nombre: "",
+        precio: "",
+        descripcion: "",
+        categorias: ""
     })
 
     const [showBotones, setShowBotones] = useState([new Array(producto.caracteristicas.length).fill(false)])
@@ -23,11 +31,12 @@ const ModificarEliminar = ({ info, setShow }) => {
     };
 
     const handleDelete = (i) => {
-        const carac = caracteristicas
+        console.log(i)
+        const carac = producto.caracteristicas
         carac.splice(i, 1)
         setProducto({...producto, caracteristicas: carac})
-        // setShowBotones([...showBotones, showBotones[i] = false])
     }
+
 
   return (
     <div className='overlay'>
@@ -47,35 +56,53 @@ const ModificarEliminar = ({ info, setShow }) => {
             </ul>
             <form action="">
                 <h3>Campos a modificar</h3>
+
                 <label htmlFor="nombre">Nombre:</label>
-                    <input type="text" placeholder={producto.nombre} onChange={(e) => setProducto({...producto, nombre: e.target.value})} />
+                <div className="input-container">
+                    <input type="text" placeholder={producto.nombre} onChange={(e) => setModificaciones({...modificaciones, nombre: e.target.value})} />
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, nombre: modificaciones.nombre})}}>Agregar</button>
+                </div>
+
                 <label htmlFor="precio">Precio:</label>
-                    <input type="text" placeholder={producto.precio} onChange={(e) => setProducto({...producto, precio: e.target.value})}/>
+                <div className="input-container">
+                    <input type="text" placeholder={producto.precio} onChange={(e) => setModificaciones({...modificaciones, precio: e.target.value})}/>
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: modificaciones.precio})}}>Agregar</button>
+                </div>
+
                 <label htmlFor="descripcion">Descripción</label>
-                    <input type="text" placeholder={producto.descripcion} onChange={(e) => setProducto({...producto, descripcion: e.target.value})}/>
-                <h4>Caracteristicas</h4>
+                <div className="input-container">
+                    <input type="text" placeholder={producto.descripcion} onChange={(e) => setModificaciones({...modificaciones, descripcion: e.target.value})}/>
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, descripcion: modificaciones.descripcion})}}>Agregar</button>
+                </div>
+
+                <label htmlFor="categorias">Categorías: </label>
+                <div className='input-container'>
+                    <input type="text" placeholder={producto.categorias} onChange={(e) => setModificaciones({...modificaciones, categorias: e.target.value})}/>
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categorias: modificaciones.categorias})}}>Agregar</button>
+                </div>
+
+                <h3>Características</h3>
                 <ul>
-                    {producto.caracteristicas.map((i, index) => { 
-                        return(
-                            <li key={index}>
-                                <a onClick={() => toggleShowBotones(index)}>{i}</a>
-                                {showBotones[index] && (
-                                    <div>
-                                        <button onClick={(e) => {e.preventDefault(), handleDelete(index)}}>-</button>
-                                    </div>
-                                )}
-                            </li>
-                        )}
-                    )}
+                    {producto.caracteristicas.map((i, index) => (
+                        <li key={index}>
+                            <a onClick={() => toggleShowBotones(index)}>{i}</a>
+                            {showBotones[index] && (
+                                <div>
+                                    <button onClick={(e) => {e.preventDefault(), handleDelete(index)}}>-</button>
+                                </div>
+                            )}
+                        </li>
+                    ))}
                     <button onClick={(e) => {e.preventDefault(), setShowInput(!showInput)}}>+</button>
                     {showInput && 
-                        <>
+                        <div className="nueva-caracteristica">
                             <input type='text' onChange={(e) => setNuevaCaracteristica(e.target.value)}/>
                             <button onClick={(e) => {e.preventDefault(), (nuevaCaracteristica && setProducto({...producto, caracteristicas: [...producto.caracteristicas, nuevaCaracteristica]})), setNuevaCaracteristica("")}}>Agregar</button>
-                        </>
+                        </div>
                     }
                 </ul>
             </form>
+
             <div>
                 <button onClick={(e) => {e.preventDefault(), setShow(id - 1)}}>✅</button> {/*Guardar cambios*/}
                 <button onClick={(e) => {e.preventDefault(), setShow(id - 1)}}>❌</button> {/*Borrar producto*/}
