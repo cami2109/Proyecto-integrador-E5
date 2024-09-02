@@ -1,3 +1,7 @@
+
+@import "react-datepicker/dist/react-datepicker.css";
+@import 'react-calendar/dist/Calendar.css';
+
 * {
   margin: 0;
   padding: 0;
@@ -158,6 +162,7 @@ body, html {
   width: 100%;
 }
 
+
 .section-bottom {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -300,6 +305,21 @@ body, html {
   font-weight: bold;
 }
 
+.main-detail{
+  background-color: #ffffff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main-detail h2{
+  text-align: center;
+  background-color: #005BA9;
+  padding: 2rem;
+  color: white
+}
+
 .detail {
   background-color: #fff;
   margin: auto;
@@ -307,6 +327,7 @@ body, html {
   margin-bottom: 5%;
   border: 1px solid #ddd;
   border-radius: 8px;
+  gap: 2rem;
   padding: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -356,6 +377,8 @@ body, html {
 
 /* pruebas card modificar */
 
+
+/* Estilos para el fondo difuminado y el centrado del modal */
 .overlay {
   position: fixed;
   top: 0;
@@ -370,13 +393,14 @@ body, html {
   justify-content: center;
 }
 
+/* Estilos para la tarjeta dentro del modal */
 .card-modificar {
   background: white;
   color: black;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  max-width: 700px;
   width: 100%;
   max-height: 80vh; /* Limita la altura de la tarjeta */
   overflow-y: auto; /* Permite el desplazamiento dentro de la tarjeta */
@@ -393,18 +417,116 @@ body, html {
   margin: 10px 0;
 }
 
+/* Estilos para los formularios */
 .card-modificar form {
   margin-top: 20px;
 }
 
-.card-modificar form input {
-  width: 100%;
+/* Etiquetas de formulario alineadas a la izquierda */
+.card-modificar form label {
+  display: block;
+  text-align: left;
+  margin: 5px 0;
+}
+
+/* Contenedor para inputs y botones */
+.card-modificar form .input-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Estilo de los inputs */
+.card-modificar form .input-container input {
+  flex: 1;
   padding: 10px;
-  margin: 10px 0;
+  margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
+/* Estilo de los botones de agregar modificación */
+.card-modificar form .input-container button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Color del botón de agregar */
+  color: white;
+  cursor: pointer;
+}
+
+/* Botones adicionales en formularios */
+.card-modificar form .button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-modificar form .button-container button {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Botón de agregar */
+.card-modificar form .button-container button:nth-child(1) {
+  background-color: #007bff; /* Botón de agregar */
+  color: white;
+}
+
+/* Botón de modificar */
+.card-modificar form .button-container button:nth-child(2) {
+  background-color: #ffc107; /* Botón de modificar */
+  color: black;
+}
+
+/* Estilos para las listas */
+.card-modificar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Margen inferior en elementos de la lista */
+.card-modificar ul li {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between; /* Alinea el contenido y el botón de eliminar */
+  align-items: center; /* Centra el botón verticalmente */
+}
+
+/* Contenedor de botones de eliminar alineado a la derecha */
+.card-modificar ul li div {
+  margin-left: auto; /* Empuja el botón hacia la derecha */
+}
+
+/* Estilos para el botón de eliminar características */
+.card-modificar ul li div button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+/* Estilos para los enlaces en la lista */
+.card-modificar ul li a {
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+}
+
+/* Contenedores adicionales para botones */
+.card-modificar div {
+  display: flex;
+  justify-content: center; /* Centra los botones de guardar y eliminar */
+  gap: 20px; /* Espacio entre los botones */
+  margin-top: 20px; /* Añade margen superior para separarlos del contenido anterior */
+}
+
+/* Estilos de los botones de la parte inferior */
 .card-modificar div button {
   padding: 10px 20px;
   margin: 10px;
@@ -413,17 +535,186 @@ body, html {
   cursor: pointer;
 }
 
+/* Botón de guardar cambios */
 .card-modificar div button:nth-child(1) {
-  background-color: #28a745; /* Botón de guardar cambios */
+  background-color: #dc3545;
   color: white;
 }
 
+/* Botón de borrar producto */
 .card-modificar div button:nth-child(2) {
-  background-color: #dc3545; /* Botón de borrar producto */
+  background-color: #28a745;
   color: white;
+}
+
+
+/* Estilo del input y botón para agregar nuevas características */
+.card-modificar .nueva-caracteristica {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilos para el input de nuevas características */
+.card-modificar .nueva-caracteristica input {
+  margin-bottom: 10px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilos para el botón de agregar nuevas características */
+.card-modificar .nueva-caracteristica button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Estilos para los enlaces en la lista */
+.card-modificar ul li a {
+  text-decoration: none;
+  color: #007bff; /* Color del texto */
+  cursor: pointer;
+  font-size: 16px; /* Aumenta el tamaño de la fuente */
+  font-weight: bold; /* Hace el texto más grueso */
+  padding: 5px 0; /* Añade algo de espaciado vertical */
+  display: block; /* Hace que el enlace ocupe todo el ancho del elemento */
+}
+
+.card-modificar ul li a:hover {
+  color: #0056b3; /* Color al pasar el ratón por encima */
 }
 
 /* fin pruebas card modificar */
+
+/* estilos calendario */
+
+.section-caract-reserva {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(1, auto);
+  gap: 1rem;
+  background-color: #00ACD3;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  align-content: space-between;
+}
+
+reserva {
+  gap: 1rem;
+  text-align: center;
+}
+
+/*Estilos dentro del calender*/
+.react-calendar__tile--disabled {
+  background-color: #f0f0f0;
+  text-decoration: line-through;
+  color: #999;
+}
+.react-calendar__tile--now {
+  background-color: #005BA9; /* Cambia a tu color deseado */
+  color: white; /* Opcional, cambiar el color del texto */
+  font-weight: bold; /* Opcional, para resaltar */
+}
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background-color: #005BA9; /* Color cuando se pasa el cursor sobre el día de hoy */
+}
+
+/* Estilo para fechas pasadas */
+.past-date {
+  background-color: #f0f0f0;
+  text-decoration: line-through;
+  color: #999;
+}
+
+/* Estilo para fechas reservadas */
+.reserved-date {
+  background-color: #f12b2b;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Estilo para fechas seleccionadas */
+.selected-date {
+  background-color: #00ACD3;
+  color: #000;
+  font-weight: bold;
+}
+
+/* fin estilos calendario */
+
+@media (max-width: 800px){
+  
+.section-caract-reserva {
+ 
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #00ACD3;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  /* align-content: center; */
+  align-items: center;
+}
+reserva {
+  gap: 1rem;
+  text-align: center;
+}
+
+}
+
+
+
+
+/* estilos agregar y modificar productos  */
+
+.agregar-modificar-section{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas con el mismo ancho */
+  grid-template-rows: auto repeat(5, auto); /* Fila para el botón y luego 5 filas automáticas para las cards */
+  gap: 1rem; /* Espacio entre las cards y el botón */
+  background-color: #005BA9;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.btn-agregar-producto{
+  grid-column: span 2; /* El botón abarca 2 columnas */
+  padding: 10px; /* Puedes ajustar el padding según sea necesario */
+  font-size: 16px;
+  font-weight: bold;
+  background-color: grey;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+  width: 100%; /* Asegúrate de que el ancho sea del 100% del contenedor */
+  box-sizing: border-box; /* Para incluir padding en el ancho total */
+  margin: 0; /* Elimina márgenes para evitar desajustes */
+}
+
+/* .btn-agregar-producto:hover {
+  background-color: #45a049;
+} */
+
+.btn-agregar-producto::before {
+  content: '+';
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+/* fin estilos agregar y modificar productos */
 
 @media (max-width: 700px) {
   .nav {

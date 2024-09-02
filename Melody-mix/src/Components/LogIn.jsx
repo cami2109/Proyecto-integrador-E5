@@ -55,7 +55,6 @@ const LogIn = () => {
     ) {
       setShowCard(true)
       setError(false)
-      console.log(configs.body)
       fetch("http://localhost:8080/usuario/login", configs)
         .then((res) => res.json())
         .then((data) =>

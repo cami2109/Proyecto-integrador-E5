@@ -16,6 +16,8 @@ const Formu = () => {
   const [showCard, setShowCard] = useState(false);
   const [error, setError] = useState(false);
 
+  const [erroresEspecificos, setErroresEspecificos] = useState([])
+
   const navigate = useNavigate()
 
   const configs = {
@@ -29,26 +31,64 @@ const Formu = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
 
+      const validarNombre = (nombre) => {
+        const nombreRegex = /^[a-zA-Z]{4,}$/
+        
+        return nombreRegex.test(nombre)
+      }
+
+      const validarApellido = (apellido) => {
+        const apellidoRegex = /^[a-zA-Z]{6,}$/
+
+        return apellidoRegex.test(apellido)
+      }
+
       const validarEmail = (emailTest) => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return emailRegex.test(emailTest);
       };
 
-    if (validarEmail(info.email.trim()) && info.nombre.trim().length >= 6) {
+      const validarContraseña = (contraseña) => {
+        const contraseñaRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/
+
+        return contraseñaRegex.test(contraseña)
+      }
+
+      const validarUsuario = () => {
+
+        if(validarNombre(info.nombre) && validarApellido(info.apellido) && validarEmail(info.email) && validarContraseña(info.contrasena)){
+          return true
+        }
+
+        return false
+      }
+
+
+
+    if (validarUsuario()){
+      
       setShowCard(true);
       setError(false);
       fetch("http://localhost:8080/usuario/registro", configs)
       .then(res => res.json())
-      .then(data => dispatch({type: "LOG_IN", payload: data}))
+      .then(data => dispatch({type: "LOG_IN", payload: data}),  
+        setTimeout(() => {
+          navigate("/")
+        }, 3000))
       .catch(error => {
         setError(true);
+        setErroresEspecificos(["Error : " + error])
+
       })
-      setTimeout(() => {
-        navigate("/")
-      }, 3000)
     } else {
       setError(true);
       setShowCard(false);
+      const erroresNuevos = []
+      if(!validarNombre(info.nombre.trim())) erroresNuevos.push("El nombre debe tener minimo 3 caracteres que sean letras")
+      if(!validarApellido(info.apellido.trim())) erroresNuevos.push("El apellido debe tener minimo 6 caracteres que sean letras")
+      if(!validarEmail(info.email.trim())) erroresNuevos.push("El email es incorrecto, debe tener @ y .com")
+      if(!validarContraseña(info.contrasena.trim())) erroresNuevos.push("La contraseña debe tener minimo 6 caracteres una mayuscula y un número")
+      setErroresEspecificos(erroresNuevos)
     }
   };
 
@@ -103,7 +143,7 @@ const Formu = () => {
           <button onClick={handleSubmit}>Registrarse</button>
         </form>
         {showCard && <p>aguarda por favor</p>}
-        {error && <p style={{ color: "red" }}>chequea la información</p>}
+        {error && erroresEspecificos.map((i, index) => <p key={index}>{i}</p>)}
       </>
     );
   };

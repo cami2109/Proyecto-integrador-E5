@@ -7,7 +7,9 @@ import Details from "./Components/Details"
 import Perfil from "./Pages/Perfil";
 import CrearCuenta from "./Pages/CrearCuenta";
 import LogIn from "./Components/LogIn";
-import AgregarYModificarProductos from "../src/Pages/AgregarYModificarProductos";
+import AgregarYModificarProductos from "./Pages/AgregarYModificarProductos";
+import InstrumentoPorCategoria from "./Pages/InstrumentoPorCategoria"
+
 
 
 
@@ -18,6 +20,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/details/:id" element= {<Details/>}/>
+          <Route path="/instrumentos/:instrumento" element={<InstrumentoPorCategoria />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/crearcuenta" element={<CrearCuenta/>} />
           <Route path="/login" element={<LogIn />} />
