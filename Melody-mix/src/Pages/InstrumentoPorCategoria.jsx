@@ -12,9 +12,11 @@ const InstrumentoPorCategoria = () => {
 
     const instrumentosAMostrar = () => {
         const lista = []
+        
         state.products.instrumentos.map((i) => {
             if(i.categoria === instrumento) lista.push(i)
         })
+
         return lista
     }
 
