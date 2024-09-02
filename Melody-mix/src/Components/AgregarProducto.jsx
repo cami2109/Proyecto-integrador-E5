@@ -56,7 +56,7 @@ const AgregarProducto = ({ setShow, id}) => {
                     <input type="text" onChange={(e) => setInput(e.target.value)}/>
                     <button onClick={(e) => {e.preventDefault(), setProducto({...producto, descripcion: input}), setInput("")}}>Agregar</button>
                 </div>
-                <label htmlFor="categorias">Categorías: </label>
+                <label htmlFor="categorias">Categoría: </label>
                 <div className='input-container'>
                   <input type="text" onChange={(e) => setInput(e.target.value)}/>
                   <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categorias: input}), setInput("")}}>Agregar</button>

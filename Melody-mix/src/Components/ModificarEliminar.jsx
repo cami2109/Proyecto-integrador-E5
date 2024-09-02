@@ -46,6 +46,7 @@ const ModificarEliminar = ({ info, setShow }) => {
             <h3>Nombre: {producto.nombre}</h3>
             <h3>Precio: {producto.precio}</h3>
             <p>Descripción: {producto.descripcion}</p>
+            <h3>Categoria: {producto.categorias}</h3>
             <h3>Caracteristicas: </h3>
             <ul>
                 {producto.caracteristicas.map((i, index) => {
@@ -75,7 +76,7 @@ const ModificarEliminar = ({ info, setShow }) => {
                     <button onClick={(e) => {e.preventDefault(), setProducto({...producto, descripcion: modificaciones.descripcion})}}>Agregar</button>
                 </div>
 
-                <label htmlFor="categorias">Categorías: </label>
+                <label htmlFor="categorias">Categoría: </label>
                 <div className='input-container'>
                     <input type="text" placeholder={producto.categorias} onChange={(e) => setModificaciones({...modificaciones, categorias: e.target.value})}/>
                     <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categorias: modificaciones.categorias})}}>Agregar</button>

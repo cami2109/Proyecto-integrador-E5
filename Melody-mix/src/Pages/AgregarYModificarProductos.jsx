@@ -16,7 +16,7 @@ const AgregarYModificarProductos = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        // if(!state.user.isAdmin) navigate("/")
+        if(state.user.isAdmin) navigate("/")
     }, [])
 
     const toggleModificarEliminar = (index) => {
@@ -27,24 +27,23 @@ const AgregarYModificarProductos = () => {
 
 
   return (
-    <div className='section'>
-        {/* primer card para agregar productos */}
-        <button onClick={() => setShowAgregar(!showAgregar)}>Agregar Producto</button>
-        {showAgregar && <AgregarProducto setShow={setShowAgregar}/>}
-        <div className='section-bottom'>
-            {state.products.instrumentos.map((i, index) => {
-                return(
-                    <>
-                        <Card key={i.id} info={i}>
-                            <div>
-                                <button onClick={(e) => toggleModificarEliminar(index)}>Modificar/eliminar</button>
-                            </div>
-                        </Card> 
-                        {showModificarEliminar[index] && <ModificarEliminar key={index} info={i} setShow={toggleModificarEliminar} />}
-                    </>
-                )
-            })}
+    <div className='agregar-modificar'>
+        <div className='agregar-modificar-section'>
+            <button className="btn-agregar-producto" onClick={() => setShowAgregar(!showAgregar)}>Agregar Producto</button>
+                {state.products.instrumentos.map((i, index) => {
+                    return(
+                        <>
+                            <Card key={i.id} info={i}>
+                                <div>
+                                    <button onClick={(e) => toggleModificarEliminar(index)}>Modificar/eliminar</button>
+                                </div>
+                            </Card> 
+                            {showModificarEliminar[index] && <ModificarEliminar key={index} info={i} setShow={toggleModificarEliminar} />}
+                        </>
+                    )
+                })}
         </div>
+        {showAgregar && <AgregarProducto setShow={setShowAgregar}/>}
     </div>
   )
 }

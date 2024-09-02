@@ -158,6 +158,7 @@ body, html {
   width: 100%;
 }
 
+
 .section-bottom {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -568,10 +569,52 @@ body, html {
   color: #0056b3; /* Color al pasar el ratón por encima */
 }
 
-
-
-
 /* fin pruebas card modificar */
+
+
+
+
+/* estilos agregar y modificar productos  */
+
+.agregar-modificar-section{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas con el mismo ancho */
+  grid-template-rows: auto repeat(5, auto); /* Fila para el botón y luego 5 filas automáticas para las cards */
+  gap: 1rem; /* Espacio entre las cards y el botón */
+  background-color: #005BA9;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box; 
+}
+
+.btn-agregar-producto{
+  grid-column: span 2; /* El botón abarca 2 columnas */
+  padding: 10px; /* Puedes ajustar el padding según sea necesario */
+  font-size: 16px;
+  font-weight: bold;
+  background-color: grey;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+  width: 100%; /* Asegúrate de que el ancho sea del 100% del contenedor */
+  box-sizing: border-box; /* Para incluir padding en el ancho total */
+  margin: 0; /* Elimina márgenes para evitar desajustes */
+}
+
+/* .btn-agregar-producto:hover {
+  background-color: #45a049;
+} */
+
+.btn-agregar-producto::before {
+  content: '+';
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+/* fin estilos agregar y modificar productos */
 
 @media (max-width: 700px) {
   .nav {
