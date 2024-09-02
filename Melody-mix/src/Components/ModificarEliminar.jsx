@@ -37,6 +37,17 @@ const ModificarEliminar = ({ info, setShow }) => {
         setProducto({...producto, caracteristicas: carac})
     }
 
+    const handleSubmit = () => {
+        state.products.map((i) => {
+            if(modificaciones.nombre === i.nombre){
+              return false
+            } else {
+              console.log("aca va el fetch")
+              setShow(id - 1)
+            }
+          })
+    }
+
 
   return (
     <div className='overlay'>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useUserContext } from '../Context/Context'
 
 const AgregarProducto = ({ setShow, id}) => {
+
+  const { state } = useUserContext()
 
   const [producto, setProducto] = useState({
     nombre: "",
@@ -28,6 +31,17 @@ const AgregarProducto = ({ setShow, id}) => {
     const carac = producto.caracteristicas
     carac.splice(i, 1)
     setProducto({...producto, caracteristicas: carac})
+  }
+
+  const handleSubmit = () => {
+    state.products.map((i) => {
+      if(producto.nombre === i.nombre){
+        return false
+      } else {
+        console.log("aca va el fetch")
+        setShow(false)
+      }
+    })
   }
 
 
@@ -85,7 +99,7 @@ const AgregarProducto = ({ setShow, id}) => {
                 </ul>
             </form>
             <div>
-                <button onClick={(e) => {e.preventDefault(), setShow(false), console.log(producto)}}>✅</button> {/*Guardar cambios*/}
+                <button onClick={(e) => {e.preventDefault(), handleSubmit, console.log(producto)}}>✅</button> {/*Guardar cambios*/}
                 <button onClick={(e) => {e.preventDefault(), setShow(false)}}>❌</button> {/*Borrar producto*/}
             </div>
       </div>
