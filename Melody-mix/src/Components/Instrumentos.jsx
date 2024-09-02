@@ -3,6 +3,9 @@ import "../App.css"
 import { Link } from 'react-router-dom'
 
 const Instrumentos = () => {
+  const { state } = useUserContext();
+  const instrumentos = state.products;
+
   return (
     <section className="section">
         <h2>Instrumentos por tipo</h2>
@@ -44,4 +47,4 @@ const Instrumentos = () => {
   )
 }
 
-export default Instrumentos
+export default Instrumentos;
