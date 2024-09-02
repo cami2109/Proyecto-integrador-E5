@@ -7,8 +7,9 @@ import Details from "./Components/Details"
 import Perfil from "./Pages/Perfil";
 import CrearCuenta from "./Pages/CrearCuenta";
 import LogIn from "./Components/LogIn";
-import AgregarYModificarProductos from "./Pages/agregarYModificarProductos";
-import InstrumentoPorCategoria from "./Pages/instrumentoPorCategoria";
+import AgregarYModificarProductos from "./Pages/AgregarYModificarProductos";
+import InstrumentoPorCategoria from "./Pages/InstrumentoPorCategoria"
+
 
 
 
