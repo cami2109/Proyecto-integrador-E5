@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { instrumentos } from "../Utils/listaInstrumentos.js";
 import Reservas from "./Reservas.jsx";
-import Reservas2 from "./Reservas2.jsx";
 
 const Details = () => {
   const { id } = useParams();
