@@ -16,8 +16,7 @@ export const instrumentos = [
         id: 2,
         caracteristicas: ["Cuerpo Madera Álamo", "Número de trastes 22", "Madera Palisandro -Radio del diapasón 8.5", "Mástil Madera de arce"],
         categoria: "cuerda"
-        caracteristicas: ["Cuerpo Madera Álamo", "Número de trastes 22", "Madera Palisandro -Radio del diapasón 8.5", "Mástil Madera de arce"],
-        categoria: "cuerda"
+
     },
     {
         nombre: "Flauta Traversa Estudio Intermedio Yamaha Yfl222 + Estuche",
@@ -27,8 +26,7 @@ export const instrumentos = [
         id: 3,
         caracteristicas: [],
         categoria: "viento"
-        caracteristicas: [],
-        categoria: "viento"
+
     },
     {
         nombre: "Bateria Electronica V-drums Roland Td1k",
@@ -38,8 +36,7 @@ export const instrumentos = [
         id: 4,
         caracteristicas: [],
         categoria: "percusion"
-        caracteristicas: [],
-        categoria: "percusion"
+
     },
     {
         nombre: "Violín Cervini By Cremona HV-50 Estudio 3/4 Marrón con Estuche",
@@ -49,8 +46,7 @@ export const instrumentos = [
         id: 5,
         caracteristicas: [],
         categoria: "cuerda"
-        caracteristicas: [],
-        categoria: "cuerda"
+
     },
     {
         nombre: "Piano Digital Yamaha P-515b 88 Teclas Pesadas De Escenario Negro",
@@ -69,8 +65,7 @@ export const instrumentos = [
         id: 7,
         caracteristicas: ["Cejilla hueso sintético", "Seleccionador de pastillas: Interruptor palo de 3 vías", "Cejilla hueso sintético", "Cuerpo parte Superior: Abeto Macizo ", "Material de Mástil: Caoba"],
         categoria: "cuerda"
-        caracteristicas: ["Cejilla hueso sintético", "Seleccionador de pastillas: Interruptor palo de 3 vías", "Cejilla hueso sintético", "Cuerpo parte Superior: Abeto Macizo ", "Material de Mástil: Caoba"],
-        categoria: "cuerda"
+
     },
     {
         nombre: "Bateria Yamaha RDPOF5BLG Rydeen 5 cuerpos",
@@ -80,8 +75,7 @@ export const instrumentos = [
         id: 8,
         caracteristicas: [],
         categoria: "percusion"
-        caracteristicas: [],
-        categoria: "percusion"
+
     },
     {
         nombre: "Violín De Estudio Valencia V160 1/2 Con Estuche Y Arco",
@@ -91,8 +85,7 @@ export const instrumentos = [
         id: 9,
         caracteristicas: [],
         categoria: "cuerda"
-        caracteristicas: [],
-        categoria: "cuerda"
+
     },
     {
         nombre: "Guitarra Eléctrica Esp Modelo Ec256 Mastil Encolado",
@@ -100,8 +93,6 @@ export const instrumentos = [
         imagen: "/Img/recortada_GuitarraMastil.jpg",
         descripcion:"Guitarra Electrica ESP LTD EC-256 Construcción Cuerpo sólido Forma del cuerpo Les Paul Número de cuerdas 6 cuerdas Construcción mástil Mástil encolado Número de trastes 22 Longitud escala 24,75 62 87 cm Cuerpo Caoba Mástil Maple Diapasón Palisandro Inlays en el diapasón Inlays Flag Configuración de pastillas H-H 2x Humbucker Pastilla posición mástil ESP LH - 150N Pastilla posición puente ESP LH - 150 Seleccionador de pastillas Interruptor palo de 3 vías Reguladores 2 x volumen 1 x tono Puente Trémolo Tune-O-Matic Herrajes Negro",
         id: 10,
-        caracteristicas: ["Longitud escala: 24,75 (62,87 cm)", "Número de cuerdas: 6 cuerdas", "Forma del cuerpo: Les Paul ", "Construcción mástil: Mástil encolado", "Seleccionador de pastillas: Interruptor palo de 3 vías"],
-        categoria: "cuerda"
         caracteristicas: ["Longitud escala: 24,75 (62,87 cm)", "Número de cuerdas: 6 cuerdas", "Forma del cuerpo: Les Paul ", "Construcción mástil: Mástil encolado", "Seleccionador de pastillas: Interruptor palo de 3 vías"],
         categoria: "cuerda"
     }
