@@ -13,7 +13,7 @@ const Details = () => {
       <div>
         <h2>{instrumentoActual.nombre}</h2>
         <div className="detail">
-          <img src={instrumentoActual.imagen} width={400} />
+          <img src={instrumentoActual.imagenDetalle} />
           <h4>{instrumentoActual.precio}</h4>
           <p>{instrumentoActual.descripcion}</p>
 
