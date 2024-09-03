@@ -3,9 +3,11 @@ package com.melodymix.servicio;
 import com.melodymix.entidad.Instrumento;
 import com.melodymix.repo.IInstrumentoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class InstrumentoServicioImpl implements IInstrumentoServicio {
 
     @Autowired

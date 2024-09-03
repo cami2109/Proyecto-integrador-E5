@@ -21,7 +21,7 @@ public class Instrumento {
     private String caracteristicas;
     private String descripcion;
     private String stock;
-
+    private String imagenUrl;
 
 
 }
