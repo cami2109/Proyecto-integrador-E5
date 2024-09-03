@@ -89,14 +89,13 @@ const ModificarEliminar = ({ info, setShow }) => {
         
 
         if(pasaNombre() && estaCompleto()){
-            fetch("http://localhost:8080/instrumento/registrar", configs)
+            fetch("http://localhost:8080/instrumento/", configs)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
                 setShow(id - 1)
             })
             .catch(error => console.log(error));
-            setShow(id - 1)
         } else {
             setProductoCompleto(false)
         }
