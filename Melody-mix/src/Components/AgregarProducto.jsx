@@ -10,7 +10,7 @@ const AgregarProducto = ({ setShow }) => {
     precio: "",
     descripcion: "",
     caracteristicas: [],
-    imagen: "",
+    imagenUrl: "",
     categoria: ""
   })
 
@@ -47,7 +47,7 @@ const AgregarProducto = ({ setShow }) => {
     const estaCompleto = () => {
       return !!(producto.precio && 
              producto.nombre && 
-             producto.imagen && 
+             producto.imagenUrl && 
              producto.descripcion && 
              producto.caracteristicas.length > 0 && 
              producto.categoria)
