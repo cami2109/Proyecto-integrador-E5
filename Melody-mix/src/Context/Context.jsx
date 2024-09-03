@@ -28,11 +28,18 @@ import {createContext, useContext, useEffect, useReducer,} from "react";
 //   .then((data) => {return{...state, products: data}})
 //   .catch(error => console.log(error))
 
+
 const initialState = {
   user: {},
   products: {},
 };
 
+// axios("http://localhost:8080/instrumento/listar")
+// .then((res => initialState.products = res))
+fetch("http://localhost:8080/instrumento/listar")
+.then((res) => res.json())
+.then((data) => initialState.products = data)
+.catch(error => console.log(error))
 
 if(localStorage.getItem("token")){
   const user = {
@@ -44,18 +51,24 @@ if(localStorage.getItem("token")){
 }
 
 
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "GET_USER":
       return { ...state, user: action.payload };
-
+    case "GET_PRODUCTS":
+      axios("http://localhost:8080/instrumento/listar")
+      .then((res => {return {...state, products: res}}))
+      .catch((error) => {
+        console.log(error)
+      })
       
-    case "LOG_IN":
-      localStorage.setItem('token', JSON.stringify(action.payload.token))
-      localStorage.setItem('Nombre', JSON.stringify(action.payload.nombre))
-      localStorage.setItem('Apellido', JSON.stringify(action.payload.apellido))
-      localStorage.setItem('Email', JSON.stringify(action.payload.email))
-      return {...state, user: action.payload}
+    // case "LOG_IN":
+    //   localStorage.setItem('token', JSON.stringify(action.payload.token))
+    //   localStorage.setItem('Nombre', JSON.stringify(action.payload.nombre))
+    //   localStorage.setItem('Apellido', JSON.stringify(action.payload.apellido))
+    //   localStorage.setItem('Email', JSON.stringify(action.payload.email))
+    //   return {...state, user: action.payload}
     case "LOG_OUT":
       localStorage.clear()
       return { ...state, user: {} };
