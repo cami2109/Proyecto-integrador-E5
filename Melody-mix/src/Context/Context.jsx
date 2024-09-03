@@ -22,10 +22,14 @@ import { instrumentos } from "../Utils/listaInstrumentos";
 //   })
 // }
 
+
 const initialState = {
   user: {},
-  products: {instrumentos},
+  products: {},
 };
+
+axios("http://localhost:8080/instrumento/listar")
+.then((res => initialState.products = res))
 
 if(localStorage.getItem("token")){
   const user = {
@@ -42,7 +46,12 @@ const reducer = (state, action) => {
     case "GET_USER":
       return { ...state, user: action.payload };
     case "GET_PRODUCTS":
-      return null
+      axios("http://localhost:8080/instrumento/listar")
+      .then((res => {return {...state, products: res}}))
+      .catch((error) => {
+        console.log(error)
+      })
+      
     case "LOG_IN":
       localStorage.setItem('token', JSON.stringify(action.payload.token))
       localStorage.setItem('Nombre', JSON.stringify(action.payload.nombre))

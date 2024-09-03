@@ -3,7 +3,7 @@ import { useUserContext } from '../Context/Context'
 
 const ModificarEliminar = ({ info, setShow }) => {
 
-    const { dispatch } = useUserContext()
+    const { state, dispatch } = useUserContext()
 
     const {nombre, precio, descripcion, id, caracteristicas, imagen} = info
 
@@ -11,6 +11,7 @@ const ModificarEliminar = ({ info, setShow }) => {
         id: id,
         nombre: nombre,
         precio: precio,
+        imagen: imagen,
         descripcion: descripcion,
         caracteristicas: caracteristicas,
         categorias: ""
@@ -49,14 +50,18 @@ const ModificarEliminar = ({ info, setShow }) => {
             "Content-Type": "application/json",
             },
         }
-        fetch("http://localhost:8080/productos", configs)
+        fetch("http://localhost:8080/instrumento/id", configs)
         .then((res) => res.json())
-        .then((data) => {console.log(data)})
+        .then((data) => {
+            console.log(data)
+            setShow(id - 1)
+        })
+        .catch(error => console.log(error))
     }
 
     const handleSubmit = () => {
         const pasaNombre = () => {
-            state.products.instruementos.map((i) => {
+            state.products.instrumentos.map((i) => {
                 if(producto.nombre === i.nombre){
                 return false
                 } 
@@ -70,7 +75,7 @@ const ModificarEliminar = ({ info, setShow }) => {
                    producto.imagen && 
                    producto.descripcion && 
                    producto.caracteristicas.length > 0 && 
-                   producto.categoria)
+                   producto.categorias)
         }
 
         const configs = {
@@ -81,11 +86,17 @@ const ModificarEliminar = ({ info, setShow }) => {
             },
         }
 
+        
+
         if(pasaNombre() && estaCompleto()){
-            setShow(id - 1)
-            fetch("http://localhost:8080/productos", configs)
+            fetch("http://localhost:8080/instrumento/registrar", configs)
             .then((res) => res.json())
-            .then((data) => {console.log(data)})
+            .then((data) => {
+                console.log(data)
+                setShow(id - 1)
+            })
+            .catch(error => console.log(error));
+            setShow(id - 1)
         } else {
             setProductoCompleto(false)
         }
@@ -159,8 +170,8 @@ const ModificarEliminar = ({ info, setShow }) => {
             </form>
             {!productoCompleto && <h2>Asegurate de que el producto este completo, y que no se repita ningun nombre</h2>}
             <div>
-                <button onClick={(e) => {e.preventDefault(), handleSubmit, dispatch({type:"GET_PRODUCTS"})}}>✅</button> {/*Guardar cambios*/}
-                <button onClick={(e) => {e.preventDefault(), handleDeleteProduct, dispatch({type:"GET_PRODUCTS"})}}>❌</button> {/*Borrar producto*/}
+                <button onClick={(e) => {e.preventDefault(), handleSubmit, console.log(producto), dispatch({type: "GET_PRODUCTS"})}}>✅</button> {/*Guardar cambios*/}
+                <button onClick={(e) => {e.preventDefault(), handleDeleteProduct, dispatch({type: "GET_PRODUCTS"})}}>❌</button> {/*Borrar producto*/}
             </div>
         </div>
     </div>

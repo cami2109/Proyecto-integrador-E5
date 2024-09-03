@@ -128,7 +128,7 @@ const AgregarProducto = ({ setShow }) => {
             </form>
             {!productoCompleto && <h2>Asegurate de que el producto este completo, y que no se repita ningun nombre</h2>}
             <div>
-                <button onClick={(e) => {e.preventDefault(), handleSubmit(), console.log(producto), dispatch({type: "GET_PRODUCTS"})}}>✅</button> {/*Guardar cambios*/}
+                <button onClick={(e) => {e.preventDefault(), handleSubmit(), console.log(producto)}}>✅</button> {/*Guardar cambios*/}
                 <button onClick={(e) => {e.preventDefault(), setShow(false), setProducto({})}}>❌</button> {/*Borrar producto*/}
             </div>
       </div>
