@@ -21,7 +21,7 @@ const Recomendaciones = () => {
         <div className="section-bottom">          
           {randomIndices.map((index) => {
             return (               
-              <Card key={state.products[index].id} info={state.products[index]} />   
+              <Card key={index} info={state.products[index]} />   
             )
           })}
         </div>

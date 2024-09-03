@@ -1,6 +1,6 @@
 import axios from "axios";
-import {createContext, useContext, useReducer,} from "react";
-import { instrumentos } from "../Utils/listaInstrumentos";
+import {createContext, useContext, useEffect, useReducer,} from "react";
+// import { instrumentos } from "../Utils/listaInstrumentos";
 
 // if(localStorage.getItem("token")){
 
@@ -22,14 +22,17 @@ import { instrumentos } from "../Utils/listaInstrumentos";
 //   })
 // }
 
+// case "GET_PRODUCTS":
+//   fetch("http://localhost:8080/instrumento/listar")
+//   .then((res) => res.json())
+//   .then((data) => {return{...state, products: data}})
+//   .catch(error => console.log(error))
 
 const initialState = {
   user: {},
   products: {},
 };
 
-axios("http://localhost:8080/instrumento/listar")
-.then((res => initialState.products = res))
 
 if(localStorage.getItem("token")){
   const user = {
@@ -45,12 +48,7 @@ const reducer = (state, action) => {
   switch (action.type) {
     case "GET_USER":
       return { ...state, user: action.payload };
-    case "GET_PRODUCTS":
-      axios("http://localhost:8080/instrumento/listar")
-      .then((res => {return {...state, products: res}}))
-      .catch((error) => {
-        console.log(error)
-      })
+
       
     case "LOG_IN":
       localStorage.setItem('token', JSON.stringify(action.payload.token))
@@ -69,8 +67,13 @@ const userContext = createContext();
 const Context = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
-
+  useEffect(() => {
+    fetch("http://localhost:8080/instrumento/listar")
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch(error => console.log(error))
+    }, [])
+console.log(state.products)
   return (
     <userContext.Provider value={{ state, dispatch }}>
       {children}
