@@ -30,7 +30,7 @@ const AgregarYModificarProductos = () => {
     <div className='agregar-modificar'>
         <div className='agregar-modificar-section'>
             <button className="btn-agregar-producto" onClick={() => setShowAgregar(!showAgregar)}>Agregar Producto</button>
-                {state.products.instrumentos.map((i, index) => {
+                {state.products.map((i, index) => {
                     return(
                         <>
                             <Card key={i.id} info={i}>
