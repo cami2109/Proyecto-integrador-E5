@@ -3,6 +3,7 @@ package com.melodymix.entidad;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -10,6 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 
 public class Instrumento {
     @Id
@@ -23,5 +25,13 @@ public class Instrumento {
     private String stock;
     private String imagenUrl;
 
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
 
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
 }
+
+
