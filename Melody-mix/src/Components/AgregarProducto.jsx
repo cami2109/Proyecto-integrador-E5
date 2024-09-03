@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useUserContext } from '../Context/Context'
 
-const AgregarProducto = ({ setShow, id}) => {
+const AgregarProducto = ({ setShow }) => {
+
+  const { state, dispatch } = useUserContext()
 
   const [producto, setProducto] = useState({
     nombre: "",
@@ -8,12 +11,14 @@ const AgregarProducto = ({ setShow, id}) => {
     descripcion: "",
     caracteristicas: [],
     imagen: "",
-    categorias: ""
+    categoria: ""
   })
 
   const [showInput, setShowInput] = useState(false)
   const [nuevaCaracteristica, setNuevaCaracteristica] = useState("")
   const [input, setInput] = useState("")
+
+  const [productoCompleto, setProductoCompleto] = useState(true)
 
 
   const [showBotones, setShowBotones] = useState([new Array(producto.caracteristicas.length).fill(false)])
@@ -30,6 +35,43 @@ const AgregarProducto = ({ setShow, id}) => {
     setProducto({...producto, caracteristicas: carac})
   }
 
+  const handleSubmit = () => {
+    const pasaNombre = () => {
+      state.products.instrumentos.map((i) => {
+        if(producto.nombre === i.nombre){
+          return false
+        }
+      })
+      return true
+    }
+    const estaCompleto = () => {
+      return !!(producto.precio && 
+             producto.nombre && 
+             producto.imagen && 
+             producto.descripcion && 
+             producto.caracteristicas.length > 0 && 
+             producto.categoria)
+    }
+
+    const configs = {
+      method: "POST",
+      body: JSON.stringify(producto),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }    
+
+    if(pasaNombre() && estaCompleto()){
+      // fetch agregar producto
+      fetch("http://localhost:8080/productos", configs)
+      .then((res) => res.json())
+      .then((data) => {console.log(data)})
+      setShow(false)
+    } else {
+      setProductoCompleto(false)
+    }
+
+  }
 
   return (
     <div className='overlay'>
@@ -44,7 +86,7 @@ const AgregarProducto = ({ setShow, id}) => {
                 <label htmlFor="nombre">Nombre:</label>
                 <div className="input-container">
                     <input type="text" onChange={(e) => setInput(e.target.value)} />
-                    <button onClick={(e) => {e.preventDefault(),setProducto({...producto, nombre: input}), setInput("")}}>Agregar</button>
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, nombre: input}), setInput("")}}>Agregar</button>
                 </div>
                 <label htmlFor="precio">Precio:</label>
                 <div className="input-container">
@@ -59,7 +101,7 @@ const AgregarProducto = ({ setShow, id}) => {
                 <label htmlFor="categorias">Categoría: </label>
                 <div className='input-container'>
                   <input type="text" onChange={(e) => setInput(e.target.value)}/>
-                  <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categorias: input}), setInput("")}}>Agregar</button>
+                  <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categoria: input}), setInput("")}}>Agregar</button>
                 </div>
                 <h3>Caracteristicas</h3>
                 <ul>
@@ -84,9 +126,10 @@ const AgregarProducto = ({ setShow, id}) => {
                   }
                 </ul>
             </form>
+            {!productoCompleto && <h2>Asegurate de que el producto este completo, y que no se repita ningun nombre</h2>}
             <div>
-                <button onClick={(e) => {e.preventDefault(), setShow(false), console.log(producto)}}>✅</button> {/*Guardar cambios*/}
-                <button onClick={(e) => {e.preventDefault(), setShow(false)}}>❌</button> {/*Borrar producto*/}
+                <button onClick={(e) => {e.preventDefault(), handleSubmit(), console.log(producto)}}>✅</button> {/*Guardar cambios*/}
+                <button onClick={(e) => {e.preventDefault(), setShow(false), setProducto({})}}>❌</button> {/*Borrar producto*/}
             </div>
       </div>
     </div>
