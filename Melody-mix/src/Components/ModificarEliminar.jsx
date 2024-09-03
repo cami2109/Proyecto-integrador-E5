@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useUserContext } from '../Context/Context'
 
 const ModificarEliminar = ({ info, setShow }) => {
+
+    const { dispatch } = useUserContext()
 
     const {nombre, precio, descripcion, id, caracteristicas, imagen} = info
 
@@ -17,12 +20,14 @@ const ModificarEliminar = ({ info, setShow }) => {
         nombre: "",
         precio: "",
         descripcion: "",
+        caracteristicas: [],
         categorias: ""
     })
 
     const [showBotones, setShowBotones] = useState([new Array(producto.caracteristicas.length).fill(false)])
     const [showInput, setShowInput] = useState(false)
     const [nuevaCaracteristica, setNuevaCaracteristica] = useState("")
+    const [productoCompleto, setProductoCompleto] = useState(true)
 
     const toggleShowBotones = (index) => {
         const nuevoVisible = [...showBotones];
@@ -31,21 +36,59 @@ const ModificarEliminar = ({ info, setShow }) => {
     };
 
     const handleDelete = (i) => {
-        console.log(i)
         const carac = producto.caracteristicas
         carac.splice(i, 1)
         setProducto({...producto, caracteristicas: carac})
     }
 
+    const handleDeleteProduct = () => {
+        const configs ={
+            method: "Delete",
+            body: JSON.stringify(producto.id),
+            headers: {
+            "Content-Type": "application/json",
+            },
+        }
+        fetch("http://localhost:8080/productos", configs)
+        .then((res) => res.json())
+        .then((data) => {console.log(data)})
+    }
+
     const handleSubmit = () => {
-        state.products.map((i) => {
-            if(modificaciones.nombre === i.nombre){
-              return false
-            } else {
-              console.log("aca va el fetch")
-              setShow(id - 1)
-            }
-          })
+        const pasaNombre = () => {
+            state.products.instruementos.map((i) => {
+                if(producto.nombre === i.nombre){
+                return false
+                } 
+            })
+            return true
+        }
+
+        const estaCompleto = () => {
+            return !!(producto.precio && 
+                   producto.nombre && 
+                   producto.imagen && 
+                   producto.descripcion && 
+                   producto.caracteristicas.length > 0 && 
+                   producto.categoria)
+        }
+
+        const configs = {
+            method: "PUT",
+            body: JSON.stringify(producto),
+            headers: {
+              "Content-Type": "application/json",
+            },
+        }
+
+        if(pasaNombre() && estaCompleto()){
+            setShow(id - 1)
+            fetch("http://localhost:8080/productos", configs)
+            .then((res) => res.json())
+            .then((data) => {console.log(data)})
+        } else {
+            setProductoCompleto(false)
+        }
     }
 
 
@@ -114,10 +157,10 @@ const ModificarEliminar = ({ info, setShow }) => {
                     }
                 </ul>
             </form>
-
+            {!productoCompleto && <h2>Asegurate de que el producto este completo, y que no se repita ningun nombre</h2>}
             <div>
-                <button onClick={(e) => {e.preventDefault(), setShow(id - 1)}}>✅</button> {/*Guardar cambios*/}
-                <button onClick={(e) => {e.preventDefault(), setShow(id - 1)}}>❌</button> {/*Borrar producto*/}
+                <button onClick={(e) => {e.preventDefault(), handleSubmit, dispatch({type:"GET_PRODUCTS"})}}>✅</button> {/*Guardar cambios*/}
+                <button onClick={(e) => {e.preventDefault(), handleDeleteProduct, dispatch({type:"GET_PRODUCTS"})}}>❌</button> {/*Borrar producto*/}
             </div>
         </div>
     </div>

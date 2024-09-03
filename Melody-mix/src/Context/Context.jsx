@@ -42,7 +42,7 @@ const reducer = (state, action) => {
     case "GET_USER":
       return { ...state, user: action.payload };
     case "GET_PRODUCTS":
-      return null;
+      return null
     case "LOG_IN":
       localStorage.setItem('token', JSON.stringify(action.payload.token))
       localStorage.setItem('Nombre', JSON.stringify(action.payload.nombre))
