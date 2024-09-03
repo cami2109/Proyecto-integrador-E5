@@ -61,7 +61,7 @@ const ModificarEliminar = ({ info, setShow }) => {
 
     const handleSubmit = () => {
         const pasaNombre = () => {
-            state.products.instrumentos.map((i) => {
+            state.products.map((i) => {
                 if(producto.nombre === i.nombre){
                 return false
                 } 
