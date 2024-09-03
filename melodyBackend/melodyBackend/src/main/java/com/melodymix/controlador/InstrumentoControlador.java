@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("instrumento")
+@RequestMapping("/instrumento")
 public class InstrumentoControlador {
     @Autowired
     private InstrumentoServicioImpl instrumentoServicioImpl;
