@@ -31,7 +31,7 @@ import {createContext, useContext, useEffect, useReducer,} from "react";
 
 const initialState = {
   user: {},
-  products: {},
+  products: [],
 };
 
 // axios("http://localhost:8080/instrumento/listar")
