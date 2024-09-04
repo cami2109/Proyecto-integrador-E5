@@ -16,14 +16,6 @@ const AgregarProducto = ({ setShow }) => {
     categoria: ""
   })
 
-  const [productoMandar , setProductoMandar] = useState({
-    nombre: "",
-    precio: 0,
-    descripcion: "",
-    caracteristicas: "",
-    imagenUrl: "",
-    categoria: ""
-  })
 
   const [showInput, setShowInput] = useState(false)
   const [nuevaCaracteristica, setNuevaCaracteristica] = useState("")
@@ -68,14 +60,20 @@ const AgregarProducto = ({ setShow }) => {
 
     setProducto({...producto, precio: precioFloat})
 
-    
+   
 
     if(pasaNombre() && estaCompleto()){
       // fetch agregar producto
-      let caracteristicaString = producto.caracteristicas.join(", ")
-      setProductoMandar(productoMandar)
-      setProductoMandar({...productoMandar, caracteristicas: caracteristicaString})
-      
+
+      const productoMandar = {
+        nombre: producto.nombre,
+        precio: precioFloat,
+        descripcion: producto.descripcion,
+        caracteristicas: producto.caracteristicas.join(", "),
+        imagenUrl: producto.imagenUrl,
+        categoria: producto.categoria
+      };
+
       const configs = {
         method: "POST",
         body: JSON.stringify(productoMandar),
@@ -83,7 +81,8 @@ const AgregarProducto = ({ setShow }) => {
           "Content-Type": "application/json",
           Authorization: token
         },
-      }    
+      } 
+    
 
       console.log(productoMandar, producto)
       fetch("http://localhost:8080/instrumento/registrar", configs)
