@@ -68,21 +68,22 @@ const AgregarProducto = ({ setShow }) => {
 
     setProducto({...producto, precio: precioFloat})
 
-    const configs = {
-      method: "POST",
-      body: JSON.stringify(productoMandar),
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: token
-      },
-    }    
+    
 
     if(pasaNombre() && estaCompleto()){
       // fetch agregar producto
       let caracteristicaString = producto.caracteristicas.join(", ")
       setProductoMandar(productoMandar)
       setProductoMandar({...productoMandar, caracteristicas: caracteristicaString})
-    
+      
+      const configs = {
+        method: "POST",
+        body: JSON.stringify(productoMandar),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token
+        },
+      }    
 
       console.log(productoMandar, producto)
       fetch("http://localhost:8080/instrumento/registrar", configs)
