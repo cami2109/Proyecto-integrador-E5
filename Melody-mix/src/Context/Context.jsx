@@ -51,7 +51,6 @@ const reducer = (state, action) => {
       .catch((error) => {
         console.log(error)
       })
-      
     case "LOG_IN":
       localStorage.setItem('token', JSON.stringify(action.payload.token))
       localStorage.setItem('Nombre', JSON.stringify(action.payload.nombre))

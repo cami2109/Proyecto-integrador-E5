@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = ({ info, children }) => {
-  const { nombre, imagen, precio, id } = info;
+  const { nombre, imagen, precio, id } = info
 
   return (
     <div className="card">

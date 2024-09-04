@@ -29,7 +29,7 @@ const LogIn = () => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // const esAdmin = () => {
     //   if (passAdmin == "ADMIN" && isChecked){
