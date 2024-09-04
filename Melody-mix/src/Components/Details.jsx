@@ -15,7 +15,7 @@ const Details = () => {
       <div>
         <h2>{instrumentoActual.nombre}</h2>
         <div className="detail">
-          <img src={instrumentoActual.imagenDetalle} />
+          <img src={instrumentoActual.imagenUrl} />
           <h4>{instrumentoActual.precio}</h4>
           <p>{instrumentoActual.descripcion}</p>
 
