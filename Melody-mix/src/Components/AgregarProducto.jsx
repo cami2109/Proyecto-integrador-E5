@@ -22,6 +22,8 @@ const AgregarProducto = ({ setShow }) => {
 
   const [productoCompleto, setProductoCompleto] = useState(true)
 
+  const [backup, setBackup] = useState([])
+
 
   const [showBotones, setShowBotones] = useState([new Array(producto.caracteristicas.length).fill(false)])
 
@@ -66,12 +68,14 @@ const AgregarProducto = ({ setShow }) => {
 
     if(pasaNombre() && estaCompleto()){
       // fetch agregar producto
+      setBackup(producto.caracteristicas)
       let caracteristicasString = producto.caracteristicas.join(", ")
       setProducto({...producto, caracteristicas: caracteristicasString})
       fetch("http://localhost:8080/instrumento/registrar", configs)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
+        setProducto({...producto, caracteristicas: backup})
         setShow(false)
       })
       .catch(error => console.log(error))
