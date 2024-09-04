@@ -5,7 +5,7 @@ const ModificarEliminar = ({ info, setShow }) => {
 
     const { state, dispatch } = useUserContext()
 
-    const {nombre, precio, descripcion, id, caracteristicas, imagenUrl} = info
+    const {nombre, precio, descripcion, id, caracteristicasList, imagenUrl} = info
 
     const [producto, setProducto] = useState({
         id: id,
@@ -13,7 +13,7 @@ const ModificarEliminar = ({ info, setShow }) => {
         precio: precio,
         imagenUrl: imagenUrl,
         descripcion: descripcion,
-        caracteristicas: caracteristicas,
+        caracteristicas: caracteristicasList,
         categorias: ""
     })
 
@@ -162,7 +162,7 @@ const ModificarEliminar = ({ info, setShow }) => {
                     {showInput && 
                         <div className="nueva-caracteristica">
                             <input type='text' onChange={(e) => setNuevaCaracteristica(e.target.value)}/>
-                            <button onClick={(e) => {e.preventDefault(), (nuevaCaracteristica && setProducto({...producto, caracteristicas: [...producto.caracteristicas, nuevaCaracteristica]})), setNuevaCaracteristica("")}}>Agregar</button>
+                            <button onClick={(e) => {e.preventDefault(), (nuevaCaracteristica && setProducto({...producto, caracteristicasList: [...producto.caracteristicasList, nuevaCaracteristica]})), setNuevaCaracteristica("")}}>Agregar</button>
                         </div>
                     }
                 </ul>

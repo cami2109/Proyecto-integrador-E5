@@ -23,7 +23,7 @@ const Details = () => {
             <div>
               <h3>Caracteristicas del instrumento</h3>
               <ul style={{ paddingLeft: "20px" }}>
-                {instrumentoActual.caracteristicas.map((i) => {
+                {instrumentoActual.caracteristicasList.map((i) => {
                   return <li>{i}</li>;
                 })}
               </ul>
@@ -32,8 +32,7 @@ const Details = () => {
               {/* <Reservas/> */}
               <Reservas id={id} />
             </div>
-          </div>
-                
+          </div>     
         </div>
       </div>
     </section>
