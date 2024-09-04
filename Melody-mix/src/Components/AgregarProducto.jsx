@@ -85,7 +85,7 @@ const AgregarProducto = ({ setShow }) => {
                 <label htmlFor="imagen">Imagen:</label>
                 <div className="input-container">
                   <input type="text" onChange={(e) => setInput(e.target.value)}/>
-                  <button onClick={(e) => {e.preventDefault(), setProducto({...producto, imagen: input}), setInput("")}}>Agregar</button>
+                  <button onClick={(e) => {e.preventDefault(), setProducto({...producto, imagenUrl: input}), setInput("")}}>Agregar</button>
                 </div>
                 <label htmlFor="nombre">Nombre:</label>
                 <div className="input-container">
