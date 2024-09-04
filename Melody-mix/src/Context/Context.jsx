@@ -1,6 +1,5 @@
 import axios from "axios";
-import {createContext, useContext, useReducer,} from "react";
-import { instrumentos } from "../Utils/listaInstrumentos";
+import {createContext, useContext, useEffect, useReducer,} from "react";
 
 // if(localStorage.getItem("token")){
 
@@ -25,24 +24,19 @@ import { instrumentos } from "../Utils/listaInstrumentos";
 
 const initialState = {
   user: {},
-  products: {},
+  products: [],
 };
 
-// axios("http://localhost:8080/instrumento/listar")
-// .then((res => initialState.products = res))
-fetch("http://localhost:8080/instrumento/listar")
-.then((res) => res.json())
-.then((data) => initialState.products = data)
-.catch(error => console.log(error))
 
-if(localStorage.getItem("token")){
-  const user = {
-    nombre: JSON.parse(localStorage.getItem("Nombre")),
-    apellido: JSON.parse(localStorage.getItem("Apellido")),
-    email: JSON.parse(localStorage.getItem("Email"))
-  }
-  initialState.user = user
-}
+
+// if(localStorage.getItem("token")){
+//   const user = {
+//     nombre: JSON.parse(localStorage.getItem("Nombre")),
+//     apellido: JSON.parse(localStorage.getItem("Apellido")),
+//     email: JSON.parse(localStorage.getItem("Email"))
+//   }
+//   initialState.user = user
+// }
 
 
 const reducer = (state, action) => {
@@ -50,10 +44,7 @@ const reducer = (state, action) => {
     case "GET_USER":
       return { ...state, user: action.payload };
     case "GET_PRODUCTS":
-      fetch("http://localhost:8080/instrumento/listar")
-      .then((res) => res.json())
-      .then((data) => {return {...state, products: data}})
-      .catch(error => console.log(error))
+      return {...state, products: action.payload}
     case "LOG_IN":
       localStorage.setItem('token', JSON.stringify(action.payload.token))
       localStorage.setItem('Nombre', JSON.stringify(action.payload.nombre))
@@ -71,6 +62,13 @@ const userContext = createContext();
 const Context = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+      fetch("http://localhost:8080/instrumento/listar")
+      .then((res) => res.json())
+      .then((data) => dispatch({type: "GET_PRODUCTS", payload: data}))
+      .catch(error => console.log(error))
+  }, [])
 
 
   return (
