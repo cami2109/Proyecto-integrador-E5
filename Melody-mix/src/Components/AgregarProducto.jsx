@@ -16,7 +16,14 @@ const AgregarProducto = ({ setShow }) => {
     categoria: ""
   })
 
-  const [productoMandar , setProductoMandar] = useState({})
+  const [productoMandar , setProductoMandar] = useState({
+    nombre: "",
+    precio: 0,
+    descripcion: "",
+    caracteristicas: "",
+    imagenUrl: "",
+    categoria: ""
+  })
 
   const [showInput, setShowInput] = useState(false)
   const [nuevaCaracteristica, setNuevaCaracteristica] = useState("")
@@ -72,9 +79,12 @@ const AgregarProducto = ({ setShow }) => {
 
     if(pasaNombre() && estaCompleto()){
       // fetch agregar producto
-      setProductoMandar(producto)
       let caracteristicaString = producto.caracteristicas.join(", ")
+      setProductoMandar(productoMandar)
       setProductoMandar({...productoMandar, caracteristicas: caracteristicaString})
+    
+
+      console.log(productoMandar, producto)
       fetch("http://localhost:8080/instrumento/registrar", configs)
       .then((res) => res.json())
       .then((data) => {
@@ -144,7 +154,7 @@ const AgregarProducto = ({ setShow }) => {
             </form>
             {!productoCompleto && <h2>Asegurate de que el producto este completo, y que no se repita ningun nombre</h2>}
             <div>
-                <button onClick={(e) => {e.preventDefault(),console.log(productoMandar) , handleSubmit()}}>✅</button> {/*Guardar cambios*/}
+                <button onClick={(e) => {e.preventDefault(), handleSubmit()}}>✅</button> {/*Guardar cambios*/}
                 <button onClick={(e) => {e.preventDefault(), setShow(false), setProducto({})}}>❌</button> {/*Borrar producto*/}
             </div>
       </div>
