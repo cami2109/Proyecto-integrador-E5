@@ -8,7 +8,7 @@ const Recomendaciones = () => {
 
    // mostrar cards en forma desordenada
    // Genera un array de índices (0, 1, 2,..., instrumentos.length - 1)
-   const indices = [...Array(state.products.instrumentos.length).keys()];
+   const indices = [...Array(state.products.length).keys()];
    // Desordena los índices de forma aleatoria y lurgo tomo solo hasta 10
    const randomIndices = indices.sort(() => Math.random() - 0.5).slice(0, 10);
    
@@ -21,7 +21,7 @@ const Recomendaciones = () => {
         <div className="section-bottom">          
           {randomIndices.map((index) => {
             return (               
-              <Card key={state.products.instrumentos[index].id} info={state.products.instrumentos[index]} />   
+              <Card key={state.products[index].id} info={state.products[index]} />   
             )
           })}
         </div>

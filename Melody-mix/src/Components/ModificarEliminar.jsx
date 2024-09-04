@@ -5,13 +5,13 @@ const ModificarEliminar = ({ info, setShow }) => {
 
     const { state, dispatch } = useUserContext()
 
-    const {nombre, precio, descripcion, id, caracteristicas, imagen} = info
+    const {nombre, precio, descripcion, id, caracteristicas, imagenUrl} = info
 
     const [producto, setProducto] = useState({
         id: id,
         nombre: nombre,
         precio: precio,
-        imagen: imagen,
+        imagenUrl: imagenUrl,
         descripcion: descripcion,
         caracteristicas: caracteristicas,
         categorias: ""
@@ -61,7 +61,7 @@ const ModificarEliminar = ({ info, setShow }) => {
 
     const handleSubmit = () => {
         const pasaNombre = () => {
-            state.products.instrumentos.map((i) => {
+            state.products.map((i) => {
                 if(producto.nombre === i.nombre){
                 return false
                 } 
@@ -89,14 +89,13 @@ const ModificarEliminar = ({ info, setShow }) => {
         
 
         if(pasaNombre() && estaCompleto()){
-            fetch("http://localhost:8080/instrumento/registrar", configs)
+            fetch("http://localhost:8080/instrumento/", configs)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
                 setShow(id - 1)
             })
             .catch(error => console.log(error));
-            setShow(id - 1)
         } else {
             setProductoCompleto(false)
         }
@@ -106,7 +105,7 @@ const ModificarEliminar = ({ info, setShow }) => {
   return (
     <div className='overlay'>
         <div className='card-modificar'>
-            <img src={producto.imagen} />
+            <img src={producto.imagenUrl} />
             <h2>Id: {producto.id}</h2>
             <h3>Nombre: {producto.nombre}</h3>
             <h3>Precio: {producto.precio}</h3>

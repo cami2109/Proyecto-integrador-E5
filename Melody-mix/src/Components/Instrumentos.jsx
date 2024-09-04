@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import { useUserContext } from '../Context/Context'
 
 const Instrumentos = () => {
-  const { state } = useUserContext()
-  const instrumentos = state.products;
 
   return (
     <section className="section">

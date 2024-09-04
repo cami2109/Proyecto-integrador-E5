@@ -10,7 +10,7 @@ const AgregarProducto = ({ setShow }) => {
     precio: "",
     descripcion: "",
     caracteristicas: [],
-    imagen: "",
+    imagenUrl: "",
     categoria: ""
   })
 
@@ -37,7 +37,7 @@ const AgregarProducto = ({ setShow }) => {
 
   const handleSubmit = () => {
     const pasaNombre = () => {
-      state.products.instrumentos.map((i) => {
+      state.products.map((i) => {
         if(producto.nombre === i.nombre){
           return false
         }
@@ -47,7 +47,7 @@ const AgregarProducto = ({ setShow }) => {
     const estaCompleto = () => {
       return !!(producto.precio && 
              producto.nombre && 
-             producto.imagen && 
+             producto.imagenUrl && 
              producto.descripcion && 
              producto.caracteristicas.length > 0 && 
              producto.categoria)
@@ -63,10 +63,14 @@ const AgregarProducto = ({ setShow }) => {
 
     if(pasaNombre() && estaCompleto()){
       // fetch agregar producto
-      fetch("http://localhost:8080/productos", configs)
+      fetch("http://localhost:8080/instrumento/registrar", configs)
       .then((res) => res.json())
-      .then((data) => {console.log(data)})
-      setShow(false)
+      .then((data) => {
+        console.log(data)
+        setShow(false)
+      })
+      .catch(error => console.log(error))
+      
     } else {
       setProductoCompleto(false)
     }

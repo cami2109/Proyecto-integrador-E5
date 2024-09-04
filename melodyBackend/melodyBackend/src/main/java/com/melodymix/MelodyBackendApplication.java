@@ -8,7 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.melodymix.controlador", "com.melodymix.servicio", "com.melodymix.entidad", "com.melodymix.repositorio", "com.melodymix.config"})
+@ComponentScan(basePackages = {"com.melodymix.controlador", "com.melodymix.servicio", "com.melodymix.entidad", "com.melodymix.repositorio", "com.melodymix.config",})
 public class MelodyBackendApplication {
 
 	public static void main(String[] args) {
