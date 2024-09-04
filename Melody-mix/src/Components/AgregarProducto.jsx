@@ -88,27 +88,27 @@ const AgregarProducto = ({ setShow }) => {
                 <label htmlFor="imagen">Imagen:</label>
                 <div className="input-container">
                   <input type="text" onChange={(e) => setInput(e.target.value)}/>
-                  <button onClick={(e) => {e.preventDefault(), setProducto({...producto, imagenUrl: input}), setInput("")}}>Agregar</button>
+                  <button onClick={(e) => {e.preventDefault(), setProducto({...producto, imagenUrl: input})}}>Agregar</button>
                 </div>
                 <label htmlFor="nombre">Nombre:</label>
                 <div className="input-container">
                     <input type="text" onChange={(e) => setInput(e.target.value)} />
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, nombre: input}), setInput("")}}>Agregar</button>
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, nombre: input})}}>Agregar</button>
                 </div>
                 <label htmlFor="precio">Precio:</label>
                 <div className="input-container">
                     <input type="text"  onChange={(e) => setInput(e.target.value)}/>
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: input}), setInput("")}}>Agregar</button>
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: input})}}>Agregar</button>
                 </div>
                 <label htmlFor="descripcion">Descripción</label>
                 <div className="input-container">
                     <input type="text" onChange={(e) => setInput(e.target.value)}/>
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, descripcion: input}), setInput("")}}>Agregar</button>
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, descripcion: input})}}>Agregar</button>
                 </div>
                 <label htmlFor="categorias">Categoría: </label>
                 <div className='input-container'>
                   <input type="text" onChange={(e) => setInput(e.target.value)}/>
-                  <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categoria: input}), setInput("")}}>Agregar</button>
+                  <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categoria: input})}}>Agregar</button>
                 </div>
                 <h3>Caracteristicas</h3>
                 <ul>
