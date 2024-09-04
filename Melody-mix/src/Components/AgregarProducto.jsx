@@ -55,13 +55,13 @@ const AgregarProducto = ({ setShow }) => {
              producto.categoria)
     }
 
+    const precioFloat =  parseFloat(producto.precio)
+
+    setProducto({...producto, precio: precioFloat})
+
     const configs = {
       method: "POST",
-      body: JSON.stringify(JSON.stringify({
-        ...producto,
-        precio: precioFloat, // Aquí el precio es float
-        caracteristicas: producto.caracteristicas.join(", ") // Si el backend espera una cadena
-      }),),
+      body: JSON.stringify(producto),
       headers: {
         "Content-Type": "application/json",
       },
@@ -101,7 +101,7 @@ const AgregarProducto = ({ setShow }) => {
                 <label htmlFor="precio">Precio:</label>
                 <div className="input-container">
                     <input type="text"  onChange={(e) => setInput(e.target.value)}/>
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: parseFloat(input)})}}>Agregar</button>
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: input})}}>Agregar</button>
                 </div>
                 <label htmlFor="descripcion">Descripción</label>
                 <div className="input-container">
