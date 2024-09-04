@@ -72,7 +72,7 @@ const AgregarProducto = ({ setShow }) => {
 
     if(pasaNombre() && estaCompleto()){
       // fetch agregar producto
-      setProductoMandar({producto})
+      setProductoMandar(producto)
       let caracteristicaString = producto.caracteristicas.join(", ")
       setProductoMandar({...productoMandar, caracteristicas: caracteristicaString})
       fetch("http://localhost:8080/instrumento/registrar", configs)
@@ -144,7 +144,7 @@ const AgregarProducto = ({ setShow }) => {
             </form>
             {!productoCompleto && <h2>Asegurate de que el producto este completo, y que no se repita ningun nombre</h2>}
             <div>
-                <button onClick={(e) => {e.preventDefault(), handleSubmit(), console.log(producto)}}>✅</button> {/*Guardar cambios*/}
+                <button onClick={(e) => {e.preventDefault(),console.log(productoMandar) , handleSubmit()}}>✅</button> {/*Guardar cambios*/}
                 <button onClick={(e) => {e.preventDefault(), setShow(false), setProducto({})}}>❌</button> {/*Borrar producto*/}
             </div>
       </div>

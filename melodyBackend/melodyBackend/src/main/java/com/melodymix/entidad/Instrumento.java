@@ -32,6 +32,9 @@ public class Instrumento {
     @Transient
     private List<String> caracteristicasList;
 
+
+
+
     // Otros campos...
 
     public List<String> getCaracteristicasList() {
