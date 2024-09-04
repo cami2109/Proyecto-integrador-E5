@@ -66,6 +66,8 @@ const AgregarProducto = ({ setShow }) => {
 
     if(pasaNombre() && estaCompleto()){
       // fetch agregar producto
+      let caracteristicasString = producto.caracteristicas.join(", ")
+      setProducto({...producto, caracteristicas: caracteristicasString})
       fetch("http://localhost:8080/instrumento/registrar", configs)
       .then((res) => res.json())
       .then((data) => {
