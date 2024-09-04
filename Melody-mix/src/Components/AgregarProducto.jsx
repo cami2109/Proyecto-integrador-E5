@@ -56,14 +56,16 @@ const AgregarProducto = ({ setShow }) => {
     }
 
     const precioFloat =  parseFloat(producto.precio)
+    const precioFormateado = precioFloat.toFixed(2);
 
-    setProducto({...producto, precio: precioFloat})
+    setProducto({...producto, precio: precioFormateado})
 
     const configs = {
       method: "POST",
       body: JSON.stringify(producto),
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
     }    
 
