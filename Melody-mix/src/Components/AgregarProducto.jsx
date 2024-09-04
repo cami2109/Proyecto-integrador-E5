@@ -9,7 +9,7 @@ const AgregarProducto = ({ setShow }) => {
 
   const [producto, setProducto] = useState({
     nombre: "",
-    precio: "",
+    precio: 0,
     descripcion: "",
     caracteristicas: [],
     imagenUrl: "",
@@ -21,8 +21,6 @@ const AgregarProducto = ({ setShow }) => {
   const [input, setInput] = useState("")
 
   const [productoCompleto, setProductoCompleto] = useState(true)
-
-  const [backup, setBackup] = useState([])
 
 
   const [showBotones, setShowBotones] = useState([new Array(producto.caracteristicas.length).fill(false)])
@@ -59,23 +57,22 @@ const AgregarProducto = ({ setShow }) => {
 
     const configs = {
       method: "POST",
-      body: JSON.stringify(producto),
+      body: JSON.stringify(JSON.stringify({
+        ...producto,
+        precio: precioFloat, // Aquí el precio es float
+        caracteristicas: producto.caracteristicas.join(", ") // Si el backend espera una cadena
+      }),),
       headers: {
         "Content-Type": "application/json",
-        authorization: token
       },
     }    
 
     if(pasaNombre() && estaCompleto()){
       // fetch agregar producto
-      setBackup(producto.caracteristicas)
-      let caracteristicasString = producto.caracteristicas.join(", ")
-      setProducto({...producto, caracteristicas: caracteristicasString})
       fetch("http://localhost:8080/instrumento/registrar", configs)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
-        setProducto({...producto, caracteristicas: backup})
         setShow(false)
       })
       .catch(error => console.log(error))
@@ -104,7 +101,7 @@ const AgregarProducto = ({ setShow }) => {
                 <label htmlFor="precio">Precio:</label>
                 <div className="input-container">
                     <input type="text"  onChange={(e) => setInput(e.target.value)}/>
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: input})}}>Agregar</button>
+                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: parseFloat(input)})}}>Agregar</button>
                 </div>
                 <label htmlFor="descripcion">Descripción</label>
                 <div className="input-container">
