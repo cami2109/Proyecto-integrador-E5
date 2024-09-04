@@ -1,12 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { instrumentos } from "../Utils/listaInstrumentos.js";
 import Reservas from "./Reservas.jsx";
+import { useUserContext } from "../Context/Context.jsx";
 
 const Details = () => {
   const { id } = useParams();
 
-  const instrumentoActual = instrumentos[id - 1];
+  const { state } = useUserContext()
+
+  const instrumentoActual = state.products[id - 1]
 
   return (
     <section className="main-detail">
