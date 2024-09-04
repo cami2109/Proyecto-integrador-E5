@@ -16,6 +16,8 @@ const AgregarProducto = ({ setShow }) => {
     categoria: ""
   })
 
+  const [productoMandar , setProductoMandar] = useState({})
+
   const [showInput, setShowInput] = useState(false)
   const [nuevaCaracteristica, setNuevaCaracteristica] = useState("")
   const [input, setInput] = useState("")
@@ -55,22 +57,23 @@ const AgregarProducto = ({ setShow }) => {
              producto.categoria)
     }
 
-    const precioFloat =  parseFloat(producto.precio)
-    const precioFormateado = precioFloat.toFixed(2);
+    const precioFloat =  Number(producto.precio)
 
-    setProducto({...producto, precio: precioFormateado})
+    setProducto({...producto, precio: precioFloat})
 
     const configs = {
       method: "POST",
-      body: JSON.stringify(producto),
+      body: JSON.stringify(productoMandar),
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
+        Authorization: token
       },
     }    
 
     if(pasaNombre() && estaCompleto()){
       // fetch agregar producto
+      setProductoMandar({producto})
+      setProductoMandar({...productoMandar, caracteristicas: producto.caracteristicas.join(", ")})
       fetch("http://localhost:8080/instrumento/registrar", configs)
       .then((res) => res.json())
       .then((data) => {
