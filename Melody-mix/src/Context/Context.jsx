@@ -1,25 +1,5 @@
-import axios from "axios";
 import {createContext, useContext, useEffect, useReducer,} from "react";
 
-// if(localStorage.getItem("token")){
-
-//   const token = JSON.parse(localStorage.getItem("token"))
-
-//   const settings = {
-//     method: "GET",
-//     headers: {
-//       authorization: token
-//     }
-//   }
-
-//   axios("http://localhost:8080/usuario/getuser", settings)
-//   .then(res => {
-//     initialState.user = res
-//   })
-//   .catch(error => {
-//     console.log(error)
-//   })
-// }
 
 
 const initialState = {
@@ -29,14 +9,20 @@ const initialState = {
 
 
 
-// if(localStorage.getItem("token")){
-//   const user = {
-//     nombre: JSON.parse(localStorage.getItem("Nombre")),
-//     apellido: JSON.parse(localStorage.getItem("Apellido")),
-//     email: JSON.parse(localStorage.getItem("Email"))
-//   }
-//   initialState.user = user
-// }
+if(localStorage.getItem("token")){
+  const admin = () =>{
+    if(localStorage.getItem("Admin")) return true
+
+    return false
+  }
+  const user = {
+    nombre: JSON.parse(localStorage.getItem("Nombre")),
+    apellido: JSON.parse(localStorage.getItem("Apellido")),
+    email: JSON.parse(localStorage.getItem("Email")),
+    isAdmin: admin
+  }
+  initialState.user = user
+}
 
 
 const reducer = (state, action) => {
@@ -50,6 +36,7 @@ const reducer = (state, action) => {
       localStorage.setItem('Nombre', JSON.stringify(action.payload.nombre))
       localStorage.setItem('Apellido', JSON.stringify(action.payload.apellido))
       localStorage.setItem('Email', JSON.stringify(action.payload.email))
+      if(action.payload.isAdmin) localStorage.setItem('Admin', JSON.stringify(action.payload.isAdmin))
       return {...state, user: action.payload}
     case "LOG_OUT":
       localStorage.clear()
