@@ -11,7 +11,7 @@ const AgregarYModificarProductos = () => {
 
     const [showAgregar, setShowAgregar] = useState(false)
 
-    const [showModificarEliminar, setShowModificarEliminar] = useState(new Array(state.products.instrumentos.length).fill(false))
+    const [showModificarEliminar, setShowModificarEliminar] = useState(new Array(state.products.length).fill(false))
 
     const navigate = useNavigate()
 
