@@ -5,6 +5,8 @@ const AgregarProducto = ({ setShow }) => {
 
   const { state, dispatch } = useUserContext()
 
+  const token = JSON.parse(localStorage.getItem("token"))
+
   const [producto, setProducto] = useState({
     nombre: "",
     precio: "",
@@ -58,6 +60,7 @@ const AgregarProducto = ({ setShow }) => {
       body: JSON.stringify(producto),
       headers: {
         "Content-Type": "application/json",
+        authorization: token
       },
     }    
 
