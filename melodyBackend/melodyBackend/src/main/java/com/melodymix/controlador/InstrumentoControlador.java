@@ -12,6 +12,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/instrumento")
+//@CrossOrigin(origins = "*") // Permite solicitudes desde cualquier origen
+
 public class InstrumentoControlador {
     @Autowired
     private InstrumentoServicioImpl instrumentoServicioImpl;

@@ -59,7 +59,6 @@ const AgregarProducto = ({ setShow }) => {
       method: "POST",
       body: JSON.stringify(JSON.stringify({
         ...producto,
-        precio: precioFloat, // Aquí el precio es float
         caracteristicas: producto.caracteristicas.join(", ") // Si el backend espera una cadena
       }),),
       headers: {

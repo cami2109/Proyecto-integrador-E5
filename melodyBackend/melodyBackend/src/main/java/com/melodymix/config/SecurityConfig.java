@@ -1,7 +1,5 @@
 package com.melodymix.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +18,10 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfig {
 
-//    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
-
     private final UserDetailsService userDetailsService;
 
-     @Value("${jwt.secret.key}")
-     private String secretKey;
+    @Value("${jwt.secret.key}")
+    private String secretKey;
 
     public SecurityConfig(@Qualifier("authServicio") UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
@@ -35,13 +31,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         JwtAutenticadorFiltro jwtFilter = new JwtAutenticadorFiltro(userDetailsService, secretKey);
 
-//        logger.info("Configuring security filter chain");
-
         http
                 .cors(cors -> cors.disable()) // Desactiva la configuración de CORS si no se necesita
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/usuario/registro", "/usuario/login","/instrumento/registrar","/instrumento/listar").permitAll() // Permitir acceso sin autenticación
+                                .requestMatchers("/usuario/registro", "/usuario/login", "/instrumento/registrar", "/instrumento/listar").permitAll() // Permitir acceso sin autenticación
                                 .anyRequest().authenticated() // Requiere autenticación para cualquier otra ruta
                 )
                 .httpBasic(withDefaults()) // Configuración de HttpBasic
