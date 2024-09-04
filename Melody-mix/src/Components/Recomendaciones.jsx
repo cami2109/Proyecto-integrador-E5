@@ -12,6 +12,8 @@ const Recomendaciones = () => {
    // Desordena los índices de forma aleatoria y lurgo tomo solo hasta 10
    const randomIndices = indices.sort(() => Math.random() - 0.5).slice(0, 10);
    
+  
+
 
   return (
     <section className="section">
