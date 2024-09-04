@@ -21,6 +21,12 @@ import {createContext, useContext, useEffect, useReducer,} from "react";
 //   })
 // }
 
+// case "GET_PRODUCTS":
+//   fetch("http://localhost:8080/instrumento/listar")
+//   .then((res) => res.json())
+//   .then((data) => {return{...state, products: data}})
+//   .catch(error => console.log(error))
+
 
 const initialState = {
   user: {},
