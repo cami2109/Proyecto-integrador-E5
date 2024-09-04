@@ -9,6 +9,7 @@ import CrearCuenta from "./Pages/CrearCuenta";
 import LogIn from "./Components/LogIn";
 import AgregarYModificarProductos from "./Pages/AgregarYModificarProductos";
 import InstrumentoPorCategoria from "./Pages/InstrumentoPorCategoria"
+import Buscador from "./Pages/Buscador"
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/perfil/editar" element={<h3 style={{margin:"auto"}}>Editar perfil</h3>} />
           <Route path="/productos" element={<AgregarYModificarProductos />} />
+          <Route path="/buscar" element={<Buscador />} />
           <Route path="/*" element={<h2 style={{margin:"auto"}}>Page not found</h2>} />
         </Route>
       </Routes>
