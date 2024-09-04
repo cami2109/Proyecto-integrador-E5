@@ -76,7 +76,7 @@ const Context = ({ children }) => {
       .catch(error => console.log(error))
   }, [])
 
-
+console.log(state.products)
   return (
     <userContext.Provider value={{ state, dispatch }}>
       {children}
