@@ -83,8 +83,6 @@ const AgregarProducto = ({ setShow }) => {
         },
       } 
     
-
-      console.log(productoMandar, producto)
       fetch("http://localhost:8080/instrumento/registrar", configs)
       .then((res) => res.json())
       .then((data) => {
