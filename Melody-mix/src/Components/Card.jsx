@@ -7,7 +7,7 @@ const Card = ({ info, children }) => {
   return (
     <div className="card">
       <Link to={"/details/" + id}>
-        <img src={imagen} style={{width: "100%"}} />
+        <img src={imagen} style={{width: "90%"}} />
         <div>
           <h2>{nombre}</h2>
           <h4>{precio}</h4>

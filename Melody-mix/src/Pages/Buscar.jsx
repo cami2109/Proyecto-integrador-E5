@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { instrumentos } from "../Utils/listaInstrumentos"; // Importa la lista de instrumentos
-import Calendar from "react-calendar";
+import "../App.css";
+import Card from "../Components/Card";
+import Reservas from "../Components/Reservas";
 
 const Buscar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const initialQuery = new URLSearchParams(location.search).get("q") || "";
   const [query, setQuery] = useState(initialQuery);
   const [resultados, setResultados] = useState([]);
@@ -30,6 +33,7 @@ const Buscar = () => {
     );
     setResultados(filtered);
     setNoResults(filtered.length === 0); // Actualiza el estado de no encontrado
+    navigate(`/buscar?q=${encodeURIComponent(trimmedQuery)}`); //url con el valor de la busqueda
   };
 
   // Función para seleccionar todo el texto en el input
@@ -37,8 +41,10 @@ const Buscar = () => {
     e.target.select(); // Selecciona todo el texto en el input
   };
 
+  const titulo = "Fechas disponibles"; //titulo a usar en <Reservas/>
+
   return (
-    <div>
+    <div className="main-content">
       <section className="section-top">
         <div className="section-top-left">
           <h2>Encuentra el instrumento que deseas</h2>
@@ -61,15 +67,8 @@ const Buscar = () => {
         ) : (
           resultados.map((instrumento) => (
             <div className="section-caract-reserva">
-              <div key={instrumento.id} className="card">
-                <h2>{instrumento.nombre}</h2>
-                <img
-                  src={instrumento.imagenDetalle}
-                  alt={instrumento.nombre}
-                  style={{ width: "40%" }}
-                />
-              </div>
-              <Calendar />
+              <Card key={instrumento.id} info={instrumento} />
+              <Reservas id={instrumento.id} info={titulo} />
             </div>
           ))
         )}

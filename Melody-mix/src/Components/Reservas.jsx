@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "../App.css";
 
-const Reservas = () => {
+const Reservas = ({id, info}) => {
   const [selectedDates, setSelectedDates] = useState([]); // Manejar un array de fechas seleccionadas
   const [reservedDates, setReservedDates] = useState([]);
 
@@ -72,7 +72,7 @@ const Reservas = () => {
 
   return (
     <div>
-      <h3>Selecciona las fechas para reservar</h3>
+      <h3 style={{color:"#fff", fontWeight:"bold", font:"center"}}>{info}</h3>
       <Calendar
         onClickDay={handleDateChange} // Detecta el clic en una fecha
         value={selectedDates}

@@ -2,18 +2,24 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { instrumentos } from "../Utils/listaInstrumentos.js";
 import Reservas from "./Reservas.jsx";
+import "../App.css";
 
 const Details = () => {
   const { id } = useParams();
 
   const instrumentoActual = instrumentos[id - 1];
+  const titulo = "Selecciona las fechas para reservar"; //titulo a usar en <Reservas/>
 
   return (
     <section className="main-detail">
       <div>
         <h2>{instrumentoActual.nombre}</h2>
         <div className="detail">
-          <img src={instrumentoActual.imagenDetalle} />
+          <img
+            src={instrumentoActual.imagenDetalle}
+            alt={instrumentoActual.nombre}
+            style={{ width: "60vw" }}
+          />
           <h4>{instrumentoActual.precio}</h4>
           <p>{instrumentoActual.descripcion}</p>
 
@@ -27,11 +33,9 @@ const Details = () => {
               </ul>
             </div>
             <div>
-              {/* <Reservas/> */}
-              <Reservas id={id} />
+              <Reservas id={id} info={titulo} />
             </div>
           </div>
-                
         </div>
       </div>
     </section>
