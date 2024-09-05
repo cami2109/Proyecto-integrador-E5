@@ -88,6 +88,7 @@ const AgregarProducto = ({ setShow }) => {
       .then((data) => {
         console.log(data)
         setShow(false)
+        location.reload()
       })
       .catch(error => console.log(error))
       
@@ -100,32 +101,35 @@ const AgregarProducto = ({ setShow }) => {
   return (
     <div className='overlay'>
       <div className='card-modificar'>
+        <div className='close-button-container'>
+          <button onClick={() => setShow(false)} className='close-button'>✖</button>
+        </div>
         <h2>Crear Producto</h2>
         <form action="">
                 <label htmlFor="imagen">Imagen:</label>
                 <div className="input-container">
-                  <input type="text" onChange={(e) => setInput(e.target.value)}/>
+                  <input type="text" placeholder={producto.imagenUrl} onChange={(e) => setProducto({...producto, imagenUrl: e.target.value})}/>
                   {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, imagenUrl: input})}}>Agregar</button> */}
                 </div>
                 <label htmlFor="nombre">Nombre:</label>
                 <div className="input-container">
-                    <input type="text" onChange={(e) => setInput(e.target.value)} />
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, nombre: input})}}>Agregar</button>
+                    <input type="text" placeholder={producto.nombre} onChange={(e) => setProducto({...producto, nombre: e.target.value})} />
+                    {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, nombre: input})}}>Agregar</button> */}
                 </div>
                 <label htmlFor="precio">Precio:</label>
                 <div className="input-container">
-                    <input type="text"  onChange={(e) => setInput(e.target.value)}/>
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: input})}}>Agregar</button>
+                    <input type="text" placeholder={producto.precio}  onChange={(e) => setProducto({...producto, precio: e.target.value})}/>
+                    {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: input})}}>Agregar</button> */}
                 </div>
                 <label htmlFor="descripcion">Descripción</label>
                 <div className="input-container">
-                    <input type="text" onChange={(e) => setInput(e.target.value)}/>
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, descripcion: input})}}>Agregar</button>
+                    <input type="text" placeholder={producto.descripcion} onChange={(e) => setProducto({...producto, descripcion: e.target.value})}/>
+                    {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, descripcion: input})}}>Agregar</button> */}
                 </div>
                 <label htmlFor="categorias">Categoría: </label>
                 <div className='input-container'>
-                  <input type="text" onChange={(e) => setInput(e.target.value)}/>
-                  <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categoria: input})}}>Agregar</button>
+                  <input type="text" placeholder={producto.categoria} onChange={(e) => setProducto({...producto, categoria: e.target.value})}/>
+                  {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categoria: input})}}>Agregar</button> */}
                 </div>
                 <h3>Caracteristicas</h3>
                 <ul>
