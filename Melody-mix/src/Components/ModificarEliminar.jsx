@@ -7,6 +7,7 @@ const ModificarEliminar = ({ info, setShow }) => {
 
     const {nombre, precio, descripcion, id, caracteristicasList, imagenUrl} = info
 
+
     const [producto, setProducto] = useState({
         id: id,
         nombre: nombre,
@@ -18,11 +19,10 @@ const ModificarEliminar = ({ info, setShow }) => {
     })
 
     const [modificaciones, setModificaciones] = useState({
-        nombre: "",
-        precio: "",
-        descripcion: "",
-        caracteristicas: [],
-        categorias: ""
+        nombre: producto.nombre,
+        precio: producto.precio,
+        descripcion: producto.descripcion,
+        categorias: producto.categorias
     })
 
     const [showBotones, setShowBotones] = useState([new Array(producto.caracteristicas.length).fill(false)])
@@ -70,25 +70,43 @@ const ModificarEliminar = ({ info, setShow }) => {
         }
 
         const estaCompleto = () => {
-            return !!(producto.precio && 
-                   producto.nombre && 
-                   producto.imagen && 
-                   producto.descripcion && 
+            return !!(modificaciones.precio && 
+                   modificaciones.nombre && 
+                   producto.imagenUrl && 
+                   modificaciones.descripcion && 
                    producto.caracteristicas.length > 0 && 
-                   producto.categorias)
+                   modificaciones.categorias)
         }
 
-        const configs = {
-            method: "PUT",
-            body: JSON.stringify(producto),
-            headers: {
-              "Content-Type": "application/json",
-            },
-        }
 
         
 
-        if(pasaNombre() && estaCompleto()){
+        if(pasaNombre()){
+
+            // setProducto({...producto, precio: modificaciones.precio, nombre: modificaciones.nombre, descripcion: modificaciones.descripcion, categorias: modificaciones.categorias})
+
+            const productoEnviar = {
+                id: producto.id,
+                nombre: modificaciones.nombre,
+                precio: Number(modificaciones.precio),
+                imagenUrl: producto.imagenUrl,
+                descripcion: modificaciones.descripcion,
+                caracteristicas: producto.caracteristicas.join(", "),
+                categoria: modificaciones.categorias
+
+            }
+
+            console.log(modificaciones, productoEnviar)
+
+            const configs = {
+                method: "PUT",
+                body: JSON.stringify(productoEnviar),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+            }
+
+
             fetch("http://localhost:8080/instrumento/", configs)
             .then((res) => res.json())
             .then((data) => {
@@ -125,25 +143,25 @@ const ModificarEliminar = ({ info, setShow }) => {
                 <label htmlFor="nombre">Nombre:</label>
                 <div className="input-container">
                     <input type="text" placeholder={producto.nombre} onChange={(e) => setModificaciones({...modificaciones, nombre: e.target.value})} />
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, nombre: modificaciones.nombre})}}>Agregar</button>
+                    {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, nombre: modificaciones.nombre})}}>Agregar</button> */}
                 </div>
 
                 <label htmlFor="precio">Precio:</label>
                 <div className="input-container">
                     <input type="text" placeholder={producto.precio} onChange={(e) => setModificaciones({...modificaciones, precio: e.target.value})}/>
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: modificaciones.precio})}}>Agregar</button>
+                    {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, precio: modificaciones.precio})}}>Agregar</button> */}
                 </div>
 
                 <label htmlFor="descripcion">Descripción</label>
                 <div className="input-container">
                     <input type="text" placeholder={producto.descripcion} onChange={(e) => setModificaciones({...modificaciones, descripcion: e.target.value})}/>
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, descripcion: modificaciones.descripcion})}}>Agregar</button>
+                    {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, descripcion: modificaciones.descripcion})}}>Agregar</button> */}
                 </div>
 
                 <label htmlFor="categorias">Categoría: </label>
                 <div className='input-container'>
                     <input type="text" placeholder={producto.categorias} onChange={(e) => setModificaciones({...modificaciones, categorias: e.target.value})}/>
-                    <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categorias: modificaciones.categorias})}}>Agregar</button>
+                    {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categorias: modificaciones.categorias})}}>Agregar</button> */}
                 </div>
 
                 <h3>Características</h3>
@@ -169,7 +187,7 @@ const ModificarEliminar = ({ info, setShow }) => {
             </form>
             {!productoCompleto && <h2>Asegurate de que el producto este completo, y que no se repita ningun nombre</h2>}
             <div>
-                <button onClick={(e) => {e.preventDefault(), handleSubmit, console.log(producto), dispatch({type: "GET_PRODUCTS"})}}>✅</button> {/*Guardar cambios*/}
+                <button onClick={(e) => {e.preventDefault(), handleSubmit()}}>✅</button> {/*Guardar cambios*/}
                 <button onClick={(e) => {e.preventDefault(), handleDeleteProduct, dispatch({type: "GET_PRODUCTS"})}}>❌</button> {/*Borrar producto*/}
             </div>
         </div>
