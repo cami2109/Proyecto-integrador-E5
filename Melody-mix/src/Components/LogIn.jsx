@@ -57,14 +57,13 @@ const LogIn = () => {
       setError(false)
       fetch("http://localhost:8080/usuario/login", configs)
         .then((res) => res.json())
-        .then((data) =>
-          dispatch(
-            { type: "LOG_IN", payload: data },
+        .then((data) => {
+            dispatch({ type: "GET_USER", payload: data })
+            dispatch({ type: "LOG_IN", payload: data })
             setTimeout(() => {
               navigate("/");
-            }, 3000)
-          )
-        )
+            }, 2000)
+          })
         .catch((error) => {
           setError(true);
           setShowCard(false);
@@ -124,7 +123,7 @@ const LogIn = () => {
             <span className="icon">🔒</span>
           </div>
         )}
-        <button onClick={handleSubmit}>Ingresar</button>
+        <button onClick={handleSubmit()}>Ingresar</button>
       </form>
       <div>
         {showCard && <p>aguarda por favor</p>}

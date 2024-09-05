@@ -1,13 +1,10 @@
 import {createContext, useContext, useEffect, useReducer} from "react";
 
 
-
 const initialState = {
   user: {},
   products: [],
 };
-
-
 
 
 
@@ -58,8 +55,6 @@ const Context = ({ children }) => {
     .then((data) => dispatch({type: "GET_PRODUCTS", payload: data}))
     .catch(error => console.log(error))
   }, [])
-
-  console.log(state.products)
 
   return (
     <userContext.Provider value={{ state, dispatch }}>
