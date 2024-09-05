@@ -10,7 +10,7 @@ const Instrumentos = () => {
         <h2>Instrumentos por tipo</h2>
         <div className="section-mid">
           <div key={1} className="card">
-            <Link to={"/instrumentos/teclados"}>
+            <Link to={"/instrumentos/Teclados"}>
               {/* <h3>Card {1}</h3>
               <p> card {1}</p> */}
               <img src='/Img/CategVarios.jpg' alt="LOGO" style={{width: "100%"}}/>
@@ -18,7 +18,7 @@ const Instrumentos = () => {
             </Link>
           </div>
           <div key={2} className="card">
-            <Link to={"instrumentos/percusion"}>
+            <Link to={"instrumentos/Percusion"}>
               {/* <h3>Card {2}</h3>
               <p> card {2}</p> */}
               <img src='/Img/CategPercusion.jpg' alt="LOGO" style={{width: "100%"}}/>
@@ -26,7 +26,7 @@ const Instrumentos = () => {
             </Link>
           </div>
           <div key={3} className="card">
-            <Link to={"instrumentos/viento"}>
+            <Link to={"instrumentos/Viento"}>
               {/* <h3>Card {3}</h3>
               <p> card {3}</p> */}
               <img src='/Img/CategViento.jpg' alt="LOGO" style={{width: "100%"}}/>
@@ -34,7 +34,7 @@ const Instrumentos = () => {
             </Link>
           </div>
           <div key={4} className="card">
-            <Link to={"instrumentos/cuerda"}>
+            <Link to={"instrumentos/Cuerda"}>
               {/* <h3>Card {4}</h3>
               <p> card {4}</p> */}
               <img src='/Img/CategCuerda.jpg' alt="LOGO" style={{width: "100%"}}/>
