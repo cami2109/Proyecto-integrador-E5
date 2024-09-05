@@ -21,9 +21,11 @@ const Perfil = () => {
         {state.user.isAdmin && <h3>Modo admin</h3>}
       </div>
       <div>
-        <Link to={"/perfil/editar"}>
-          <button>Editar perfil</button>
-        </Link>
+        { state.user.isAdmin &&
+          <Link to={"/productos"}>
+            <button>Editar y Agregar Productos</button>
+          </Link>
+        }
         <button onClick={() => (dispatch({ type: "LOG_OUT" }, navigate("/")))}>
           Cerrar sesión
         </button>
