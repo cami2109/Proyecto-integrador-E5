@@ -7,6 +7,7 @@ const ModificarEliminar = ({ info, setShow }) => {
 
     const {nombre, precio, descripcion, id, caracteristicasList, imagenUrl} = info
 
+    const token = JSON.parse(localStorage.getItem("token"))
 
     const [producto, setProducto] = useState({
         id: id,
@@ -45,12 +46,12 @@ const ModificarEliminar = ({ info, setShow }) => {
     const handleDeleteProduct = () => {
         const configs ={
             method: "Delete",
-            body: JSON.stringify(producto.id),
             headers: {
-            "Content-Type": "application/json",
+                "Content-Type": "application/json",
+                Authorization: token
             },
         }
-        fetch("http://localhost:8080/instrumento/id", configs)
+        fetch("http://localhost:8080/instrumento/" + id, configs)
         .then((res) => res.json())
         .then((data) => {
             console.log(data)
