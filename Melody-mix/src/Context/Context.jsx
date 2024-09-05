@@ -1,6 +1,4 @@
-import {act, createContext, useContext, useEffect, useReducer,} from "react";
-
-
+import {createContext, useContext, useEffect, useReducer} from "react";
 
 
 
@@ -9,10 +7,7 @@ const initialState = {
   products: [],
 };
 
-// fetch("http://localhost:8080/instrumento/listar")
-// .then((res) => res.json())
-// .then((data) => {console.log(data), [...initialState.products, data]})
-// .catch(error => console.log(error))
+
 
 
 
@@ -63,6 +58,8 @@ const Context = ({ children }) => {
     .then((data) => dispatch({type: "GET_PRODUCTS", payload: data}))
     .catch(error => console.log(error))
   }, [])
+
+  console.log(state.products)
 
   return (
     <userContext.Provider value={{ state, dispatch }}>
