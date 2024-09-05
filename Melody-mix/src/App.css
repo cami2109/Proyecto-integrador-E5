@@ -141,8 +141,24 @@ body, html {
 .section-top-right {
   /* display: flex; */
   align-items: center;
-  padding: 5vw;
+  margin-right: 3rem;
+
 }
+
+
+
+.section-top-right input {
+  /* display: flex; */
+  align-items: center;
+  margin-right: 3rem;
+  height: 2.2rem;
+  border-radius: 15px;
+  border: white;
+  padding: 10px;
+  width: 13rem;
+
+}
+
 
 .section-mid {
   display: grid;

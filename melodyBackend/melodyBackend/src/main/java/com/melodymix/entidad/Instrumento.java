@@ -6,6 +6,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Entity
 @Table(name = "instrumentos")
 @Getter
@@ -24,6 +28,26 @@ public class Instrumento {
     private String descripcion;
     private String stock;
     private String imagenUrl;
+
+    @Transient
+    private List<String> caracteristicasList;
+
+
+
+
+    // Otros campos...
+
+    public List<String> getCaracteristicasList() {
+        if (this.caracteristicas != null) {
+            return Arrays.asList(this.caracteristicas.split(","));
+        }
+        return new ArrayList<>();
+    }
+
+    public void setCaracteristicasList(List<String> caracteristicasList) {
+        this.caracteristicasList = caracteristicasList;
+        this.caracteristicas = String.join(",", caracteristicasList);
+    }
 
     public String getImagenUrl() {
         return imagenUrl;

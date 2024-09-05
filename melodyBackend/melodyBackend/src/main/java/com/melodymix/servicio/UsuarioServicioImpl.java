@@ -15,6 +15,7 @@ import java.util.*;
 @Service
 public class UsuarioServicioImpl implements IUsuarioServicio, UserDetailsService {
 
+    @Autowired
     private final IUsuarioRepositorio usuarioRepositorio;
     private final PasswordEncoder passwordEncoder;
 

@@ -9,7 +9,7 @@ const Search = () => {
           <h2>Encuentra tu instrumento</h2>
         </div>
         <div className="section-top-right">
-          <input type="text" />
+          <input type="search" />
           <button>Buscar</button>
         </div>
       </section>

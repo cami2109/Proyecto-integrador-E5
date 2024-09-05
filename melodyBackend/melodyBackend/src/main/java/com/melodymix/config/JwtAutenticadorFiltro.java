@@ -21,12 +21,12 @@ import java.util.Base64;
 public class JwtAutenticadorFiltro implements Filter {
 
     private final UserDetailsService userDetailsService;
-    private final String secretKey;
+    private final byte[] secretKey;
 
-    public JwtAutenticadorFiltro(UserDetailsService userDetailsService, String secretKey) {
+    public JwtAutenticadorFiltro(UserDetailsService userDetailsService, String secretKeyBase64) {
         this.userDetailsService = userDetailsService;
-        byte[] decodedKey = Base64.getDecoder().decode(secretKey);
-        this.secretKey = new String(decodedKey);
+        // Decodifica la clave secreta en base64 a un arreglo de bytes
+        this.secretKey = Base64.getDecoder().decode(secretKeyBase64);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class JwtAutenticadorFiltro implements Filter {
             try {
                 // Extraer el nombre de usuario del token
                 Claims claims = Jwts.parser()
-                        .setSigningKey(secretKey)
+                        .setSigningKey(secretKey) // Usa el arreglo de bytes decodificado
                         .parseClaimsJws(token)
                         .getBody();
 

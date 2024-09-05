@@ -2,12 +2,11 @@ package com.melodymix.controlador;
 
 import com.melodymix.entidad.Usuario;
 import com.melodymix.servicio.UsuarioServicioImpl;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,21 +19,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-// mapeo la url para que todos los postmapping que se hagan en este controlador,
-// tengan que tener "/usuario" antes, osea /usuario/registro o /usuario/login , etc
 @RequestMapping("/usuario")
-
 public class UsuarioControlador {
-    // inyectamos la implementacion UsuarioServiceImpl
-    private UsuarioServicioImpl usuarioServiceImpl;
 
-    // contrasena admin
+    private final UsuarioServicioImpl usuarioServiceImpl;
+    private final String secretKey;
+
     @Value("${admin.contrasena}")
     private String adminContrasena;
 
     @Autowired
-    public UsuarioControlador(UsuarioServicioImpl usuarioServiceImpl) {
+    public UsuarioControlador(UsuarioServicioImpl usuarioServiceImpl,
+                              @Value("${jwt.secret.key}") String secretKey) {
         this.usuarioServiceImpl = usuarioServiceImpl;
+        this.secretKey = secretKey;
     }
 
     @PostMapping("/registro")
@@ -49,21 +47,16 @@ public class UsuarioControlador {
         if (usuarioRegistrado != null && usuarioServiceImpl.getPasswordEncoder().matches(usuario.getContrasena(), usuarioRegistrado.getContrasena())) {
             boolean isAdmin = false;
 
-            // Depuración: Imprime los valores
-            System.out.println("adminContrasena: " + adminContrasena);
-            System.out.println("contrasenaAdmin del usuario: " + usuario.getContrasenaAdmin());
-
-            // Verifica la contraseña admin si se ha proporcionado
             if (usuario.getContrasenaAdmin() != null && usuario.getContrasenaAdmin().equals(adminContrasena)) {
                 isAdmin = true;
             }
 
-            Authentication authentication = new UsernamePasswordAuthenticationToken(
-                    usuario.getEmail(),
-                    usuario.getContrasena(),
-                    Collections.singletonList(new SimpleGrantedAuthority(isAdmin ? "ROLE_ADMIN" : "ROLE_USER"))
-            );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+            // Generar el token JWT
+            String token = Jwts.builder()
+                    .setSubject(usuarioRegistrado.getEmail())
+                    .claim("roles", isAdmin ? "ROLE_ADMIN" : "ROLE_USER")
+                    .signWith(SignatureAlgorithm.HS256, secretKey.getBytes())
+                    .compact();
 
             Map<String, Object> response = new HashMap<>();
             response.put("message", isAdmin ? "Login exitoso como ADMIN" : "Login exitoso como USUARIO");
@@ -71,17 +64,11 @@ public class UsuarioControlador {
             response.put("nombre", usuarioRegistrado.getNombre());
             response.put("apellido", usuarioRegistrado.getApellido());
             response.put("email", usuarioRegistrado.getEmail());
-
+            response.put("token", token); // Agrega el token a la respuesta
 
             return ResponseEntity.ok(response);
         }
 
         return ResponseEntity.status(401).body(Collections.singletonMap("message", "Login fallido"));
     }
-
-
-
-
-
-
 }

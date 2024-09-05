@@ -4,6 +4,9 @@ import { useUserContext } from '../Context/Context'
 import Card from '../Components/Card'
 import ModificarEliminar from '../Components/ModificarEliminar'
 import AgregarProducto from '../Components/AgregarProducto'
+// useEffect(() => {
+//     if(state.user.isAdmin) navigate("/")
+// }, [])
 
 const AgregarYModificarProductos = () => {
 
@@ -15,9 +18,7 @@ const AgregarYModificarProductos = () => {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if(state.user.isAdmin) navigate("/")
-    }, [])
+    
 
     const toggleModificarEliminar = (index) => {
         const nuevoVisible = [...showModificarEliminar];
