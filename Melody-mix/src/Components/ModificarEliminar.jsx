@@ -57,6 +57,7 @@ const ModificarEliminar = ({ info, setShow }) => {
         .then((data) => {
             console.log(data)
             setShow(id - 1)
+            location.reload()
         })
         .catch(error => console.log(error))
     }
@@ -115,6 +116,7 @@ const ModificarEliminar = ({ info, setShow }) => {
             .then((data) => {
                 console.log(data)
                 setShow(id - 1)
+                location.reload()
             })
             .catch(error => console.log(error));
         } else {
@@ -125,6 +127,9 @@ const ModificarEliminar = ({ info, setShow }) => {
 
   return (
     <div className='overlay'>
+        <div className='close-button-container'>
+            <button onClick={() => setShow(id - 1)} className='close-button'>✖</button>
+        </div>
         <div className='card-modificar'>
             <img src={producto.imagenUrl} />
             <h2>Id: {producto.id}</h2>
