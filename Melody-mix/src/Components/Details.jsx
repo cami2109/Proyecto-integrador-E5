@@ -16,7 +16,7 @@ const Details = () => {
         <h2>{instrumentoActual.nombre}</h2>
         <div className="detail">
           <img src={instrumentoActual.imagenUrl} />
-          <h4>{instrumentoActual.precio}</h4>
+          <h4>{"$"+instrumentoActual.precio}</h4>
           <p>{instrumentoActual.descripcion}</p>
 
           <div className="section-caract-reserva">

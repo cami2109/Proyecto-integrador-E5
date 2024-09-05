@@ -10,7 +10,7 @@ const Card = ({ info, children }) => {
         <img src={imagenUrl} style={{width: "100%"}} />
         <div>
           <h2>{nombre}</h2>
-          <h4>{precio}</h4>
+          <h4>{"$"+ precio}</h4>
           <h4>ver mas...</h4>
         </div>
       </Link>

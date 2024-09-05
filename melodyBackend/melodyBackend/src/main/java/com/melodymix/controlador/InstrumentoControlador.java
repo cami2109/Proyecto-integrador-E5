@@ -4,6 +4,7 @@ package com.melodymix.controlador;
 import com.melodymix.entidad.Instrumento;
 import com.melodymix.servicio.InstrumentoServicioImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,5 +34,17 @@ public class InstrumentoControlador {
     public void eliminar (@PathVariable Long id) {
         instrumentoServicioImpl.eliminar(id);
     }
+
+    @PostMapping("/actualizar")
+    public ResponseEntity<String> actualizar(@RequestBody Instrumento instrumento) {
+        try {
+            instrumentoServicioImpl.actualizar(instrumento);
+            return ResponseEntity.ok("Instrumento actualizado correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al actualizar el instrumento");
+        }
+
+    }
+
 
 }
