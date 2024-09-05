@@ -9,6 +9,11 @@ const initialState = {
   products: [],
 };
 
+// fetch("http://localhost:8080/instrumento/listar")
+// .then((res) => res.json())
+// .then((data) => {console.log(data), [...initialState.products, data]})
+// .catch(error => console.log(error))
+
 
 
 if(localStorage.getItem("token")){
@@ -58,7 +63,6 @@ const Context = ({ children }) => {
     .then((data) => dispatch({type: "GET_PRODUCTS", payload: data}))
     .catch(error => console.log(error))
   }, [])
-
 
   return (
     <userContext.Provider value={{ state, dispatch }}>
