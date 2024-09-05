@@ -6,7 +6,7 @@ const ModificarEliminar = ({ info, setShow }) => {
     const { state, dispatch } = useUserContext()
 
     const {nombre, precio, descripcion, id, caracteristicasList, imagenUrl} = info
-
+    console.log(id);
 
     const [producto, setProducto] = useState({
         id: id,
@@ -50,7 +50,7 @@ const ModificarEliminar = ({ info, setShow }) => {
             "Content-Type": "application/json",
             },
         }
-        fetch("http://localhost:8080/instrumento/id", configs)
+        fetch("http://localhost:8080/instrumento/${id}dd", configs)
         .then((res) => res.json())
         .then((data) => {
             console.log(data)
@@ -188,7 +188,7 @@ const ModificarEliminar = ({ info, setShow }) => {
             {!productoCompleto && <h2>Asegurate de que el producto este completo, y que no se repita ningun nombre</h2>}
             <div>
                 <button onClick={(e) => {e.preventDefault(), handleSubmit()}}>✅</button> {/*Guardar cambios*/}
-                <button onClick={(e) => {e.preventDefault(), handleDeleteProduct, dispatch({type: "GET_PRODUCTS"})}}>❌</button> {/*Borrar producto*/}
+                <button onClick={(e) => {e.preventDefault(), handleDeleteProduct()}}>❌</button> {/*Borrar producto*/}
             </div>
         </div>
     </div>
