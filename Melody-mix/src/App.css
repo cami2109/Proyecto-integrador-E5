@@ -141,6 +141,18 @@ body, html {
   align-items: center;
 }
 
+.section-top-right input {
+  /* display: flex; */
+  /* align-items: center; */
+  margin-right: 3rem;
+  height: 2.2rem;
+  border-radius: 15px;
+  border: white;
+  padding: 10px;
+  width: 13rem;
+
+}
+
 .section-mid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { instrumentos } from "../Utils/listaInstrumentos"; // Importa la lista de instrumentos
+import { reservas } from "../Utils/listaReservas";
 import "../App.css";
 import Card from "../Components/Card";
 import Reservas from "../Components/Reservas";
@@ -68,7 +69,7 @@ const Buscar = () => {
           resultados.map((instrumento) => (
             <div className="section-caract-reserva">
               <Card key={instrumento.id} info={instrumento} />
-              <Reservas id={instrumento.id} info={titulo} />
+              <Reservas id={instrumento.id} titulo={titulo} reserva={reservas[instrumento.id-1].reservados} />
             </div>
           ))
         )}

@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "../App.css";
+import { reservas } from "../Utils/listaReservas";
 
-const Reservas = ({id, info}) => {
+const Reservas = ({ id, titulo, reserva }) => {
   const [selectedDates, setSelectedDates] = useState([]); // Manejar un array de fechas seleccionadas
   const [reservedDates, setReservedDates] = useState([]);
 
   useEffect(() => {
     // Simulación de llamada a la API para obtener las fechas ya reservadas
+    // las reservas vienen por props (desde listaReservas.js)
     const fetchReservedDates = async () => {
-      // Simulamos algunas fechas reservadas
-      const reserved = [
-        new Date(2024, 8, 10),
-        new Date(2024, 8, 15),
-        new Date(2024, 8, 20),
-      ];
+      const reserved = [];
+      if (reserva !== null) {
+        reserva.map((item) => {
+          const itemDate = new Date(item);
+          reserved.push(itemDate);
+        });
+        console.log(reserved);
+      }
       setReservedDates(reserved);
     };
     fetchReservedDates();
-  }, []);
+  }, [reserva]);
 
   const isDateReserved = (date) => {
     return reservedDates.some(
@@ -72,7 +76,7 @@ const Reservas = ({id, info}) => {
 
   return (
     <div className="card">
-      <h3>{info}</h3>
+      <h3>{titulo}</h3>
       <Calendar
         onClickDay={handleDateChange} // Detecta el clic en una fecha
         value={selectedDates}

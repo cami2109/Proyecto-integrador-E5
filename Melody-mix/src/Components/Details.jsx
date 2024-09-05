@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { instrumentos } from "../Utils/listaInstrumentos.js";
+import { reservas } from "../Utils/listaReservas.js"
 import Reservas from "./Reservas.jsx";
 import "../App.css";
 
@@ -33,7 +34,7 @@ const Details = () => {
               </ul>
             </div>
             <div>
-              <Reservas id={id} info={titulo} />
+              <Reservas id={id} titulo={titulo} reserva={reservas[id-1].reservados} />
             </div>
           </div>
         </div>
