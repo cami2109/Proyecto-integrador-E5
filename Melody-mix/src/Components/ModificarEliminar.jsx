@@ -52,7 +52,7 @@ const ModificarEliminar = ({ info, setShow }) => {
                 Authorization: token
             },
         }
-        fetch(`http://localhost:8080/instrumento/${id}`, configs)
+        fetch("http://localhost:8080/instrumento/${id}", configs)
         .then((res) => res.json())
         .then((data) => {
             console.log(data)
