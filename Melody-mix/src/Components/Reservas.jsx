@@ -71,8 +71,8 @@ const Reservas = ({id, info}) => {
   };
 
   return (
-    <div>
-      <h3 style={{color:"#fff", fontWeight:"bold", font:"center"}}>{info}</h3>
+    <div className="card">
+      <h3>{info}</h3>
       <Calendar
         onClickDay={handleDateChange} // Detecta el clic en una fecha
         value={selectedDates}
@@ -96,7 +96,7 @@ const Reservas = ({id, info}) => {
       />
 
       {selectedDates.length > 0 && (
-        <p style={{ color: "white" }}>
+        <p>
           Fechas seleccionadas:{" "}
           {selectedDates.map((date) => formatDate(date)).join(", ")}
         </p>

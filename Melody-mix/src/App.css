@@ -612,6 +612,9 @@ body, html {
   gap: 1rem;
   text-align: center;
 }
+.reserva button {
+  background-color: #00ACD3;
+}
 
 /*Estilos dentro del calender*/
 .react-calendar__tile--disabled {

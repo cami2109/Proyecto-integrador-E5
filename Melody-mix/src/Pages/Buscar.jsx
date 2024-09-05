@@ -61,7 +61,7 @@ const Buscar = () => {
         </div>
       </section>
 
-      <div>
+      <>
         {noResults ? (
           <p> no resulados</p>
         ) : (
@@ -72,7 +72,7 @@ const Buscar = () => {
             </div>
           ))
         )}
-      </div>
+      </>
     </div>
   );
 };
