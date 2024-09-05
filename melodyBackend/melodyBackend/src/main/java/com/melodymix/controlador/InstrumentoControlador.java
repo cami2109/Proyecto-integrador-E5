@@ -35,9 +35,10 @@ public class InstrumentoControlador {
         instrumentoServicioImpl.eliminar(id);
     }
 
-    @PostMapping("/actualizar")
-    public ResponseEntity<String> actualizar(@RequestBody Instrumento instrumento) {
+    @PutMapping("/actualizar/{id}")
+    public ResponseEntity<String> actualizar(@PathVariable Long id, @RequestBody Instrumento instrumento) {
         try {
+            instrumento.setId(id);
             instrumentoServicioImpl.actualizar(instrumento);
             return ResponseEntity.ok("Instrumento actualizado correctamente");
         } catch (Exception e) {

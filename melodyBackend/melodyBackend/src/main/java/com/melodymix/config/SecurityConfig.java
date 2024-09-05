@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.disable()) // Desactiva la configuración de CORS si no se necesita
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/usuario/registro", "/usuario/login", "/instrumento/registrar", "/instrumento/listar").permitAll() // Permitir acceso sin autenticación
+                                .requestMatchers("/usuario/registro", "/usuario/login", "/instrumento/registrar", "/instrumento/listar","/instrumento/actualizar", "/instrumento/**").permitAll() // Permitir acceso sin autenticación
                                 .anyRequest().authenticated() // Requiere autenticación para cualquier otra ruta
                 )
                 .httpBasic(withDefaults()) // Configuración de HttpBasic
