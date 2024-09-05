@@ -1,11 +1,7 @@
-import {createContext, useContext, useEffect, useReducer,} from "react";
+import {act, createContext, useContext, useEffect, useReducer,} from "react";
 
 
-// case "GET_PRODUCTS":
-//   fetch("http://localhost:8080/instrumento/listar")
-//   .then((res) => res.json())
-//   .then((data) => {return{...state, products: data}})
-//   .catch(error => console.log(error))
+
 
 
 const initialState = {
@@ -57,10 +53,10 @@ const Context = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-      fetch("http://localhost:8080/instrumento/listar")
-      .then((res) => res.json())
-      .then((data) => dispatch({type: "GET_PRODUCTS", payload: data}))
-      .catch(error => console.log(error))
+    fetch("http://localhost:8080/instrumento/listar")
+    .then((res) => res.json())
+    .then((data) => dispatch({type: "GET_PRODUCTS", payload: data}))
+    .catch(error => console.log(error))
   }, [])
 
 

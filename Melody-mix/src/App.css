@@ -425,6 +425,23 @@ body, html {
   z-index: 1001; /* Asegura que el contenido esté por encima del fondo */
 }
 
+/* Contenedor del botón de cerrar */
+.close-button-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1100; /* Asegura que esté por encima del contenido de la tarjeta */
+}
+
+/* Estilos del botón de cerrar */
+.close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #dc3545; /* Rojo */
+}
+
 .card-modificar img {
   max-width: 100%;
   border-radius: 10px;
