@@ -50,7 +50,7 @@ const ModificarEliminar = ({ info, setShow }) => {
             "Content-Type": "application/json",
             },
         }
-        fetch("http://localhost:8080/instrumento/${id}dd", configs)
+        fetch("http://localhost:8080/instrumento/${id}", configs)
         .then((res) => res.json())
         .then((data) => {
             console.log(data)
