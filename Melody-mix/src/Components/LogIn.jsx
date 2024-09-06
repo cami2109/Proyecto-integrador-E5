@@ -123,7 +123,7 @@ const LogIn = () => {
             <span className="icon">🔒</span>
           </div>
         )}
-        <button onClick={handleSubmit()}>Ingresar</button>
+        <button onClick={(e) => handleSubmit(e)}>Ingresar</button>
       </form>
       <div>
         {showCard && <p>aguarda por favor</p>}
