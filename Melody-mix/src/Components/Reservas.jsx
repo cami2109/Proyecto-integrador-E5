@@ -117,7 +117,7 @@ const Reservas = ({ id, titulo, reserva }) => {
           onClick={handleCancel}
           disabled={selectedDates.length === 0} // Deshabilita si no hay fechas seleccionadas
         >
-          Cancel
+          Cancelar
         </button>
       </div>
     </div>

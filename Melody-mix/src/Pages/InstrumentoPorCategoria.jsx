@@ -23,7 +23,7 @@ const InstrumentoPorCategoria = () => {
 
   return (
     <div>
-        <h3>Categoria: {instrumento}</h3>
+        <h3 className='section-categoria'>Categoria: {instrumento}</h3>
         <div className='section-bottom'>
             {instrumentosAMostrar().map(i => <Card key={i.id} info={i} />)}
         </div>

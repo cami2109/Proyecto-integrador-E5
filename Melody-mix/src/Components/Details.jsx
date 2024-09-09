@@ -24,7 +24,7 @@ const Details = () => {
             alt={instrumentoActual.nombre}
             style={{ width: "60vw" }}
           />
-          <h4>{instrumentoActual.precio}</h4>
+          <h4>{"$" + instrumentoActual.precio}</h4>
           <p>{instrumentoActual.descripcion}</p>
 
           <div className="section-caract-reserva">
