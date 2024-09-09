@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { useUserContext } from '../Context/Context'
 
-const ModificarEliminar = ({ info, setShow }) => {
+const ModificarEliminar = ({ info, setShow, id }) => {
+
+    console.log(id)
 
     const { state, dispatch } = useUserContext()
 
-    const {nombre, precio, descripcion, id, caracteristicasList, imagenUrl} = info
-    console.log(id);
+    const {nombre, precio, descripcion,  caracteristicasList, imagenUrl} = info
 
     const token = JSON.parse(localStorage.getItem("token"))
 
     const [producto, setProducto] = useState({
-        id: id,
+        id: info.id,
         nombre: nombre,
         precio: precio,
         imagenUrl: imagenUrl,
@@ -52,11 +53,11 @@ const ModificarEliminar = ({ info, setShow }) => {
                 Authorization: token
             },
         }
-        fetch(`http://localhost:8080/instrumento/${id}`, configs)
+        fetch(`http://localhost:8080/instrumento/${producto.id}`, configs)
         .then((res) => res.json())
         .then((data) => {
             console.log(data)
-            setShow(id - 1)
+            setShow(id)
             location.reload()
         })
         .catch(error => console.log(error))
@@ -86,8 +87,6 @@ const ModificarEliminar = ({ info, setShow }) => {
 
         if(pasaNombre()){
 
-            // setProducto({...producto, precio: modificaciones.precio, nombre: modificaciones.nombre, descripcion: modificaciones.descripcion, categorias: modificaciones.categorias})
-
             const productoEnviar = {
                 id: producto.id,
                 nombre: modificaciones.nombre,
@@ -115,7 +114,7 @@ const ModificarEliminar = ({ info, setShow }) => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
-                setShow(id - 1)
+                setShow(id)
                 location.reload()
             })
             .catch(error => console.log(error));
@@ -128,7 +127,7 @@ const ModificarEliminar = ({ info, setShow }) => {
   return (
     <div className='overlay'>
         <div className='close-button-container'>
-            <button onClick={() => setShow(id - 1)} className='close-button'>✖</button>
+            <button onClick={() => setShow(id)} className='close-button'>✖</button>
         </div>
         <div className='card-modificar'>
             <img src={producto.imagenUrl} />
