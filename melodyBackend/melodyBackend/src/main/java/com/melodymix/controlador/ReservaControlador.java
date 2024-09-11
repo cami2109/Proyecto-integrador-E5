@@ -34,8 +34,14 @@ public class ReservaControlador {
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
 
-        Reserva reserva = reservaServicioImpl.crearReserva(instrumentoId, fechaInicio,fechaFin);
-        return ResponseEntity.ok(reserva);
+        if (reservaServicioImpl.verificarDisponibilidad(instrumentoId,fechaInicio,fechaFin)) {
+            Reserva reserva = reservaServicioImpl.crearReserva(instrumentoId,fechaInicio,fechaFin);
+            return ResponseEntity.ok(reserva);
+        }
+        else {
+            throw new RuntimeException("Problema con la disponibilidad");
+
+        }
     }
 
 }
