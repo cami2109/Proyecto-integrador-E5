@@ -22,7 +22,7 @@ const Details = () => {
           <img
             src={instrumentoActual.imagenUrl}
             alt={instrumentoActual.nombre}
-            style={{ width: "60vw" }}
+            style={{ width: "40vw", height: "400px" }}
           />
           <h4>{"$" + instrumentoActual.precio}</h4>
           <p>{instrumentoActual.descripcion}</p>
