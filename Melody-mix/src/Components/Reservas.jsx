@@ -73,7 +73,9 @@ const Reservas = ({ id, titulo, reserva }) => {
         'Content-Type': 'application/json'
       }
     }
-    fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${selectedDates[0]}&fechaFin=${selectedDates[selectedDates.length - 1]}`, configs)
+    const fechaInicio = selectedDates[0].toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    const fechaFin = selectedDates[selectedDates.length - 1].toISOString().split('T')[0];
+    fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`, configs)
     .then((res) => res.json())
     .then((data) => {
         console.log(data)
