@@ -12,7 +12,6 @@ const Details = () => {
 
   const instrumentoActual = state.products[id - 1];
   const titulo = "Selecciona las fechas para reservar"; //titulo a usar en <Reservas/>
-
   return (
     <section className="main-detail">
       {instrumentoActual ? 
