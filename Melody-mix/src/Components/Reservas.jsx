@@ -68,10 +68,7 @@ const Reservas = ({ id, titulo, reserva }) => {
     // Aquí envías las fechas seleccionadas al backend
     console.log("Reserva realizada para las fechas:", selectedDates);
     const configs = {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      method: "POST"
     }
     fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${selectedDates[0]}&fechaFin=${selectedDates[selectedDates.length - 1]}`, configs)
     .then((res) => res.json())
