@@ -17,7 +17,7 @@ const Reservas = ({ id, titulo, reserva }) => {
           const itemDate = new Date(item);
           reserved.push(itemDate);
         });
-        console.log(reserved);
+        // console.log(reserved);
       }
       setReservedDates(reserved);
     };
@@ -67,6 +67,19 @@ const Reservas = ({ id, titulo, reserva }) => {
   const handleReservation = () => {
     // Aquí envías las fechas seleccionadas al backend
     console.log("Reserva realizada para las fechas:", selectedDates);
+    const configs = {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${selectedDates[0]}&fechaFin=${selectedDates[selectedDates.length - 1]}`, configs)
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data)
+    })
+    .catch(error => console.log(error))
+    
   };
 
   const handleCancel = () => {
