@@ -72,10 +72,7 @@ const Reservas = ({ id, titulo }) => {
     // Aquí envías las fechas seleccionadas al backend
     console.log("Reserva realizada para las fechas:", selectedDates);
     const configs = {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      method: "POST"
     }
     const fechaInicio = selectedDates[0].toISOString().split('T')[0]; // Formato YYYY-MM-DD
     const fechaFin = selectedDates[selectedDates.length - 1].toISOString().split('T')[0];

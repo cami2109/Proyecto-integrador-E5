@@ -1,6 +1,7 @@
 package com.melodymix.servicio;
 
 import com.melodymix.entidad.Reserva;
+import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,6 +18,8 @@ public interface IReservaServicio {
     void cancelarReserva(Long id);
 
     boolean verificarDisponibilidad(Long instrumentoId, LocalDate fechaInicio, LocalDate fechaFin);
+
+    List<LocalDate> obtenerFechasReservadas(Long instrumentoId);
 
 
 }
