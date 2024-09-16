@@ -8,27 +8,32 @@ const Reservas = ({ id, titulo }) => {
 
   useEffect(() => {
     // Simulación de llamada a la API para obtener las fechas ya reservadas
-    // las reservas vienen por props (desde listaReservas.js)
     const fetchReservedDates = async () => {
-      const fechasApi = () => { //reservas que lleguen desde backend
-        fetch("http://localhost:8080/reserva/fechas-reservadas?instrumentoId=" + id)
-        .then(res => res.json())
-        .then(data => {return data})
-        .catch(error => console.log(error)) 
+      try {
+        // Llamada a la API para obtener las fechas reservadas
+        const response = await fetch("http://localhost:8080/reserva/fechas-reservadas?instrumentoId=" + id);
+        const data = await response.json();
+    
+        const reserved = [];
+        if (data && Array.isArray(data)) {
+          data.forEach((item) => {
+            // Solución: obtener la fecha sin la conversión a UTC
+            const localDate = new Date(item + 'T00:00:00'); // Añadir 'T00:00:00' para que se tome como local
+            reserved.push(localDate);
+          });
+          console.log(reserved);
+        }
+    
+        setReservedDates(reserved); // Guardamos las fechas reservadas en el estado
+      } catch (error) {
+        console.log("Error al obtener las fechas reservadas:", error);
       }
-      fechasApi()
-      const reserved = [];
-      if (fechasApi !== null) {
-        fechasApi.map((item) => {
-          const itemDate = new Date(item);
-          reserved.push(itemDate);
-        });
-        console.log(reserved);
-      }
-      setReservedDates(reserved);
     };
-    fetchReservedDates();
-  }, []);
+    
+  
+    fetchReservedDates(); // Llamamos a la función para obtener las fechas reservadas
+  }, [id]); // Aseguramos que se vuelva a ejecutar cuando cambie el ID
+  
 
   const isDateReserved = (date) => {
     return reservedDates.some(
@@ -70,22 +75,46 @@ const Reservas = ({ id, titulo }) => {
     return `${day}/${month}/${year}`;
   };
 
+  // const handleReservation = () => {
+  //   // Aquí envías las fechas seleccionadas al backend
+  //   console.log("Reserva realizada para las fechas:", selectedDates);
+  //   const configs = {
+  //     method: "POST"
+  //   }
+  //   const fechaInicio = selectedDates[0].toISOString().split('T')[0]; // Formato YYYY-MM-DD
+  //   const fechaFin = selectedDates[selectedDates.length - 1].toISOString().split('T')[0];
+  //   fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`, configs)
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       console.log(data)
+  //   })
+  //   .catch(error => console.log(error))
+    
+  // };
+
   const handleReservation = () => {
     // Aquí envías las fechas seleccionadas al backend
     console.log("Reserva realizada para las fechas:", selectedDates);
+    
+    // Ajustar las fechas al formato local antes de enviarlas
+    const fechaInicio = selectedDates[0].getFullYear() + '-' +
+                        ('0' + (selectedDates[0].getMonth() + 1)).slice(-2) + '-' +
+                        ('0' + selectedDates[0].getDate()).slice(-2);
+    const fechaFin = selectedDates[selectedDates.length - 1].getFullYear() + '-' +
+                     ('0' + (selectedDates[selectedDates.length - 1].getMonth() + 1)).slice(-2) + '-' +
+                     ('0' + selectedDates[selectedDates.length - 1].getDate()).slice(-2);
+  
     const configs = {
       method: "POST"
-    }
-    const fechaInicio = selectedDates[0].toISOString().split('T')[0]; // Formato YYYY-MM-DD
-    const fechaFin = selectedDates[selectedDates.length - 1].toISOString().split('T')[0];
+    };
     fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`, configs)
-    .then((res) => res.json())
-    .then((data) => {
-        console.log(data)
-    })
-    .catch(error => console.log(error))
-    
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch(error => console.log(error));
   };
+  
 
   const handleCancel = () => {
     setSelectedDates([]); // Borrar todas las fechas seleccionadas
