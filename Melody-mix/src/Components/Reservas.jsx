@@ -10,11 +10,13 @@ const Reservas = ({ id, titulo }) => {
     // Simulación de llamada a la API para obtener las fechas ya reservadas
     // las reservas vienen por props (desde listaReservas.js)
     const fetchReservedDates = async () => {
-      let fechasApi = [] //reservas que lleguen desde backend
-      fetch("http://localhost:8080/reserva/fechas-reservadas?instrumentoId=" + id)
-      .then(res => res.json())
-      .then(data => console.log(data))
-      .catch(error => console.log(error)) 
+      const fechasApi = () => { //reservas que lleguen desde backend
+        fetch("http://localhost:8080/reserva/fechas-reservadas?instrumentoId=" + id)
+        .then(res => res.json())
+        .then(data => {return data})
+        .catch(error => console.log(error)) 
+      }
+      fechasApi()
       const reserved = [];
       if (fechasApi !== null) {
         fechasApi.map((item) => {
