@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -56,4 +57,27 @@ public class ReservaServicioImpl implements IReservaServicio {
         }
         return true;
     }
+
+    @Override
+    public List<LocalDate> obtenerFechasReservadas(Long instrumentoId) {
+        List<Reserva> reservas = reservaRepositorio.findByInstrumentoId(instrumentoId);
+        List<LocalDate> fechasReservadas = new ArrayList<>();
+
+        for (Reserva reserva : reservas) {
+            LocalDate fechaInicio = reserva.getFechaInicio();
+            LocalDate fechaFin = reserva.getFechaFin();
+
+            // Iterar entre las fechas de inicio y fin y agregarlas a la lista
+            while (!fechaInicio.isAfter(fechaFin)) {
+                fechasReservadas.add(fechaInicio);
+                fechaInicio = fechaInicio.plusDays(1);  // Avanzar al siguiente día
+            }
+        }
+
+        return fechasReservadas;
+    }
+
 }
+
+
+

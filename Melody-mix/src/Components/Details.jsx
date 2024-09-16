@@ -31,9 +31,9 @@ const Details = () => {
           <div className="section-caract-reserva">
             <div>
               <h3>Caracteristicas del instrumento</h3>
-              <ul style={{ paddingLeft: "20px" }}>
+              <ul style={{ paddingLeft: "20px", fontSize:"18px" }}>
                 {instrumentoActual.caracteristicasList.map((i) => {
-                  return <li>{i}</li>;
+                  return <li style={{padding:"4px"}}>{i}</li>;
                 })}
               </ul>
             </div>
