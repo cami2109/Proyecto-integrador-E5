@@ -38,7 +38,7 @@ const Details = () => {
               </ul>
             </div>
             <div>
-              <Reservas id={id} titulo={titulo} reserva={reservas[id-1].reservados} />
+              <Reservas id={id} titulo={titulo} />
             </div>
           </div>
         </div>
