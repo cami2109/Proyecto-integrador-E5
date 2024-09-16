@@ -10,10 +10,10 @@ const Reservas = ({ id, titulo }) => {
     // Simulación de llamada a la API para obtener las fechas ya reservadas
     // las reservas vienen por props (desde listaReservas.js)
     const fetchReservedDates = async () => {
-      const fechasApi = [] //reservas que lleguen desde backend
+      let fechasApi = [] //reservas que lleguen desde backend
       fetch("http://localhost:8080/reserva/fechas-reservadas?instrumentoId=" + id)
       .then(res => res.json())
-      .then(data => fechasApi = data)
+      .then(data => console.log(data))
       .catch(error => console.log(error)) 
       const reserved = [];
       if (fechasApi !== null) {
@@ -21,12 +21,12 @@ const Reservas = ({ id, titulo }) => {
           const itemDate = new Date(item);
           reserved.push(itemDate);
         });
-        // console.log(reserved);
+        console.log(reserved);
       }
       setReservedDates(reserved);
     };
     fetchReservedDates();
-  }, [reserva]);
+  }, []);
 
   const isDateReserved = (date) => {
     return reservedDates.some(
