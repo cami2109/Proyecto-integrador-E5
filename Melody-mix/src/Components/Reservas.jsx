@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "../App.css";
-import { reservas } from "../Utils/listaReservas";
 
-const Reservas = ({ id, titulo, reserva }) => {
+const Reservas = ({ id, titulo }) => {
   const [selectedDates, setSelectedDates] = useState([]); // Manejar un array de fechas seleccionadas
   const [reservedDates, setReservedDates] = useState([]);
 
@@ -11,9 +10,14 @@ const Reservas = ({ id, titulo, reserva }) => {
     // Simulación de llamada a la API para obtener las fechas ya reservadas
     // las reservas vienen por props (desde listaReservas.js)
     const fetchReservedDates = async () => {
+      const fechasApi = [] //reservas que lleguen desde backend
+      fetch("http://localhost:8080/reserva/fechas-reservadas?instrumentoId=" + id)
+      .then(res => res.json())
+      .then(data => fechasApi = data)
+      .catch(error => console.log(error)) 
       const reserved = [];
-      if (reserva !== null) {
-        reserva.map((item) => {
+      if (fechasApi !== null) {
+        fechasApi.map((item) => {
           const itemDate = new Date(item);
           reserved.push(itemDate);
         });
