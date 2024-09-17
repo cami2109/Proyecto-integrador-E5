@@ -29,13 +29,13 @@ const Details = () => {
       }
     });
   };
-
-  if (state.user) {
+  
+  if (Object.keys((state.user)).length === 0) {
     // Si no hay usuario logueado, muestra el modal de alerta
     showLoginAlert();
     return null; // Evita renderizar el detalle mientras el modal está visible
   }
-  console.log(!state.user)
+  
 
   return (
     <section className="main-detail">
