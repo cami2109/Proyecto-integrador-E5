@@ -3,10 +3,14 @@ import Calendar from "react-calendar";
 import "../App.css";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../Context/Context";
 
 const Reservas = ({ id, titulo }) => {
   const [selectedDates, setSelectedDates] = useState([]); // Manejar un array de fechas seleccionadas
   const [reservedDates, setReservedDates] = useState([]);
+
+  const { state } = useUserContext()
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -72,43 +76,63 @@ const Reservas = ({ id, titulo }) => {
   };
 
   const formatDate = (date) => {
-    const day = date.getDate();
-    const month = date.getMonth() + 1; // Los meses son 0 indexados
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    const day = date.getDate()
+    const month = date.getMonth() + 1 // Los meses son 0 indexados
+    const year = date.getFullYear()
+    return `${day}/${month}/${year}`
   };
 
   const handleReservation = () => {
     // Aquí envías las fechas seleccionadas al backend
     // console.log("Reserva realizada para las fechas:", selectedDates);
-    const configs = {
-      method: "POST"
+    const showLoginAlert = () => {
+      Swal.fire({
+        title: 'No estás logueado',
+        text: 'Debes iniciar sesión para reservar un producto.',
+        icon: 'warning',
+        allowOutsideClick: false,  
+        allowEscapeKey: false,    
+        confirmButtonText: 'Ir a login'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login")
+        }
+      })
     }
-    const fechaInicio = selectedDates[0].toISOString().split('T')[0]; // Formato YYYY-MM-DD
-    const fechaFin = selectedDates[selectedDates.length - 1].toISOString().split('T')[0];
-    fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`, configs)
-    .then((res) => res.json())
-    .then((data) => {
-      Swal.fire({
-        title: "Reserva registrada!",
-        html: "Instrumento: <b>" + data.instrumento.nombre + "</b><br>" +
-              "Desde el día: " + data.fechaInicio + "<br>" +
-              "Hasta el día: " + data.fechaFin,
-        icon: "success",
-        allowOutsideClick: false,
-        allowEscapeKey: false,
+    
+    if (Object.keys((state.user)).length === 0) {
+      showLoginAlert()
+      return null
+    } else {
+      const configs = {
+        method: "POST"
+      }
+      const fechaInicio = selectedDates[0].toISOString().split('T')[0]; // Formato YYYY-MM-DD
+      const fechaFin = selectedDates[selectedDates.length - 1].toISOString().split('T')[0];
+      fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`, configs)
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire({
+          title: "Reserva registrada!",
+          html: "Instrumento: <b>" + data.instrumento.nombre + "</b><br>" +
+                "Desde el día: " + data.fechaInicio + "<br>" +
+                "Hasta el día: " + data.fechaFin,
+          icon: "success",
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+        })
+        setTimeout(() => {
+          navigate("/")
+        }, 3000)
       })
-      setTimeout(() => {
-        navigate("/")
-      }, 3000)
-    })
-    .catch(error => {
-      Swal.fire({
-        icon: "error",
-        title: "Error: ",
-        text: error,
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Error: ",
+          text: error,
+        })
       })
-    })
+    }
     
   };
 

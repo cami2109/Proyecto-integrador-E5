@@ -8,33 +8,13 @@ import Swal from "sweetalert2";
 
 const Details = () => {
   const { id } = useParams();
-  const navigate = useNavigate()
+  
 
   const {state} = useUserContext()
 
   const instrumentoActual = state.products[id - 1];
   const titulo = "Selecciona las fechas para reservar"; //titulo a usar en <Reservas/>
 
-  const showLoginAlert = () => {
-    Swal.fire({
-      title: 'No estás logueado',
-      text: 'Debes iniciar sesión para ver los detalles del producto.',
-      icon: 'warning',
-      allowOutsideClick: false,  // Desactiva el clic fuera del modal
-      allowEscapeKey: false,     // Desactiva el cierre con la tecla "Esc"
-      confirmButtonText: 'Ir a login'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        navigate("/login"); // Redirige a /login si el usuario confirma
-      }
-    });
-  };
-  
-  if (Object.keys((state.user)).length === 0) {
-    // Si no hay usuario logueado, muestra el modal de alerta
-    showLoginAlert();
-    return null; // Evita renderizar el detalle mientras el modal está visible
-  }
   
 
   return (
