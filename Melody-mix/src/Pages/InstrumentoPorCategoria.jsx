@@ -9,7 +9,6 @@ const InstrumentoPorCategoria = () => {
     const { instrumento } = useParams()
 
     const { state } = useUserContext()
-    console.log(state.products)
     const instrumentosAMostrar = () => {
         const lista = []
         

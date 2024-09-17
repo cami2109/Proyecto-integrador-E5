@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "../App.css";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Reservas = ({ id, titulo }) => {
   const [selectedDates, setSelectedDates] = useState([]); // Manejar un array de fechas seleccionadas
   const [reservedDates, setReservedDates] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Simulación de llamada a la API para obtener las fechas ya reservadas
@@ -32,7 +35,7 @@ const Reservas = ({ id, titulo }) => {
     
   
     fetchReservedDates(); // Llamamos a la función para obtener las fechas reservadas
-  }, [id]); // Aseguramos que se vuelva a ejecutar cuando cambie el ID
+  }, [])
   
 
   const isDateReserved = (date) => {
@@ -75,45 +78,62 @@ const Reservas = ({ id, titulo }) => {
     return `${day}/${month}/${year}`;
   };
 
+  const handleReservation = () => {
+    // Aquí envías las fechas seleccionadas al backend
+    // console.log("Reserva realizada para las fechas:", selectedDates);
+    const configs = {
+      method: "POST"
+    }
+    const fechaInicio = selectedDates[0].toISOString().split('T')[0]; // Formato YYYY-MM-DD
+    const fechaFin = selectedDates[selectedDates.length - 1].toISOString().split('T')[0];
+    fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`, configs)
+    .then((res) => res.json())
+    .then((data) => {
+      Swal.fire({
+        title: "Reserva registrada!",
+        html: "Instrumento: <b>" + data.instrumento.nombre + "</b><br>" +
+              "Desde el día: " + data.fechaInicio + "<br>" +
+              "Hasta el día: " + data.fechaFin,
+        icon: "success",
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      })
+      setTimeout(() => {
+        navigate("/")
+      }, 3000)
+    })
+    .catch(error => {
+      Swal.fire({
+        icon: "error",
+        title: "Error: ",
+        text: error,
+      })
+    })
+    
+  };
+
   // const handleReservation = () => {
   //   // Aquí envías las fechas seleccionadas al backend
   //   console.log("Reserva realizada para las fechas:", selectedDates);
+    
+  //   // Ajustar las fechas al formato local antes de enviarlas
+  //   const fechaInicio = selectedDates[0].getFullYear() + '-' +
+  //                       ('0' + (selectedDates[0].getMonth() + 1)).slice(-2) + '-' +
+  //                       ('0' + selectedDates[0].getDate()).slice(-2);
+  //   const fechaFin = selectedDates[selectedDates.length - 1].getFullYear() + '-' +
+  //                    ('0' + (selectedDates[selectedDates.length - 1].getMonth() + 1)).slice(-2) + '-' +
+  //                    ('0' + selectedDates[selectedDates.length - 1].getDate()).slice(-2);
+  
   //   const configs = {
   //     method: "POST"
-  //   }
-  //   const fechaInicio = selectedDates[0].toISOString().split('T')[0]; // Formato YYYY-MM-DD
-  //   const fechaFin = selectedDates[selectedDates.length - 1].toISOString().split('T')[0];
+  //   };
   //   fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`, configs)
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //       console.log(data)
-  //   })
-  //   .catch(error => console.log(error))
-    
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch(error => console.log(error));
   // };
-
-  const handleReservation = () => {
-    // Aquí envías las fechas seleccionadas al backend
-    console.log("Reserva realizada para las fechas:", selectedDates);
-    
-    // Ajustar las fechas al formato local antes de enviarlas
-    const fechaInicio = selectedDates[0].getFullYear() + '-' +
-                        ('0' + (selectedDates[0].getMonth() + 1)).slice(-2) + '-' +
-                        ('0' + selectedDates[0].getDate()).slice(-2);
-    const fechaFin = selectedDates[selectedDates.length - 1].getFullYear() + '-' +
-                     ('0' + (selectedDates[selectedDates.length - 1].getMonth() + 1)).slice(-2) + '-' +
-                     ('0' + selectedDates[selectedDates.length - 1].getDate()).slice(-2);
-  
-    const configs = {
-      method: "POST"
-    };
-    fetch(`http://localhost:8080/reserva/reservar?instrumentoId=${id}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`, configs)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(error => console.log(error));
-  };
   
 
   const handleCancel = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/Context";
 
 const LogIn = () => {
@@ -18,13 +18,7 @@ const LogIn = () => {
   const [error, setError] = useState(false);
   const [erroresEspecificos, setErroresEspecificos] = useState([]);
 
-  const configs = {
-    method: "POST",
-    body: JSON.stringify(info),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
+
 
   const navigate = useNavigate();
 
@@ -55,6 +49,13 @@ const LogIn = () => {
     ) {
       setShowCard(true)
       setError(false)
+      const configs = {
+        method: "POST",
+        body: JSON.stringify(info),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
       fetch("http://localhost:8080/usuario/login", configs)
         .then((res) => res.json())
         .then((data) => {
@@ -125,6 +126,7 @@ const LogIn = () => {
         )}
         <button onClick={(e) => handleSubmit(e)}>Ingresar</button>
       </form>
+      <Link to="/crearcuenta"><p>No tenes cuenta?, registrate!</p></Link>
       <div>
         {showCard && <p>aguarda por favor</p>}
         {error &&

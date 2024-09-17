@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "../Context/Context";
 
 const Formu = () => {
@@ -142,6 +142,7 @@ const Formu = () => {
           </div>
           <button onClick={handleSubmit}>Registrarse</button>
         </form>
+        <Link to="/login"><p>Ya tenes cuenta?, logueate acá!</p></Link>
         {showCard && <p>aguarda por favor</p>}
         {error && erroresEspecificos.map((i, index) => <p key={index}>{i}</p>)}
       </>
