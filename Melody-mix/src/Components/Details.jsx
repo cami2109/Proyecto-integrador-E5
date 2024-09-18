@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import Reservas from "./Reservas.jsx";
 import "../App.css";
 import { useUserContext } from "../Context/Context.jsx";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+
 
 const Details = () => {
   const { id } = useParams();

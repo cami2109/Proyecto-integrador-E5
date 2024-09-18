@@ -3,11 +3,9 @@ import { useUserContext } from '../Context/Context'
 
 const ModificarEliminar = ({ info, setShow, id }) => {
 
-    console.log(id)
+    const { state } = useUserContext()
 
-    const { state, dispatch } = useUserContext()
-
-    const {nombre, precio, descripcion,  caracteristicasList, imagenUrl} = info
+    const {nombre, precio, descripcion,  caracteristicasList, imagenUrl, categoria} = info
 
     const token = JSON.parse(localStorage.getItem("token"))
 
@@ -17,8 +15,8 @@ const ModificarEliminar = ({ info, setShow, id }) => {
         precio: precio,
         imagenUrl: imagenUrl,
         descripcion: descripcion,
-        caracteristicas: caracteristicasList,
-        categorias: ""
+        caracteristicasList: caracteristicasList,
+        categorias: categoria
     })
 
     const [modificaciones, setModificaciones] = useState({
@@ -28,7 +26,7 @@ const ModificarEliminar = ({ info, setShow, id }) => {
         categorias: producto.categorias
     })
 
-    const [showBotones, setShowBotones] = useState([new Array(producto.caracteristicas.length).fill(false)])
+    const [showBotones, setShowBotones] = useState([new Array(producto.caracteristicasList.length).fill(false)])
     const [showInput, setShowInput] = useState(false)
     const [nuevaCaracteristica, setNuevaCaracteristica] = useState("")
     const [productoCompleto, setProductoCompleto] = useState(true)
@@ -40,7 +38,7 @@ const ModificarEliminar = ({ info, setShow, id }) => {
     };
 
     const handleDelete = (i) => {
-        const carac = producto.caracteristicas
+        const carac = producto.caracteristicasList
         carac.splice(i, 1)
         setProducto({...producto, caracteristicas: carac})
     }
@@ -93,12 +91,11 @@ const ModificarEliminar = ({ info, setShow, id }) => {
                 precio: Number(modificaciones.precio),
                 imagenUrl: producto.imagenUrl,
                 descripcion: modificaciones.descripcion,
-                caracteristicas: producto.caracteristicas.join(", "),
+                caracteristicas: producto.caracteristicasList.join(", "),
                 categoria: modificaciones.categorias
 
             }
 
-            console.log(modificaciones, productoEnviar)
 
             const configs = {
                 method: "PUT",
@@ -138,7 +135,7 @@ const ModificarEliminar = ({ info, setShow, id }) => {
             <h3>Categoria: {producto.categorias}</h3>
             <h3>Caracteristicas: </h3>
             <ul>
-                {producto.caracteristicas.map((i, index) => {
+                {producto.caracteristicasList.map((i, index) => {
                     return(
                         <li key={index}>{i}</li>
                     )
@@ -167,13 +164,24 @@ const ModificarEliminar = ({ info, setShow, id }) => {
 
                 <label htmlFor="categorias">Categoría: </label>
                 <div className='input-container'>
-                    <input type="text" placeholder={producto.categorias} onChange={(e) => setModificaciones({...modificaciones, categorias: e.target.value})}/>
+                    <select 
+                        value={modificaciones.categorias || producto.categorias} 
+                        onChange={(e) => setModificaciones({...modificaciones, categorias: e.target.value}, console.log(modificaciones.categorias))}
+                    >
+                        <option value="" disabled>Selecciona una categoría</option>
+                        <option value="Teclados">Teclados</option>
+                        <option value="Percusion">Percusión</option>
+                        <option value="Viento">Viento</option>
+                        <option value="Cuerda">Cuerda</option>
+                        {/* Añade más opciones según sea necesario */}
+                    </select>
                     {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categorias: modificaciones.categorias})}}>Agregar</button> */}
                 </div>
 
+
                 <h3>Características</h3>
                 <ul>
-                    {producto.caracteristicas.map((i, index) => (
+                    {producto.caracteristicasList.map((i, index) => (
                         <li key={index}>
                             <a onClick={() => toggleShowBotones(index)}>{i}</a>
                             {showBotones[index] && (

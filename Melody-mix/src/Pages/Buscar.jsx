@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { instrumentos } from "../Utils/listaInstrumentos"; // Importa la lista de instrumentos
 import "../App.css";
 import Card from "../Components/Card";
 import Reservas from "../Components/Reservas";
+import { useUserContext } from "../Context/Context";
 
 const Buscar = () => {
+  const { state } = useUserContext()
   const location = useLocation();
   const navigate = useNavigate();
   const initialQuery = new URLSearchParams(location.search).get("q") || "";
@@ -17,7 +18,7 @@ const Buscar = () => {
   useEffect(() => {
     // Filtrar los instrumentos que coincidan con el nombre
     const trimmedQuery = query.trim();
-    const filtered = instrumentos.filter((instrumento) =>
+    const filtered = state.products.filter((instrumento) => 
       instrumento.nombre.toLowerCase().includes(trimmedQuery.toLowerCase())
     );
     setResultados(filtered);
@@ -28,7 +29,7 @@ const Buscar = () => {
   const handleSearch = () => {
     // Filtrar los instrumentos que coincidan con el nombre
     const trimmedQuery = query.trim();
-    const filtered = instrumentos.filter((instrumento) =>
+    const filtered = state.products.filter((instrumento) =>
       instrumento.nombre.toLowerCase().includes(trimmedQuery.toLowerCase())
     );
     setResultados(filtered);

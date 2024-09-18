@@ -128,8 +128,18 @@ const AgregarProducto = ({ setShow }) => {
                 </div>
                 <label htmlFor="categorias">Categoría: </label>
                 <div className='input-container'>
-                  <input type="text" placeholder={producto.categoria} onChange={(e) => setProducto({...producto, categoria: e.target.value})}/>
-                  {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categoria: input})}}>Agregar</button> */}
+                    <select 
+                        value={producto.categoria} 
+                        onChange={(e) => setProducto({...producto, categoria: e.target.value})}
+                    >
+                        <option value="" disabled>Selecciona una categoría</option>
+                        <option value="Teclados">Teclados</option>
+                        <option value="Percusion">Percusión</option>
+                        <option value="Viento">Viento</option>
+                        <option value="Cuerda">Cuerda</option>
+                        {/* Añade más opciones según sea necesario */}
+                    </select>
+                    {/* <button onClick={(e) => {e.preventDefault(), setProducto({...producto, categorias: modificaciones.categorias})}}>Agregar</button> */}
                 </div>
                 <h3>Caracteristicas</h3>
                 <ul>
