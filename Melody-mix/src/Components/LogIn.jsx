@@ -126,7 +126,7 @@ const LogIn = () => {
         )}
         <button onClick={(e) => handleSubmit(e)}>Ingresar</button>
       </form>
-      <Link to="/crearcuenta"><p>No tenes cuenta?, registrate!</p></Link>
+      <Link to="/crearcuenta"><p>No tenés cuenta?, Registráte!</p></Link>
       <div>
         {showCard && <p>aguarda por favor</p>}
         {error &&

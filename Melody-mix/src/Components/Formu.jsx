@@ -142,7 +142,7 @@ const Formu = () => {
           </div>
           <button onClick={handleSubmit}>Registrarse</button>
         </form>
-        <Link to="/login"><p>Ya tenes cuenta?, logueate acá!</p></Link>
+        <Link to="/login"><p>Ya tenés cuenta?, Logueate acá!</p></Link>
         {showCard && <p>aguarda por favor</p>}
         {error && erroresEspecificos.map((i, index) => <p key={index}>{i}</p>)}
       </>

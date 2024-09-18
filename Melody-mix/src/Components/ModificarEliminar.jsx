@@ -44,23 +44,7 @@ const ModificarEliminar = ({ info, setShow, id }) => {
         setProducto({...producto, caracteristicas: carac})
     }
 
-    // const handleDeleteProduct = () => {
-    //     const configs ={
-    //         method: "Delete",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             Authorization: token
-    //         },
-    //     }
-    //     fetch(`http://localhost:8080/instrumento/${producto.id}`, configs)
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //         console.log(data)
-    //         setShow(id)
-    //         location.reload()
-    //     })
-    //     .catch(error => console.log(error))
-    // }
+
 
     const handleDeleteProduct = () => {
         const configs = {
@@ -96,69 +80,9 @@ const ModificarEliminar = ({ info, setShow, id }) => {
     };
     
 
-    // const handleSubmit = () => {
-    //     const pasaNombre = () => {
-    //         state.products.map((i) => {
-    //             if(producto.nombre === i.nombre){
-    //             return false
-    //             } 
-    //         })
-    //         return true
-    //     }
-
-    //     const estaCompleto = () => {
-    //         return !!(modificaciones.precio && 
-    //                modificaciones.nombre && 
-    //                producto.imagenUrl && 
-    //                modificaciones.descripcion && 
-    //                producto.caracteristicas.length > 0 && 
-    //                modificaciones.categorias)
-    //     }
-
-
-        
-
-    //     if(pasaNombre()){
-
-    //         const productoEnviar = {
-    //             nombre: modificaciones.nombre,
-    //             precio: Number(modificaciones.precio),
-    //             imagenUrl: producto.imagenUrl,
-    //             descripcion: modificaciones.descripcion,
-    //             caracteristicas: producto.caracteristicasList.join(", "),
-    //             categoria: modificaciones.categorias
-
-    //         }
-
-
-    //         const configs = {
-    //             method: "PUT",
-    //             body: JSON.stringify(productoEnviar),
-    //             headers: {
-    //               "Content-Type": "application/json",
-    //               Authorization: token
-    //             },
-    //         }
-
-
-    //         fetch(`http://localhost:8080/instrumento/actualizar/${producto.id}`, configs)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             console.log(data)
-    //             setShow(id)
-    //             location.reload()
-    //         })
-    //         .catch(error => console.log(error));
-    //     } else {
-    //         setProductoCompleto(false)
-    //     }
-    // };
 
 
     const handleSubmit = () => {
-        const pasaNombre = () => {
-            return state.products.every((i) => producto.nombre !== i.nombre);
-        };
     
         const estaCompleto = () => {
             return !!(modificaciones.precio && 
@@ -166,29 +90,20 @@ const ModificarEliminar = ({ info, setShow, id }) => {
                    producto.imagenUrl && 
                    modificaciones.descripcion && 
                    producto.caracteristicasList.length > 0 && 
-                   modificaciones.categorias);
-        };
+                   modificaciones.categorias)
+        }
 
-        const productoEnviar = {
-            nombre: modificaciones.nombre,
-            precio: Number(modificaciones.precio),
-            imagenUrl: producto.imagenUrl,
-            descripcion: modificaciones.descripcion,
-            caracteristicas: producto.caracteristicasList.join(", "),
-            categoria: modificaciones.categorias
-        };
 
-        console.log(productoEnviar);
 
-        // if (pasaNombre()) {
-        //     const productoEnviar = {
-        //         nombre: modificaciones.nombre,
-        //         precio: Number(modificaciones.precio),
-        //         imagenUrl: producto.imagenUrl,
-        //         descripcion: modificaciones.descripcion,
-        //         caracteristicas: producto.caracteristicasList.join(", "),
-        //         categoria: modificaciones.categorias
-        //     };
+        if (estaCompleto()) {
+            const productoEnviar = {
+                nombre: modificaciones.nombre,
+                precio: Number(modificaciones.precio),
+                imagenUrl: producto.imagenUrl,
+                descripcion: modificaciones.descripcion,
+                caracteristicas: producto.caracteristicasList.join(", "),
+                categoria: modificaciones.categorias
+            }
     
             const configs = {
                 method: "PUT",
@@ -197,27 +112,28 @@ const ModificarEliminar = ({ info, setShow, id }) => {
                   "Content-Type": "application/json",
                   Authorization: token
                 },
-            };
-            console.log(productoEnviar);
+            }
+
+
             fetch(`http://localhost:8080/instrumento/actualizar/${producto.id}`, configs)
                 .then((res) => {
                     if (!res.ok) {
                         return res.text().then((text) => {
-                            throw new Error(`Error ${res.status}: ${text}`);
+                            throw new Error(`Error ${res.status}: ${text}`)
                         });
                     }
                     // Leer respuesta como texto plano
-                    return res.text();
+                    return res.text()
                 })
                 .then((text) => {
-                    console.log("Respuesta en texto plano:", text);
-                    setShow(id);
-                    location.reload();
+                    console.log("Respuesta en texto plano:", text)
+                    setShow(id)
+                    location.reload()
                 })
-                .catch((error) => console.log("Error al actualizar el producto:", error));
-        // } else {
-        //     setProductoCompleto(false);
-        // }
+                .catch((error) => console.log("Error al actualizar el producto:", error))
+        } else {
+            setProductoCompleto(false)
+        }
     };
     
     
@@ -301,7 +217,7 @@ const ModificarEliminar = ({ info, setShow, id }) => {
                     }
                 </ul>
             </form>
-            {!productoCompleto && <h2>Asegurate de que el producto este completo, y que no se repita ningun nombre</h2>}
+            {!productoCompleto && <h2>Asegurate de que el producto este completo</h2>}
             <div>
                 <button onClick={(e) => {e.preventDefault(), handleSubmit()}}>✅</button> {/*Guardar cambios*/}
                 <button onClick={(e) => {e.preventDefault(), handleDeleteProduct()}}>❌</button> {/*Borrar producto*/}
