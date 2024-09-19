@@ -21,16 +21,16 @@ const Recomendaciones = () => {
           <h2>Recomendaciones</h2>
         </div>
         <div className="section-bottom">          
-          {/* {randomIndices.map((index) => {
+          {randomIndices.map((index) => {
             return (               
               <Card key={index} info={state.products[index]} />   
             )
-          })} */}
-          {state.products.map((i, index) => {
+          })}
+          {/* {state.products.map((i, index) => {
             return(
               <Card key={index} info={i}  />
             )
-          })}
+          })} */}
         </div>
       </section>
   )
