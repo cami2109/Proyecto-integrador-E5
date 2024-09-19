@@ -36,9 +36,9 @@ const Details = () => {
             <div>
               <h3>Caracteristicas del instrumento</h3>
               <ul style={{ paddingLeft: "20px", fontSize:"18px" }}>
-                {instrumentoActual.caracteristicasList.map((i) => {
+                {instrumentoActual.caracteristicasList.length > 0 ? instrumentoActual.caracteristicasList.map((i) => {
                   return <li style={{padding:"4px"}}>{i}</li>;
-                })}
+                }): <li style={{padding:"4px"}}>No hay Caracteristicas</li>}
               </ul>
             </div>
             <div>
