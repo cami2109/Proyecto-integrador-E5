@@ -10,8 +10,13 @@ const Details = () => {
 
   const {state} = useUserContext()
 
-  const instrumentoActual = state.products[id];
+  const instrumentoActual = () => {
+    state.products.map(i => {
+      if(id === i.id) return i
+    })
+  }
   const titulo = "Selecciona las fechas para reservar"; //titulo a usar en <Reservas/>
+  instrumentoActual()
 
   return (
     <section className="main-detail">
