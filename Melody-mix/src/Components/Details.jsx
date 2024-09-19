@@ -11,10 +11,9 @@ const Details = () => {
   const {state} = useUserContext()
 
   const instrumentoActual = () => {
-    state.products.map(i => {
-      if(id === i.id) return i
-    })
+    return state.products.find(i => id === i.id);
   }
+
   const titulo = "Selecciona las fechas para reservar"; //titulo a usar en <Reservas/>
   instrumentoActual()
 
