@@ -7,14 +7,11 @@ import { useUserContext } from "../Context/Context.jsx";
 
 const Details = () => {
   const { id } = useParams();
-  
 
   const {state} = useUserContext()
 
-  const instrumentoActual = state.products[id - 1];
+  const instrumentoActual = state.products[id];
   const titulo = "Selecciona las fechas para reservar"; //titulo a usar en <Reservas/>
-
-  
 
   return (
     <section className="main-detail">
