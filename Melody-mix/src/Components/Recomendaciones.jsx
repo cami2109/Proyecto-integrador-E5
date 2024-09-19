@@ -23,12 +23,12 @@ const Recomendaciones = () => {
         <div className="section-bottom">          
           {/* {randomIndices.map((index) => {
             return (               
-              <Card key={index} info={state.products[index]} />   
+              <Card key={index} info={state.products[index]} idArray={index}/>   
             )
           })} */}
           {state.products.map((i, index) => {
             return(
-              <Card key={index} info={i} />
+              <Card key={index} info={i} idArray={index} />
             )
           })}
         </div>
