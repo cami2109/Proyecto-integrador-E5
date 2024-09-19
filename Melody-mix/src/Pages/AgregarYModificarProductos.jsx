@@ -16,9 +16,9 @@ const AgregarYModificarProductos = () => {
 
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     if(!state.user.isAdmin) navigate("/")
-    // }, [])
+    useEffect(() => {
+        if(!state.user.isAdmin) navigate("/")
+    }, [])
     
 
     const toggleModificarEliminar = (index) => {

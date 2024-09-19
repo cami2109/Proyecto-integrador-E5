@@ -11,31 +11,32 @@ const Details = () => {
   const {state} = useUserContext()
 
   const instrumentoActual = () => {
-    return state.products.find(i => id === i.id);
-  }
-
+    return state.products.find(i => Number(id) === Number(i.id));
+  };
+  
   const titulo = "Selecciona las fechas para reservar"; //titulo a usar en <Reservas/>
   instrumentoActual()
-
+  console.log(instrumentoActual().caracteristicasList);
+  
   return (
     <section className="main-detail">
-      {instrumentoActual ? 
+      {instrumentoActual() ? 
       <div>
-        <h2>{instrumentoActual.nombre}</h2>
+        <h2>{instrumentoActual().nombre}</h2>
         <div className="detail">
           <img
-            src={instrumentoActual.imagenUrl}
-            alt={instrumentoActual.nombre}
+            src={instrumentoActual().imagenUrl}
+            alt={instrumentoActual().nombre}
             style={{ width: "40vw", height: "400px" }}
           />
-          <h4>{"$" + instrumentoActual.precio}</h4>
-          <p>{instrumentoActual.descripcion}</p>
+          <h4>{"$" + instrumentoActual().precio}</h4>
+          <p>{instrumentoActual().descripcion}</p>
 
           <div className="section-caract-reserva">
             <div>
               <h3>Caracteristicas del instrumento</h3>
               <ul style={{ paddingLeft: "20px", fontSize:"18px" }}>
-                {instrumentoActual.caracteristicasList.length > 0 ? instrumentoActual.caracteristicasList.map((i) => {
+                {instrumentoActual().caracteristicasList.length > 0 ? instrumentoActual().caracteristicasList.map((i) => {
                   return <li style={{padding:"4px"}}>{i}</li>;
                 }): <li style={{padding:"4px"}}>No hay Caracteristicas</li>}
               </ul>
